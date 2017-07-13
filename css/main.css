@@ -1817,7 +1817,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff58ff;
+  background: #d4ffd5;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2974,6 +2974,9 @@ hr {
 }
 .sidebar {
   box-shadow: inset 2px 2px 40px #bdb2b2;
+}
+.sidebar {
+  background: url("/images/bk.jpg");
 }
 .sidebar a {
   color: #649ab6;
