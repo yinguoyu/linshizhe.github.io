@@ -3,17 +3,15 @@
 
 
     
-    
-    
   <url>
-    <loc>http://yoursite.com/2017/07/12/hello-world/</loc>
-    <lastmod>2017-07-13T15:06:54.521Z</lastmod>
+    <loc>http://yoursite.com/2017/07/15/PXE+Kickstart/</loc>
+    <lastmod>2017-07-14T16:37:15.008Z</lastmod>
     <data>
         <display>
-        <title>Hello World</title>
-        <pubTime>2017-07-12T08:21:37.256Z</pubTime>
+        <title>CentOS 6.5下PXE+Kickstart无人值守安装操作系统</title>
+        <pubTime>2017-07-14T16:30:11.521Z</pubTime>
         
-        <tag>hello，1，2，3，4</tag>
+        <tag>Kickstart</tag>
          
          
            
@@ -24,6 +22,8 @@
     </data>
     </url>
 
+    
+    
     
     
     
