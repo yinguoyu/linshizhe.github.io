@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Kickstart,PXE," />
+  <meta name="keywords" content="Ubuntu,LAMP," />
 
 
 
@@ -87,38 +87,39 @@
 
 
 
-<meta name="description" content="一、前言1.1什么是PXEPXE(Pre-boot Execution Environment，预启动执行环境)是由Intel公司开发的最新技术，工作于Client/Server的网络模式，支持工作站通过网络从远端服务器下载映像，并由此支持通过网络启动操作系统，在启动过程中，终端要求服务器分配IP地址，再用TFTP（trivial file transfer protocol）或MTFTP(mul">
-<meta name="keywords" content="Kickstart,PXE">
+<meta name="description" content="##一、前言 ###1.1LAMP详解经过多年是Web技术发展，在业内被广泛使用的一种Web服务器解决方案之一（LNMP也非常受欢迎），由一些独立的系统或软件组合而成。 ###软件组件：   Linux:  Linux 是免费开源软件，这意味着源代码可用的操作系统。  Apache: Apache 是使用中最受欢迎的一个开放源码的WEB服务器软件。  MySQL:  MySQL 是多线程、多用户的">
+<meta name="keywords" content="Ubuntu,LAMP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CentOS 6.5下PXE+Kickstart无人值守安装操作系统">
-<meta property="og:url" content="http://yoursite.com/2017/07/15/PXE+Kickstart/index.html">
+<meta property="og:title" content="在Ubuntu Server下搭建LAMP环境">
+<meta property="og:url" content="http://yoursite.com/2017/07/17/在Ubuntu Server下搭建LAMP环境/index.html">
 <meta property="og:site_name" content="Stefanie&#39;Notes">
-<meta property="og:description" content="一、前言1.1什么是PXEPXE(Pre-boot Execution Environment，预启动执行环境)是由Intel公司开发的最新技术，工作于Client/Server的网络模式，支持工作站通过网络从远端服务器下载映像，并由此支持通过网络启动操作系统，在启动过程中，终端要求服务器分配IP地址，再用TFTP（trivial file transfer protocol）或MTFTP(mul">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/image1.jpg">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/image2.jpg">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/image3.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/image4.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/image5.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/image6.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/image7.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/image8.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/imag9.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/image10.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/image11.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/image12.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/image13.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/image14.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/image15.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/image16.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/image17.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/image18.jpg">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/image19.jpg">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/image/png/image20.pngimage20.png">
-<meta property="og:updated_time" content="2017-07-16T07:52:55.687Z">
+<meta property="og:description" content="##一、前言 ###1.1LAMP详解经过多年是Web技术发展，在业内被广泛使用的一种Web服务器解决方案之一（LNMP也非常受欢迎），由一些独立的系统或软件组合而成。 ###软件组件：   Linux:  Linux 是免费开源软件，这意味着源代码可用的操作系统。  Apache: Apache 是使用中最受欢迎的一个开放源码的WEB服务器软件。  MySQL:  MySQL 是多线程、多用户的">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/lamp2.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/lamp1.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/apache.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/mysql-1.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/mysql-2.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/mysql-3.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/php.info.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/gd.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/ll.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/apache4.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/ln-s.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/host-v.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/host.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/weboa.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/bbsdir.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/videodir.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/oadir.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/php.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/php-11.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/php-12.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/cs.png">
+<meta property="og:updated_time" content="2017-07-17T11:51:22.848Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CentOS 6.5下PXE+Kickstart无人值守安装操作系统">
-<meta name="twitter:description" content="一、前言1.1什么是PXEPXE(Pre-boot Execution Environment，预启动执行环境)是由Intel公司开发的最新技术，工作于Client/Server的网络模式，支持工作站通过网络从远端服务器下载映像，并由此支持通过网络启动操作系统，在启动过程中，终端要求服务器分配IP地址，再用TFTP（trivial file transfer protocol）或MTFTP(mul">
-<meta name="twitter:image" content="http://ot2nwtxbo.bkt.clouddn.com/image1.jpg">
+<meta name="twitter:title" content="在Ubuntu Server下搭建LAMP环境">
+<meta name="twitter:description" content="##一、前言 ###1.1LAMP详解经过多年是Web技术发展，在业内被广泛使用的一种Web服务器解决方案之一（LNMP也非常受欢迎），由一些独立的系统或软件组合而成。 ###软件组件：   Linux:  Linux 是免费开源软件，这意味着源代码可用的操作系统。  Apache: Apache 是使用中最受欢迎的一个开放源码的WEB服务器软件。  MySQL:  MySQL 是多线程、多用户的">
+<meta name="twitter:image" content="http://ot2nwtxbo.bkt.clouddn.com/lamp2.png">
 
 
 
@@ -146,13 +147,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/07/15/PXE+Kickstart/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/07/17/在Ubuntu Server下搭建LAMP环境/"/>
 
 
 
 
 
-  <title> CentOS 6.5下PXE+Kickstart无人值守安装操作系统 | Stefanie'Notes </title>
+  <title> 在Ubuntu Server下搭建LAMP环境 | Stefanie'Notes </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -335,7 +336,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/15/PXE+Kickstart/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/17/在Ubuntu Server下搭建LAMP环境/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Stefanie">
@@ -356,7 +357,7 @@
             
             
               
-                CentOS 6.5下PXE+Kickstart无人值守安装操作系统
+                在Ubuntu Server下搭建LAMP环境
               
             
           </h2>
@@ -371,8 +372,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-15T00:30:11+08:00">
-                2017-07-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-17T19:52:29+08:00">
+                2017-07-17
               </time>
             
 
@@ -411,7 +412,7 @@
 
           
           
-             <span id="/2017/07/15/PXE+Kickstart/" class="leancloud_visitors" data-flag-title="CentOS 6.5下PXE+Kickstart无人值守安装操作系统">
+             <span id="/2017/07/17/在Ubuntu Server下搭建LAMP环境/" class="leancloud_visitors" data-flag-title="在Ubuntu Server下搭建LAMP环境">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -435,7 +436,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  2,583
+                  1,893
                 </span>
               
 
@@ -451,7 +452,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  11
+                  9
                 </span>
               
             </div>
@@ -470,223 +471,256 @@
       
 
       
-        <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><h3 id="1-1什么是PXE"><a href="#1-1什么是PXE" class="headerlink" title="1.1什么是PXE"></a>1.1什么是PXE</h3><p>PXE(Pre-boot Execution Environment，预启动执行环境)是由Intel公司开发的最新技术，工作于Client/Server的网络模式，支持工作站通过网络从远端服务器下载映像，并由此支持通过网络启动操作系统，在启动过程中，终端要求服务器分配IP地址，再用TFTP（trivial file transfer protocol）或MTFTP(multicast trivial file transfer protocol)协议下载一个启动软件包到本机内存中执行，由这个启动软件包完成终端基本软件设置，从而引导预先安装在服务器中的终端操作系统。<br>严格来说，PXE 并不是一种安装方式，而是一种引导方式。进行 PXE 安装的必要条件是在要安装的计算机中必须包含一个 PXE 支持的网卡（NIC），即网卡中必须要有 PXE Client。PXE 协议可以使计算机通过网络启动。此协议分为 Client端和 Server 端，而PXE Client则在网卡的 ROM 中。当计算机引导时，BIOS 把 PXE Client 调入内存中执行，然后由 PXE Client 将放置在远端的文件通过网络下载到本地运行。运行 PXE 协议需要设置 DHCP 服务器和 TFTP 服务器。DHCP 服务器会给 PXE Client（将要安装系统的主机）分配一个 IP 地址，由于是给 PXE Client 分配 IP 地址，所以在配置 DHCP 服务器时需要增加相应的 PXE 设置。此外，在 PXE Client 的 ROM 中，已经存在了 TFTP Client，那么它就可以通过 TFTP 协议到 TFTP Server 上下载所需的文件了。</p>
-<h3 id="pxe的工作过程："><a href="#pxe的工作过程：" class="headerlink" title="pxe的工作过程："></a>pxe的工作过程：</h3><ol>
-<li>PXE Client 从自己的PXE网卡启动，向本网络中的DHCP服务器索取IP；</li>
-<li>DHCP 服务器返回分配给客户机的IP 以及PXE文件的放置位置(该文件一般是放在一台TFTP服务器上) ；</li>
-<li>PXE Client 向本网络中的TFTP服务器索取pxelinux.0 文件；</li>
-<li>PXE Client 取得pxelinux.0 文件后之执行该文件；</li>
-<li>根据pxelinux.0 的执行结果，通过TFTP服务器加载内核和文件系统 ；</li>
-<li>进入安装画面, 此时可以通过选择HTTP、FTP、NFS 方式之一进行安装；<br>详细工作流程，请参考下面这幅图：</li>
+        <p>##一、前言</p>
+<p>###1.1LAMP详解<br>经过多年是Web技术发展，在业内被广泛使用的一种Web服务器解决方案之一（LNMP也非常受欢迎），由一些独立的系统或软件组合而成。</p>
+<p>###软件组件：</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/lamp2.png" alt=""></p>
+<ol>
+<li><p>Linux:  Linux 是免费开源软件，这意味着源代码可用的操作系统。</p>
+</li>
+<li><p>Apache: Apache 是使用中最受欢迎的一个开放源码的WEB服务器软件。</p>
+</li>
+<li><p>MySQL:  MySQL 是多线程、多用户的SQL数据库管理系统。</p>
+</li>
 </ol>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/image1.jpg" alt=""></p>
-<h3 id="1-2初认Kickstart"><a href="#1-2初认Kickstart" class="headerlink" title="1.2初认Kickstart"></a>1.2初认Kickstart</h3><p>Kickstart是一种无人值守的安装方式。它的工作原理是在安装过程中记录典型的需要人工干预填写的各种参数，并生成一个名为ks.cfg的文件。如果在安装过程中（不只局限于生成Kickstart安装文件的机器）出现要填写参数的情况，安装程序首先会去查找Kickstart生成的文件，如果找到合适的参数，就采用所找到的参数；如果没有找到合适的参数，便需要安装者手工干预了。所以，如果Kickstart文件涵盖了安装过程中可能出现的所有需要填写的参数，那么安装者完全可以只告诉安装程序从何处取ks.cfg文件，然后就去忙自己的事情。等安装完毕，安装程序会根据ks.cfg中的设置重启系统，并结束安装。</p>
-<p>PXE+Kickstart 无人值守安装操作系统完整过程如下：<br><img src="http://ot2nwtxbo.bkt.clouddn.com/image2.jpg" alt=""></p>
-<h2 id="二、系统环境"><a href="#二、系统环境" class="headerlink" title="二、系统环境"></a>二、系统环境</h2><p>实验环境：VMware Workstation 11</p>
-<p>系统平台：CentOS release 6.5 (最小化安装)</p>
-<p>网络模式：NAT模式（共享主机的IP地址）</p>
-<p>DHCP / TFTP IP：192.168.198.3</p>
-<p>HTTP / FTP / NFS IP：192.168.198.3</p>
-<p>防火墙状态：关闭</p>
-<pre><code>#service iptables stop
-#chkconfig iptables off
-#service iptables status
-</code></pre><p>SELINUX=disabled</p>
-<pre><code>#vi /etc/sysconfig/selinux
-</code></pre><h2 id="三、准备工作"><a href="#三、准备工作" class="headerlink" title="三、准备工作"></a>三、准备工作</h2><p>生成ks.cfg 文件需要system-config-kickstart 工具，而此工具依赖于X Windows，所以我们需要安装X Windows 和Desktop 并重启系统，操作如下：</p>
-<pre><code>#yum groupinstall &quot;X Window System&quot;
-#yum groupinstall Desktop
-#reboot
-</code></pre><h2 id="四、配置HTTP安装方式"><a href="#四、配置HTTP安装方式" class="headerlink" title="四、配置HTTP安装方式"></a>四、配置HTTP安装方式</h2><p>系统的安装方式可以选择HTTP、FTP、 NFS，这里介绍HTTP方式的安装</p>
-<p>1）安装http</p>
-<pre><code>#yum install httpd –y
-#rpm -qa|grep httpd
-</code></pre><p>2) 开启服务并设置开机启动</p>
-<pre><code>#/etc/init.d/httpd start
-#chkconfig --level 35 httpd on
-</code></pre><p>3)在虚拟机中设置加载ISO镜像</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/image3.png" alt=""></p>
-<p>4)将iso文件挂载至/mnt/cdrom</p>
-<pre><code>#mkdir /mnt/cdrom
-#mount /dev/cdrom /mnt/cdrom
-</code></pre><p>5)复制光盘全部内容至http 的根目录/var/www/html/ 下</p>
-<pre><code>#cp -r /mnt/cdrom/ /var/www/html/
-</code></pre><p>HTTP部分设置完成。</p>
-<h2 id="五、配置TFTP"><a href="#五、配置TFTP" class="headerlink" title="五、配置TFTP"></a>五、配置TFTP</h2><p>1）安装tftp-server</p>
-<pre><code>#yum install tftp-server –y
-#grep -qa|grep tftp-server
-</code></pre><p>2)启用tftp服务</p>
-<pre><code>#vi /etc/xinetd.d/tftp
-</code></pre><p>3）修改配置文件如下，将disable设置成no</p>
-<pre><code>service tftp { 
+<ol>
+<li>PHP:    PHP 是一种编程语言最初设计生产动态网站。PHP 是主要用于服务器端的应用程序软件。Perl 和 Python 类似。</li>
+</ol>
+<p>###1.2LAMP工作原理</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/lamp1.png" alt=""></p>
+<p>##二、实验环境：</p>
+<p>发行版本: Ubuntu 12.04.5 LTS</p>
+<p>内核版本：3.13.0-32-generic</p>
+<p>ip:192.168.198.5</p>
+<p>##三、Ubuntu server 管理员权限解读</p>
+<p>为了安全Ubuntu 官方不推荐使用root账户远程登陆，安装系统的时候会强制要设置一个不同于root的普通用户。</p>
+<p>操作ubuntu的预备知识：</p>
+<p>1）命令行</p>
+<pre><code>dgnet@dgnet-ip:~$
+</code></pre><p>dgnet表示用户名 </p>
+<p>@dgnet-ip 表示@主机名</p>
+<p>~ 表示当前目录</p>
+<p>$ 表示用户类型标记</p>
+<p>-$表示普通用户，#表示超级管理员</p>
+<p>2）通过passwd命令修改账户密码</p>
+<p>2.1）先查看当前用户</p>
+<pre><code>dgnet@dgnet-ip:~$ pwd
+/home/dgnet
+</code></pre><p>2.2）让当前用户获得临时超级管理员权限</p>
+<pre><code>dgnet@dgnet-ip:~$ sudo passwd root
+[sudo] password for dgnet:          #输入用户dgnet的秘密
+Enter new UNIX password:            #给root用户设置新密码
+Retype new UNIX password:           #确认root密码
+passwd: password updated successfully
+</code></pre><p>注意事项：</p>
+<p>1）普通账户没有管理员权限</p>
+<p>2）默认情况下ROOT账户无法登陆</p>
+<p>3）su (switch user)切换到超级管理员</p>
+<p>4）sudo (switch user and do) 以超级管理员身份执行</p>
+<p>5）sudo弥补了su产生的多账户安全问题</p>
+<p>使用su命令所有管理员都必须知道root账户的密码，sudo使得普通管理员使用自己的秘密也可以获得超级管理员权限。</p>
+<p>##四、安装软件</p>
+<p>1）先安装apt-get软件安装工具</p>
+<pre><code>gnet@dgnet-ip:~$ sudo apt-get update
+</code></pre><p>2) 使用apt-get软件安装工具安装apache2</p>
+<pre><code>dgnet@dgnet-ip:~$ sudo apt-get install apache2
+</code></pre><p>检查一下apache的版本</p>
+<pre><code>dgnet@dgnet-ip:~$ apache2 -v
+Server version: Apache/2.2.22 (Ubuntu)
+Server built:   Jul 15 2016 15:32:45
+</code></pre><p>打开浏览器输入ip地址检查apache是否正常工作</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/apache.png" alt=""></p>
+<p>3)使用apt-get软件安装工具安装php5</p>
+<pre><code>dgnet@dgnet-ip:~$ sudo apt-get install php5
+</code></pre><p>检查一下php的版本</p>
+<pre><code>dgnet@dgnet-ip:~$ php5 -v
+PHP 5.3.10-1ubuntu3.26 with Suhosin-Patch (cli) (built: Feb 13 2017 20:37:53) 
+Copyright (c) 1997-2012 The PHP Group
+Zend Engine v2.3.0, Copyright (c) 1998-2012 Zend Technologies
+</code></pre><p>检查一下apache是否加载了libphp5.so这个模块</p>
+<pre><code>dgnet@dgnet-ip:~$ cat /etc/apache2/mods-enabled/php5.load
+LoadModule php5_module /usr/lib/apache2/modules/libphp5.so
+</code></pre><p>4)使用apt-get软件安装工具安装mysql-server</p>
+<pre><code>dgnet@dgnet-ip:~$ sudo apt-get install mysql-server
+</code></pre><p>先给mysql-server设置密码（baidu.com@ip）</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/mysql-1.png" alt=""></p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/mysql-2.png" alt=""></p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/mysql-3.png" alt=""></p>
+<p>接着安装一下mysql的扩展</p>
+<pre><code>dgnet@dgnet-ip:~$ sudo apt-get install php5-mysql
+</code></pre><p>检查一下mysql.so模块是否正常加载</p>
+<pre><code>dgnet@dgnet-ip:~$ cat /etc/php5/conf.d/mysql.ini
+; configuration for php MySQL module
+extension=mysql.so
+</code></pre><p>确保php5与mysql能正常工作，重启一下mysql</p>
+<pre><code>dgnet@dgnet-ip:~$ sudo service mysql restart
+</code></pre><p>重启apache</p>
+<pre><code>dgnet@dgnet-ip:~$ sudo service mysql restart
+</code></pre><p>到目前lamp软件已经安装完成，分开各个软件安装是为了更好了理解各个软件之间的关系，我们清楚了解了lamp之后可以使用一条命令就把lamp安装好。</p>
+<pre><code>dgnet@dgnet-ip:~$ sudo apt-get install -y apache2 php5 mysql-server php5-mysql
+</code></pre><p>或者</p>
+<pre><code>dgnet@dgnet-ip:~$ sudo tasksel install -y lamp-servver
+</code></pre><p>##五、其他设置</p>
+<p>1）创建phpinfo服务器探针</p>
+<pre><code>dgnet@dgnet-ip:~$ cd /var/www
+dgnet@dgnet-ip:/var/www$ sudo vim info.php
+[sudo] password for dgnet: 
+</code></pre><p>info.php代码</p>
+<pre><code>&lt;?phpecho mysql_connect(&apos;localhost&apos;,&apos;root&apos;,&apos;baidu.com@ip&apos;) ?  
+&apos;Mom, dont worry about my database, either&apos; : 
+&apos;Last year I bought a watch&apos;;
+ phpinfo();
+</code></pre><p>在浏览器中打开info.php查看,php与数据库是否正常</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/php.info.png" alt="">          </p>
+<p>2)PHP添加常用扩展</p>
+<pre><code>dgnet@dgnet-ip:~$ sudo apt-get install php5-gd curl libcurl3-dev php5-curl
+</code></pre><p>安装完成重启apache</p>
+<pre><code>dgnet@dgnet-ip:~$ sudo service apache2 restart
+</code></pre><p>浏览器中查看扩展是否工作正常</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/gd.png" alt=""></p>
+<p>##六、LAMP环境配置文件</p>
+<p>1）Ubuntu系统配置文件目录：/etc</p>
+<p>2)各组件配置文件位置</p>
+<p>-Apache /etc/apache2</p>
+<p>-MYSQL /etc/mysql</p>
+<p>-PHP   /etc/php5</p>
+<p>3)查看apache</p>
+<pre><code>dgnet@dgnet-ip:~$ cd /etc/apache2
+dgnet@dgnet-ip:/etc/apache2$ ll
+</code></pre><p><img src="http://ot2nwtxbo.bkt.clouddn.com/ll.png" alt=""></p>
+<p>apache工作过程：</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/apache4.png" alt=""></p>
+<p>apache核心配置：</p>
+<p>-mods-<em>*</em> Apache模块</p>
+<p>-sites-<em>*</em> 虚拟主机</p>
+<p>关键词 available 可以使用的；enabled 已启用的</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/ln-s.png" alt=""></p>
+<p>4)MYSQL核心配置文件 my.cnf</p>
+<p>5)php核心配置文件 php.ini</p>
+<p>6)配置apache虚拟主机</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/host-v.png" alt=""></p>
+<p>7)手动模拟DNS，修改本地hosts文件</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/host.png" alt=""></p>
+<p>浏览器查看上面三个域名，都是指向ip 192.168.198.5</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/weboa.png" alt=""></p>
+<p>8)为（oa bbs video）服务器创建目录</p>
+<pre><code>dgnet@dgnet-ip:~$ cd /var
+dgnet@dgnet-ip:/var$ sudo mkdir -p /wwwroot/{video,bbs,oa}
+dgnet@dgnet-ip:/var$ cd /wwwroot/
+dgnet@dgnet-ip:/wwwroot$ ll
+dgnet@dgnet-ip:/wwwroot$ cd video/
+dgnet@dgnet-ip:/wwwroot/video$ sudo vim index.html
+dgnet@dgnet-ip:/wwwroot/video$ cd ../bbs
+dgnet@dgnet-ip:/wwwroot/bbs$ sudo vim index.html
+dgnet@dgnet-ip:/wwwroot$ cd oa
+dgnet@dgnet-ip:/wwwroot/oa$ sudo vim index.html
+</code></pre><p>9）开始配置虚拟主机</p>
+<pre><code>dgnet@dgnet-ip:/wwwroot/oa$ cd /etc/apache2/sites-available/
+dgnet@dgnet-ip:/etc/apache2/sites-available$ ll
+ls: 初始化月份字符串出错
+总用量 20
+drwxr-xr-x 2 root root 4096  7Ղ 17 15:00 ./
+drwxr-xr-x 7 root root 4096  7Ղ 17 15:00 ../
+ -rw-r--r-- 1 root root  950  2Ղ  7  2012 default
+ -rw-r--r-- 1 root root 7469  2Ղ  7  2012 default-ssl
+</code></pre><p>复制defult文件作为video bbs oa 三个虚拟主机的蓝本</p>
+<pre><code>dgnet@dgnet-ip:/etc/apache2/sites-available$ sudo cp default video
+dgnet@dgnet-ip:/etc/apache2/sites-available$ sudo cp default bbs
+dgnet@dgnet-ip:/etc/apache2/sites-available$ sudo cp default oa
+</code></pre><p>编辑video</p>
+<pre><code>dgnet@dgnet-ip:/etc/apache2/sites-available$ sudo vim video
+</code></pre><p>虚拟配置如下：</p>
+<pre><code>&lt;VirtualHost *:80&gt;
+   ServerName video.lsz.com
+   ServerAdmin webmaster@localhost
 
-    socket_type             = dgram 
-    protocol                = udp 
-    wait                    = yes 
-    user                    = root 
-    server                  = /usr/sbin/in.tftpd 
-    server_args             = -s /var/lib/tftpboot 
-    disable                 = no 
-    per_source              = 11 
-    cps                     = 100 2 
-    flags                   = IPv4              }
-</code></pre><p>4）启动tftp服务，因为tftp服务是挂载在超级进程xinetd 下的，所以通过启动xinetd 来启动tftp服务。</p>
-<pre><code>#/etc/init.d/xinetd restart
-</code></pre><p>设置开机启动xinetd</p>
-<pre><code>#chkconfig xinetd on
-</code></pre><h2 id="六、配置支持PXE的启动程序"><a href="#六、配置支持PXE的启动程序" class="headerlink" title="六、配置支持PXE的启动程序"></a>六、配置支持PXE的启动程序</h2><p>1）复制pxelinux.0 文件至/var/lib/tftpboot/ 文件夹中，（需要先用yum方式安装syslinux）</p>
-<pre><code>#yum –y install syslinux
-#cp /usr/share/syslinux/pxelinux.0 /var/lib/tftpboot/
-</code></pre><p>说明：syslinux是一个功能强大的引导加载程序，而且兼容各种介质。更加确切地说：SYSLINUX是一个小型的Linux操作系统，它的目的是简化首次安装Linux的时间，并建立修护或其它特殊用途的启动盘。</p>
-<p>2)复制iso镜像中的 /image/pxeboot/initrd.img 和 vmlinux到 /var/lib/tftpboot/ 目录中</p>
-<pre><code>#cp /var/www/html/cdrom/images/pxeboot/{initrd.img,vmlinuz} /var/lib/tftpboot/
-</code></pre><p>3）复制iso镜像中的 /isolinux/*.msg 到 /var/lib/tftpboot/ 目录中</p>
-<pre><code>#cp /var/www/html/cdrom/isolinux/*.msg /var/lib/tftpboot/
-</code></pre><p>4）在/var/lib/tftpboot/ 中新建一个pxelinux.cfg目录</p>
-<pre><code>#mkdir /var/lib/tftpboot/pxelinux.cfg
-</code></pre><p>5）将iso 镜像中的/isolinux 目录中的isolinux.cfg复制到pxelinux.cfg目录中，同时更改文件名称为default</p>
-<pre><code>#cp /var/www/html/cdrom/isolinux/isolinux.cfg /var/lib/tftpboot/pxelinux.cfg/default
-</code></pre><p>6）修改default文件</p>
-<pre><code>#vi /var/lib/tftpboot/pxelinux.cfg/default
-</code></pre><p>配置如下：</p>
-<pre><code>default ks 　　　　#默认启动的是 &apos;label ks&apos; 中标记的启动内核
-prompt 1          #显示 &apos;boot: &apos; 提示符。为 &apos;0&apos; 时则不提示，将会直接启动 &apos;default&apos; 参数中指定的内容。
-timeout 6 　　　　 #在用户输入之前的超时时间，单位为 1/10 秒。
-display boot.msg  #显示某个文件的内容，注意文件的路径。默认是在/var/lib/tftpboot/ 目录下。也可以指定位类似 &apos;/install/boot.msg&apos;这样的，路径+文件名。
-F1 boot.msg 　　　 #按下 &apos;F1&apos; 这样的键后显示的文件。
-F2 options.msg 
-F3 general.msg 
-F4 param.msg 
-F5 rescue.msg 
-label linux       #&apos;label&apos; 指定你在 &apos;boot:&apos; 提示符下输入的关键字，比如boot: linux[ENTER]，这个会启动&apos;label linux&apos; 下标记的kernel 和initrd.img 文件。
-kernel vmlinuz    #kernel 参数指定要启动的内核。
-append initrd=initrd.img   #append 指定追加给内核的参数，能够在grub 里使用的追加给内核的参数，在这里也都可以使用。
-label text 
-kernel vmlinuz 
-append initrd=initrd.img text 
-label ks 
-kernel vmlinuz 
-append ks=http://192.168.198.3/ks.cfg initrd=initrd.img    #告诉系统，从哪里获取ks.cfg文件 
-label local 
-localboot 1 
-label memtest86 
-kernel memtest 
-append -
-</code></pre><h2 id="七、配置DHCP"><a href="#七、配置DHCP" class="headerlink" title="七、配置DHCP"></a>七、配置DHCP</h2><p>1)安装DHCP服务</p>
-<pre><code>#yum -y install dhcp
-</code></pre><p>2）复制配置模板文件到DHCP的配置目录中</p>
-<pre><code>#cp -f /usr/share/doc/dhcp-4.1.1/dhcpd.conf.sample  /etc/dhcp/dhcpd.conf
-</code></pre><p>3）修改DHCP配置文件</p>
-<pre><code>#vi /etc/dhcp/dhcpd.conf
-</code></pre><p>配置如下：</p>
-<pre><code>ddns-update-style interim;
-ignore client-updates;
-filename &quot;pxelinux.0&quot;;
-next-server 192.168.198.3;
-subnet 192.168.198.0 netmask 255.255.255.0  
-{
-range dynamic-bootp 192.168.198.10 192.168.198.200;
-option subnet-mask 255.255.255.0;
-option routers 192.168.198.3;
-option broadcast-address 192.168.198.254;
-default-lease-time 21600;
-max-lease-time 43200;                            }
-</code></pre><p>4）启动DHCP服务</p>
-<pre><code>#/etc/init.d/dhcpd start
-</code></pre><h2 id="八、生成ks-cfg-文件"><a href="#八、生成ks-cfg-文件" class="headerlink" title="八、生成ks.cfg 文件"></a>八、生成ks.cfg 文件</h2><p>1）安装Kickstart</p>
-<pre><code>#yum -y install system-config-kickstart
-</code></pre><p>2）在桌面环境下配置Kickstart，启动X Windows 环境，并配置Kickstart</p>
-<pre><code>#startx
-#system-config-kickstart
-</code></pre><p>3）注意事项：system-config-kickstart 启动报错如下</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/image4.png" alt=""></p>
-<p>解决方法：</p>
-<pre><code>#yum -y install glib2-devel
-</code></pre><p>4）设置kickstart参数</p>
-<p>设置语言，键盘，时区，Root密码，安装完毕后重启等。</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/image5.png" alt=""></p>
-<p>设置安装方式，这篇文章介绍的是HTTP方式的安装，故选择HTTP</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/image6.png" alt=""></p>
-<p>设置安装安装MBR</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/image7.png" alt=""></p>
-<p>设置磁盘分区</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/image8.png" alt=""></p>
-<p>分区规划：这里先测试三个主分区</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/imag9.png" alt=""></p>
-<p>分区总览</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/image10.png" alt=""></p>
-<p>配置网络</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/image11.png" alt=""></p>
-<p>认证配置</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/image12.png" alt=""></p>
-<p> SELinux 和防火墙配置</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/image13.png" alt=""></p>
-<p>图形环境配置</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/image14.png" alt=""></p>
-<p>软件包安装选择</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/image15.png" alt=""></p>
-<p>预览</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/image16.png" alt=""></p>
-<p>生成ks.cfg 文件，保存在/var/www/html/ 文件夹下</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/image17.png" alt=""></p>
-<p>打开/var/www/html/ks.cfg 文件进行查看并做修改。</p>
-<pre><code>#vi /var/www/html/ks.cfg
-</code></pre><p>配置如下：</p>
-<pre><code>platform=x86, AMD64, or Intel EM64T 
-#version=DEVEL 
-# Firewall configuration 
-firewall --disabled 
-# Install OS instead of upgrade 
-install 
-# Use network installation 
-url --url=http://192.168.198.3/cdrom/ #这个选项告诉安装程序：到服务器192.168.198.3 的HTTP根目录下的cdrom 文件夹下寻找安装介质
-# Root password 
-rootpw --iscrypted $1$vsvtP./e$6PVMNfJd.shq2LgFJjYfA1 
-# System authorization information 
-auth  --useshadow  --enablemd5 
-# Use graphical install 
-graphical 
-firstboot --disable 
-# System keyboard 
-keyboard us 
-# System language 
-lang en_US 
-# SELinux configuration 
-selinux --disabled 
-# Installation logging level 
-logging --level=info 
-# Reboot after installation 
-reboot 
-# System timezone 
-timezone  --isUtc Asia/Shanghai 
-# Network information 
-network  --bootproto=dhcp --device=eth0 --onboot=on 
-# System bootloader configuration 
-key --skip 
-bootloader --append=&quot;rhgb quiet&quot; --location=mbr --driveorder=sda 
-# Clear the Master Boot Record 
-zerombr 
-# Partition clearing information 
-clearpart --all --initlabel 
-# Disk partitioning information 
-part / --fstype=&quot;ext4&quot; --size=8192 
-part swap --fstype=&quot;swap&quot; --size=1024 
-part /home --fstype=&quot;ext4&quot; --size=2048
+    DocumentRoot /wwwroot/video
+    &lt;Directory /&gt;
+            Options FollowSymLinks
+            AllowOverride None
+    &lt;/Directory&gt;
+    &lt;Directory /wwwroot/video/&gt;
+            Options Indexes FollowSymLinks MultiViews
+            AllowOverride None
+            Order allow,deny
+            allow from all
+    &lt;/Directory&gt;
+</code></pre><p>编辑bbs:</p>
+<pre><code>dgnet@dgnet-ip:/etc/apache2/sites-available$ sudo vim bbs
+</code></pre><p>虚拟配置如下：</p>
+<pre><code>&lt;VirtualHost *:80&gt;
+   ServerName  bbs.lsz.com
+   ServerAdmin webmaster@localhost
 
-%packages 
-@base
+    DocumentRoot /wwwroot/bbs
+    &lt;Directory /&gt;
+            Options FollowSymLinks
+            AllowOverride None
+    &lt;/Directory&gt;
+    &lt;Directory /wwwroot/bbs/&gt;
+            Options Indexes FollowSymLinks MultiViews
+            AllowOverride None
+            Order allow,deny
+            allow from all
+    &lt;/Directory&gt;
+</code></pre><p>编辑oa:</p>
+<pre><code>dgnet@dgnet-ip:/etc/apache2/sites-available$ sudo vim oa
+</code></pre><p>虚拟配置如下：</p>
+<pre><code>&lt;VirtualHost *:80&gt;
+    ServerName  oa.lsz.com
+    ServerAdmin webmaster@localhost
 
-%end
-</code></pre><p>注意事项：<br>key –skip 如果是红帽系统，此选项可以跳过输入序列号过程；如果是CentOS 系列，则可以不保留此项内容；reboot 此选项必须存在，也必须文中设定位置，不然kickstart显示一条消息，并等待用户按任意键后才重新引导；clearpart –all –initlabel 此条命令必须添加，不然系统会让用户手动选择是否清除所有数据，这就需要人为干预了，从而导致自动化过程失败；</p>
-<h2 id="九、测试安装"><a href="#九、测试安装" class="headerlink" title="九、测试安装"></a>九、测试安装</h2><p>1）新建个虚拟机，添加一块500G硬盘，内存1024M够测试用就可以。</p>
-<p>2）点击开机按钮，启动虚拟机后，快速按下F12键进入pxe环境</p>
-<p>启动虚拟机，选择从网卡启动，DHCP 服务器正在给客户机分配IP地址。</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/image18.jpg" alt=""></p>
-<p>开始下载vmlinuz 和initrd.img</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/image19.jpg" alt=""></p>
-<p>3) 成功安装系统到login界面后，按前面设置的root密码进去查看，分区是否和我们设置的一样</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/image/png/image20.pngimage20.png" alt=""></p>
-<p>PXE+Kickstart 无人值守安装操作系统环境搭建完毕。</p>
+    DocumentRoot /wwwroot/oa
+    &lt;Directory /&gt;
+            Options FollowSymLinks
+            AllowOverride None
+    &lt;/Directory&gt;
+    &lt;Directory /wwwroot/oa/&gt;
+            Options Indexes FollowSymLinks MultiViews
+            AllowOverride None
+            Order allow,deny
+            allow from all
+    &lt;/Directory&gt;
+</code></pre><p>10)启用虚拟配置文件</p>
+<pre><code>dgnet@dgnet-ip:/etc/apache2/sites-available$ cd ../sites-enabled/
+dgnet@dgnet-ip:/etc/apache2/sites-enabled$ sudo ln -s ../sites-available/video video
+dgnet@dgnet-ip:/etc/apache2/sites-enabled$ sudo ln -s ../sites-available/bbs bbs
+dgnet@dgnet-ip:/etc/apache2/sites-enabled$ sudo ln -s ../sites-available/oa oa
+dgnet@dgnet-ip:/etc/apache2/sites-enabled$ ll
+ls: 初始化月份字符串出错
+总用量 8
+drwxr-xr-x 2 root root 4096  7Ղ 17 18:14 ./
+drwxr-xr-x 7 root root 4096  7Ղ 17 15:00 ../
+lrwxrwxrwx 1 root root   26  7Ղ 17 15:00 000-default -&gt; ../sites-available/default
+lrwxrwxrwx 1 root root   22  7Ղ 17 18:14 bbs -&gt; ../sites-available/bbs
+lrwxrwxrwx 1 root root   21  7Ղ 17 18:14 oa -&gt; ../sites-available/oa
+lrwxrwxrwx 1 root root   24  7Ղ 17 18:14 video -&gt; ../sites-available/video
+dgnet@dgnet-ip:/etc/apache2/sites-enabled$ sudo service apache2 restart
+</code></pre><p> 浏览器中查看对应的域名：</p>
+<p>bbs.lsz.com</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/bbsdir.png" alt=""></p>
+<p>video.lsz.com</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/videodir.png" alt=""></p>
+<p>oa.lsz.com</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/oadir.png" alt=""></p>
+<p>11）安装数据库管理工具phpmyadmin</p>
+<pre><code>dgnet@dgnet-ip:~$ sudo apt-get install phpmyadmin
+dgnet@dgnet-ip:~$ cd /var/www
+dgnet@dgnet-ip:/var/www$ sudo ln -s /usr/share/phpmyadmin phpmyadmin
+</code></pre><p>浏览器打开</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/php.png" alt="">    </p>
+<p> 开启MySQL的remote access</p>
+<pre><code>dgnet@dgnet-ip:/var/www$ sudo vim /etc/mysql/my.cnf
+</code></pre><p>找到bind-address注释</p>
+<pre><code>#bind-address           = 127.0.0.1
+</code></pre><p>使用phpmyadmin用户密码登陆 (root,baidu.com@ip)</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/php-11.png" alt=""></p>
+<p>添加一个用户linshizhe 允许公网ip 访问</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/php-12.png" alt=""></p>
+<p>重启mysql重新加载配置：</p>
+<pre><code>dgnet@dgnet-ip:/var/www$ sudo service mysql restart
+</code></pre><p>通过Navicat测试远程连接数据库</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/cs.png" alt=""></p>
 
       
     </div>
@@ -750,9 +784,9 @@ part /home --fstype=&quot;ext4&quot; --size=2048
       
         <div class="post-tags">
           
-            <a href="/tags/Kickstart/" rel="tag"># Kickstart</a>
+            <a href="/tags/Ubuntu/" rel="tag"># Ubuntu</a>
           
-            <a href="/tags/PXE/" rel="tag"># PXE</a>
+            <a href="/tags/LAMP/" rel="tag"># LAMP</a>
           
         </div>
       
@@ -765,15 +799,15 @@ part /home --fstype=&quot;ext4&quot; --size=2048
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/07/15/PXE+Kickstart/" rel="next" title="CentOS 6.5下PXE+Kickstart无人值守安装操作系统">
+                <i class="fa fa-chevron-left"></i> CentOS 6.5下PXE+Kickstart无人值守安装操作系统
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/07/17/在Ubuntu Server下搭建LAMP环境/" rel="prev" title="在Ubuntu Server下搭建LAMP环境">
-                在Ubuntu Server下搭建LAMP环境 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -828,17 +862,8 @@ part /home --fstype=&quot;ext4&quot; --size=2048
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -963,22 +988,6 @@ part /home --fstype=&quot;ext4&quot; --size=2048
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、前言"><span class="nav-number">1.</span> <span class="nav-text">一、前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1什么是PXE"><span class="nav-number">1.1.</span> <span class="nav-text">1.1什么是PXE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pxe的工作过程："><span class="nav-number">1.2.</span> <span class="nav-text">pxe的工作过程：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2初认Kickstart"><span class="nav-number">1.3.</span> <span class="nav-text">1.2初认Kickstart</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、系统环境"><span class="nav-number">2.</span> <span class="nav-text">二、系统环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、准备工作"><span class="nav-number">3.</span> <span class="nav-text">三、准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、配置HTTP安装方式"><span class="nav-number">4.</span> <span class="nav-text">四、配置HTTP安装方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、配置TFTP"><span class="nav-number">5.</span> <span class="nav-text">五、配置TFTP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、配置支持PXE的启动程序"><span class="nav-number">6.</span> <span class="nav-text">六、配置支持PXE的启动程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、配置DHCP"><span class="nav-number">7.</span> <span class="nav-text">七、配置DHCP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#八、生成ks-cfg-文件"><span class="nav-number">8.</span> <span class="nav-text">八、生成ks.cfg 文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#九、测试安装"><span class="nav-number">9.</span> <span class="nav-text">九、测试安装</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       

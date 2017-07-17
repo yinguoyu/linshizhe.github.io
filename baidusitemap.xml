@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/07/17/%E5%9C%A8Ubuntu%20Server%E4%B8%8B%E6%90%AD%E5%BB%BALAMP%E7%8E%AF%E5%A2%83/</loc>
+    <lastmod>2017-07-17T11:51:22.848Z</lastmod>
+    <data>
+        <display>
+        <title>在Ubuntu Server下搭建LAMP环境</title>
+        <pubTime>2017-07-17T11:52:29.939Z</pubTime>
+        
+        <tag>Ubuntu</tag>
+         
+        <tag>LAMP</tag>
+         
+         
+           
+             
+              <breadCrumb title="运维" url="http://yoursite.com/categories/%E8%BF%90%E7%BB%B4/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/07/15/PXE+Kickstart/</loc>
     <lastmod>2017-07-16T07:52:55.687Z</lastmod>
     <data>
