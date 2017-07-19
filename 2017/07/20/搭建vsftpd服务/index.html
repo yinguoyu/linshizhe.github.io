@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Ubuntu,LAMP," />
+  <meta name="keywords" content="Vsftpd," />
 
 
 
@@ -87,39 +87,19 @@
 
 
 
-<meta name="description" content="一、前言1.1LAMP详解经过多年是Web技术发展，在业内被广泛使用的一种Web服务器解决方案之一（LNMP也非常受欢迎），由一些独立的系统或软件组合而成。 软件组件：  Linux:  Linux 是免费开源软件，这意味着源代码可用的操作系统。  Apache: Apache 是使用中最受欢迎的一个开放源码的WEB服务器软件。  MySQL:  MySQL 是多线程、多用户的SQL数据库管理系统">
-<meta name="keywords" content="Ubuntu,LAMP">
+<meta name="description" content="一、文件传输协议文件传输协议(FTP)是为进行文件共享而设计的因特网标准协议。为了能够在复杂多样的操作设备之间解决文件传输问题，于是便有了统一的FTP文件传输协议（File Transfer Protocol），这是一种能够让使用者在互联网中上传、下载文件的传输协议。FTP文件传输协议默认占用了20、21两个端口号，20端口号用于进行数据传输，21端口号用于接受客户端执行的相关FTP命令与参数，F">
+<meta name="keywords" content="Vsftpd">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在Ubuntu Server下搭建LAMP环境">
-<meta property="og:url" content="http://yoursite.com/2017/07/17/在Ubuntu Server下搭建LAMP环境/index.html">
+<meta property="og:title" content="CentOS6.5下搭建vsftpd服务">
+<meta property="og:url" content="http://yoursite.com/2017/07/20/搭建vsftpd服务/index.html">
 <meta property="og:site_name" content="Stefanie&#39;Notes">
-<meta property="og:description" content="一、前言1.1LAMP详解经过多年是Web技术发展，在业内被广泛使用的一种Web服务器解决方案之一（LNMP也非常受欢迎），由一些独立的系统或软件组合而成。 软件组件：  Linux:  Linux 是免费开源软件，这意味着源代码可用的操作系统。  Apache: Apache 是使用中最受欢迎的一个开放源码的WEB服务器软件。  MySQL:  MySQL 是多线程、多用户的SQL数据库管理系统">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/lamp2.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/lamp1.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/apache.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/mysql-1.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/mysql-2.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/mysql-3.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/php.info.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/gd.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/ll.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/apache4.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/ln-s.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/host-v.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/host.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/weboa.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/bbsdir.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/videodir.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/oadir.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/php.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/php-11.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/php-12.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/cs.png">
-<meta property="og:updated_time" content="2017-07-17T12:02:46.840Z">
+<meta property="og:description" content="一、文件传输协议文件传输协议(FTP)是为进行文件共享而设计的因特网标准协议。为了能够在复杂多样的操作设备之间解决文件传输问题，于是便有了统一的FTP文件传输协议（File Transfer Protocol），这是一种能够让使用者在互联网中上传、下载文件的传输协议。FTP文件传输协议默认占用了20、21两个端口号，20端口号用于进行数据传输，21端口号用于接受客户端执行的相关FTP命令与参数，F">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/ftp.png">
+<meta property="og:updated_time" content="2017-07-19T17:12:26.303Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="在Ubuntu Server下搭建LAMP环境">
-<meta name="twitter:description" content="一、前言1.1LAMP详解经过多年是Web技术发展，在业内被广泛使用的一种Web服务器解决方案之一（LNMP也非常受欢迎），由一些独立的系统或软件组合而成。 软件组件：  Linux:  Linux 是免费开源软件，这意味着源代码可用的操作系统。  Apache: Apache 是使用中最受欢迎的一个开放源码的WEB服务器软件。  MySQL:  MySQL 是多线程、多用户的SQL数据库管理系统">
-<meta name="twitter:image" content="http://ot2nwtxbo.bkt.clouddn.com/lamp2.png">
+<meta name="twitter:title" content="CentOS6.5下搭建vsftpd服务">
+<meta name="twitter:description" content="一、文件传输协议文件传输协议(FTP)是为进行文件共享而设计的因特网标准协议。为了能够在复杂多样的操作设备之间解决文件传输问题，于是便有了统一的FTP文件传输协议（File Transfer Protocol），这是一种能够让使用者在互联网中上传、下载文件的传输协议。FTP文件传输协议默认占用了20、21两个端口号，20端口号用于进行数据传输，21端口号用于接受客户端执行的相关FTP命令与参数，F">
+<meta name="twitter:image" content="http://ot2nwtxbo.bkt.clouddn.com/ftp.png">
 
 
 
@@ -147,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/07/17/在Ubuntu Server下搭建LAMP环境/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/07/20/搭建vsftpd服务/"/>
 
 
 
 
 
-  <title> 在Ubuntu Server下搭建LAMP环境 | Stefanie'Notes </title>
+  <title> CentOS6.5下搭建vsftpd服务 | Stefanie'Notes </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -336,7 +316,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/17/在Ubuntu Server下搭建LAMP环境/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/20/搭建vsftpd服务/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Stefanie">
@@ -357,7 +337,7 @@
             
             
               
-                在Ubuntu Server下搭建LAMP环境
+                CentOS6.5下搭建vsftpd服务
               
             
           </h2>
@@ -372,8 +352,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-17T19:52:29+08:00">
-                2017-07-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-20T01:14:59+08:00">
+                2017-07-20
               </time>
             
 
@@ -412,7 +392,7 @@
 
           
           
-             <span id="/2017/07/17/在Ubuntu Server下搭建LAMP环境/" class="leancloud_visitors" data-flag-title="在Ubuntu Server下搭建LAMP环境">
+             <span id="/2017/07/20/搭建vsftpd服务/" class="leancloud_visitors" data-flag-title="CentOS6.5下搭建vsftpd服务">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -436,7 +416,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  1,907
+                  3,913
                 </span>
               
 
@@ -452,7 +432,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  9
+                  18
                 </span>
               
             </div>
@@ -471,249 +451,410 @@
       
 
       
-        <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><h3 id="1-1LAMP详解"><a href="#1-1LAMP详解" class="headerlink" title="1.1LAMP详解"></a>1.1LAMP详解</h3><p>经过多年是Web技术发展，在业内被广泛使用的一种Web服务器解决方案之一（LNMP也非常受欢迎），由一些独立的系统或软件组合而成。</p>
-<h3 id="软件组件："><a href="#软件组件：" class="headerlink" title="软件组件："></a>软件组件：</h3><p><img src="http://ot2nwtxbo.bkt.clouddn.com/lamp2.png" alt=""></p>
-<ol>
-<li><p>Linux:  Linux 是免费开源软件，这意味着源代码可用的操作系统。</p>
-</li>
-<li><p>Apache: Apache 是使用中最受欢迎的一个开放源码的WEB服务器软件。</p>
-</li>
-<li><p>MySQL:  MySQL 是多线程、多用户的SQL数据库管理系统。</p>
-</li>
-<li><p>PHP:    PHP 是一种编程语言最初设计生产动态网站。PHP 是主要用于服务器端的应用程序软件。Perl 和 Python 类似。</p>
-</li>
-</ol>
-<h3 id="1-2LAMP工作原理"><a href="#1-2LAMP工作原理" class="headerlink" title="1.2LAMP工作原理"></a>1.2LAMP工作原理</h3><p><img src="http://ot2nwtxbo.bkt.clouddn.com/lamp1.png" alt=""></p>
-<h2 id="二、实验环境："><a href="#二、实验环境：" class="headerlink" title="二、实验环境："></a>二、实验环境：</h2><p>发行版本: Ubuntu 12.04.5 LTS</p>
-<p>内核版本：3.13.0-32-generic</p>
-<p>ip:192.168.198.5</p>
-<h2 id="三、Ubuntu-server-管理员权限解读"><a href="#三、Ubuntu-server-管理员权限解读" class="headerlink" title="三、Ubuntu server 管理员权限解读"></a>三、Ubuntu server 管理员权限解读</h2><p>为了安全Ubuntu 官方不推荐使用root账户远程登陆，安装系统的时候会强制要设置一个不同于root的普通用户。</p>
-<p>操作ubuntu的预备知识：</p>
-<p>1）命令行</p>
-<pre><code>dgnet@dgnet-ip:~$
-</code></pre><p>dgnet表示用户名 </p>
-<p>@dgnet-ip 表示@主机名</p>
-<p>~ 表示当前目录</p>
-<p>$ 表示用户类型标记</p>
-<p>-$表示普通用户，#表示超级管理员</p>
-<p>2）通过passwd命令修改账户密码</p>
-<p>2.1）先查看当前用户</p>
-<pre><code>dgnet@dgnet-ip:~$ pwd
-/home/dgnet
-</code></pre><p>2.2）让当前用户获得临时超级管理员权限</p>
-<pre><code>dgnet@dgnet-ip:~$ sudo passwd root
-[sudo] password for dgnet:          #输入用户dgnet的秘密
-Enter new UNIX password:            #给root用户设置新密码
-Retype new UNIX password:           #确认root密码
-passwd: password updated successfully
-</code></pre><p>注意事项：</p>
-<p>1）普通账户没有管理员权限</p>
-<p>2）默认情况下ROOT账户无法登陆</p>
-<p>3）su (switch user)切换到超级管理员</p>
-<p>4）sudo (switch user and do) 以超级管理员身份执行</p>
-<p>5）sudo弥补了su产生的多账户安全问题</p>
-<p>使用su命令所有管理员都必须知道root账户的密码，sudo使得普通管理员使用自己的秘密也可以获得超级管理员权限。</p>
-<h2 id="四、安装软件"><a href="#四、安装软件" class="headerlink" title="四、安装软件"></a>四、安装软件</h2><p>1）先安装apt-get软件安装工具</p>
-<pre><code>gnet@dgnet-ip:~$ sudo apt-get update
-</code></pre><p>2) 使用apt-get软件安装工具安装apache2</p>
-<pre><code>dgnet@dgnet-ip:~$ sudo apt-get install apache2
-</code></pre><p>检查一下apache的版本</p>
-<pre><code>dgnet@dgnet-ip:~$ apache2 -v
-Server version: Apache/2.2.22 (Ubuntu)
-Server built:   Jul 15 2016 15:32:45
-</code></pre><p>打开浏览器输入ip地址检查apache是否正常工作</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/apache.png" alt=""></p>
-<p>3)使用apt-get软件安装工具安装php5</p>
-<pre><code>dgnet@dgnet-ip:~$ sudo apt-get install php5
-</code></pre><p>检查一下php的版本</p>
-<pre><code>dgnet@dgnet-ip:~$ php5 -v
-PHP 5.3.10-1ubuntu3.26 with Suhosin-Patch (cli) (built: Feb 13 2017 20:37:53) 
-Copyright (c) 1997-2012 The PHP Group
-Zend Engine v2.3.0, Copyright (c) 1998-2012 Zend Technologies
-</code></pre><p>检查一下apache是否加载了libphp5.so这个模块</p>
-<pre><code>dgnet@dgnet-ip:~$ cat /etc/apache2/mods-enabled/php5.load
-LoadModule php5_module /usr/lib/apache2/modules/libphp5.so
-</code></pre><p>4)使用apt-get软件安装工具安装mysql-server</p>
-<pre><code>dgnet@dgnet-ip:~$ sudo apt-get install mysql-server
-</code></pre><p>先给mysql-server设置密码（baidu.com@ip）</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/mysql-1.png" alt=""></p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/mysql-2.png" alt=""></p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/mysql-3.png" alt=""></p>
-<p>接着安装一下mysql的扩展</p>
-<pre><code>dgnet@dgnet-ip:~$ sudo apt-get install php5-mysql
-</code></pre><p>检查一下mysql.so模块是否正常加载</p>
-<pre><code>dgnet@dgnet-ip:~$ cat /etc/php5/conf.d/mysql.ini
-; configuration for php MySQL module
-extension=mysql.so
-</code></pre><p>确保php5与mysql能正常工作，重启一下mysql</p>
-<pre><code>dgnet@dgnet-ip:~$ sudo service mysql restart
-</code></pre><p>重启apache</p>
-<pre><code>dgnet@dgnet-ip:~$ sudo service mysql restart
-</code></pre><p>到目前lamp软件已经安装完成，分开各个软件安装是为了更好了理解各个软件之间的关系，我们清楚了解了lamp之后可以使用一条命令就把lamp安装好。</p>
-<pre><code>dgnet@dgnet-ip:~$ sudo apt-get install -y apache2 php5 mysql-server php5-mysql
-</code></pre><p>或者</p>
-<pre><code>dgnet@dgnet-ip:~$ sudo tasksel install -y lamp-servver
-</code></pre><h2 id="五、其他设置"><a href="#五、其他设置" class="headerlink" title="五、其他设置"></a>五、其他设置</h2><p>1）创建phpinfo服务器探针</p>
-<pre><code>dgnet@dgnet-ip:~$ cd /var/www
-dgnet@dgnet-ip:/var/www$ sudo vim info.php
-[sudo] password for dgnet: 
-</code></pre><p>info.php代码</p>
-<pre><code>&lt;?phpecho mysql_connect(&apos;localhost&apos;,&apos;root&apos;,&apos;baidu.com@ip&apos;) ?  
-&apos;Mom, dont worry about my database, either&apos; : 
-&apos;Last year I bought a watch&apos;;
- phpinfo();
-</code></pre><p>在浏览器中打开info.php查看,php与数据库是否正常</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/php.info.png" alt="">          </p>
-<p>2)PHP添加常用扩展</p>
-<pre><code>dgnet@dgnet-ip:~$ sudo apt-get install php5-gd curl libcurl3-dev php5-curl
-</code></pre><p>安装完成重启apache</p>
-<pre><code>dgnet@dgnet-ip:~$ sudo service apache2 restart
-</code></pre><p>浏览器中查看扩展是否工作正常</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/gd.png" alt=""></p>
-<h2 id="六、LAMP环境配置文件"><a href="#六、LAMP环境配置文件" class="headerlink" title="六、LAMP环境配置文件"></a>六、LAMP环境配置文件</h2><p>1）Ubuntu系统配置文件目录：/etc</p>
-<p>2)各组件配置文件位置</p>
-<p>-Apache /etc/apache2</p>
-<p>-MYSQL /etc/mysql</p>
-<p>-PHP   /etc/php5</p>
-<p>3)查看apache</p>
-<pre><code>dgnet@dgnet-ip:~$ cd /etc/apache2
-dgnet@dgnet-ip:/etc/apache2$ ll
-</code></pre><p><img src="http://ot2nwtxbo.bkt.clouddn.com/ll.png" alt=""></p>
-<p>apache工作过程：</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/apache4.png" alt=""></p>
-<p>apache核心配置：</p>
-<p>-mods-<em>*</em> Apache模块</p>
-<p>-sites-<em>*</em> 虚拟主机</p>
-<p>关键词 available 可以使用的；enabled 已启用的</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/ln-s.png" alt=""></p>
-<p>4)MYSQL核心配置文件 my.cnf</p>
-<p>5)php核心配置文件 php.ini</p>
-<p>6)配置apache虚拟主机</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/host-v.png" alt=""></p>
-<p>7)手动模拟DNS，修改本地hosts文件</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/host.png" alt=""></p>
-<p>浏览器查看上面三个域名，都是指向ip 192.168.198.5</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/weboa.png" alt=""></p>
-<p>8)为（oa bbs video）服务器创建目录</p>
-<pre><code>dgnet@dgnet-ip:~$ cd /var
-dgnet@dgnet-ip:/var$ sudo mkdir -p /wwwroot/{video,bbs,oa}
-dgnet@dgnet-ip:/var$ cd /wwwroot/
-dgnet@dgnet-ip:/wwwroot$ ll
-dgnet@dgnet-ip:/wwwroot$ cd video/
-dgnet@dgnet-ip:/wwwroot/video$ sudo vim index.html
-dgnet@dgnet-ip:/wwwroot/video$ cd ../bbs
-dgnet@dgnet-ip:/wwwroot/bbs$ sudo vim index.html
-dgnet@dgnet-ip:/wwwroot$ cd oa
-dgnet@dgnet-ip:/wwwroot/oa$ sudo vim index.html
-</code></pre><p>9）开始配置虚拟主机</p>
-<pre><code>dgnet@dgnet-ip:/wwwroot/oa$ cd /etc/apache2/sites-available/
-dgnet@dgnet-ip:/etc/apache2/sites-available$ ll
-ls: 初始化月份字符串出错
-总用量 20
-drwxr-xr-x 2 root root 4096  7Ղ 17 15:00 ./
-drwxr-xr-x 7 root root 4096  7Ղ 17 15:00 ../
- -rw-r--r-- 1 root root  950  2Ղ  7  2012 default
- -rw-r--r-- 1 root root 7469  2Ղ  7  2012 default-ssl
-</code></pre><p>复制defult文件作为video bbs oa 三个虚拟主机的蓝本</p>
-<pre><code>dgnet@dgnet-ip:/etc/apache2/sites-available$ sudo cp default video
-dgnet@dgnet-ip:/etc/apache2/sites-available$ sudo cp default bbs
-dgnet@dgnet-ip:/etc/apache2/sites-available$ sudo cp default oa
-</code></pre><p>编辑video</p>
-<pre><code>dgnet@dgnet-ip:/etc/apache2/sites-available$ sudo vim video
-</code></pre><p>虚拟配置如下：</p>
-<pre><code>&lt;VirtualHost *:80&gt;
-   ServerName video.lsz.com
-   ServerAdmin webmaster@localhost
+        <h2 id="一、文件传输协议"><a href="#一、文件传输协议" class="headerlink" title="一、文件传输协议"></a>一、文件传输协议</h2><p>文件传输协议(FTP)是为进行文件共享而设计的因特网标准协议。为了能够在复杂多样的操作设备之间解决文件传输问题，于是便有了统一的FTP文件传输协议（File Transfer Protocol），这是一种能够让使用者在互联网中上传、下载文件的传输协议。FTP文件传输协议默认占用了20、21两个端口号，20端口号用于进行数据传输，21端口号用于接受客户端执行的相关FTP命令与参数，FTP服务端普遍更多的应用于内网中，具有易于搭建、方便管理的特点，并且可以借助FTP客户端工具还可以轻松实现文件的多点下载和断点续传技术，FTP协议的传输拓扑如下图所示</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/ftp.png" alt=""></p>
+<h2 id="二、实验环境"><a href="#二、实验环境" class="headerlink" title="二、实验环境"></a>二、实验环境</h2><p>服务端：Centos 6.5 (2.6.32-358.el6.x86_64)</p>
+<p>ip:192.168.198.141</p>
+<p>客户端：Centos 6.5 （2.6.32-431.el6.x86_64）</p>
+<p>ip：192.168.198.100</p>
+<p>selinux =disable</p>
+<pre><code>[root@vsftpdserver ~]# vi /etc/sysconfig/selinux
+SELINUX=disabled
+</code></pre><p>iptables防火墙管理工具中默认禁止了ftp传输协议的端口号，因此在正式配置vsftpd服务程序前还需要清空一下iptables防火墙的默认策略，并把当前已经被清理的防火墙策略状态保存下来：</p>
+<pre><code>[root@vsftpdserver ~]# iptables -F
+[root@vsftpdserver ~]# service iptables save
+iptables: Saving firewall rules to /etc/sysconfig/iptables:[  OK  ]
+</code></pre><h2 id="三、安装软件"><a href="#三、安装软件" class="headerlink" title="三、安装软件"></a>三、安装软件</h2><p>1）服务端：vsftpd</p>
+<pre><code>[root@vsftpdserver ~]# yum -y install vsftpd
+[root@vsftpdserver ~]# rpm -aq|grep vsftpd
+vsftpd-2.2.2-24.el6.x86_64
+</code></pre><p>2)客户端：ftp</p>
+<pre><code>[root@ip-ftp_client ~]# yum -y install ftp
+[root@ip-ftp_client ~]# rpm -aq|grep ftp
+ftp-0.17-54.el6.x86_64
+</code></pre><p>3）vsftpd服务程序的主配置文件中常用的参数及作用介绍</p>
+<pre><code>参数                                        作用
 
-    DocumentRoot /wwwroot/video
-    &lt;Directory /&gt;
-            Options FollowSymLinks
-            AllowOverride None
-    &lt;/Directory&gt;
-    &lt;Directory /wwwroot/video/&gt;
-            Options Indexes FollowSymLinks MultiViews
-            AllowOverride None
-            Order allow,deny
-            allow from all
-    &lt;/Directory&gt;
-</code></pre><p>编辑bbs:</p>
-<pre><code>dgnet@dgnet-ip:/etc/apache2/sites-available$ sudo vim bbs
-</code></pre><p>虚拟配置如下：</p>
-<pre><code>&lt;VirtualHost *:80&gt;
-   ServerName  bbs.lsz.com
-   ServerAdmin webmaster@localhost
+listen=[YES|NO]                       是否以独立运行的方式监听服务。
 
-    DocumentRoot /wwwroot/bbs
-    &lt;Directory /&gt;
-            Options FollowSymLinks
-            AllowOverride None
-    &lt;/Directory&gt;
-    &lt;Directory /wwwroot/bbs/&gt;
-            Options Indexes FollowSymLinks MultiViews
-            AllowOverride None
-            Order allow,deny
-            allow from all
-    &lt;/Directory&gt;
-</code></pre><p>编辑oa:</p>
-<pre><code>dgnet@dgnet-ip:/etc/apache2/sites-available$ sudo vim oa
-</code></pre><p>虚拟配置如下：</p>
-<pre><code>&lt;VirtualHost *:80&gt;
-    ServerName  oa.lsz.com
-    ServerAdmin webmaster@localhost
+listen_address=IP地址                  设置要监听的IP地址。
 
-    DocumentRoot /wwwroot/oa
-    &lt;Directory /&gt;
-            Options FollowSymLinks
-            AllowOverride None
-    &lt;/Directory&gt;
-    &lt;Directory /wwwroot/oa/&gt;
-            Options Indexes FollowSymLinks MultiViews
-            AllowOverride None
-            Order allow,deny
-            allow from all
-    &lt;/Directory&gt;
-</code></pre><p>10)启用虚拟配置文件</p>
-<pre><code>dgnet@dgnet-ip:/etc/apache2/sites-available$ cd ../sites-enabled/
-dgnet@dgnet-ip:/etc/apache2/sites-enabled$ sudo ln -s ../sites-available/video video
-dgnet@dgnet-ip:/etc/apache2/sites-enabled$ sudo ln -s ../sites-available/bbs bbs
-dgnet@dgnet-ip:/etc/apache2/sites-enabled$ sudo ln -s ../sites-available/oa oa
-dgnet@dgnet-ip:/etc/apache2/sites-enabled$ ll
-ls: 初始化月份字符串出错
-总用量 8
-drwxr-xr-x 2 root root 4096  7Ղ 17 18:14 ./
-drwxr-xr-x 7 root root 4096  7Ղ 17 15:00 ../
-lrwxrwxrwx 1 root root   26  7Ղ 17 15:00 000-default -&gt; ../sites-available/default
-lrwxrwxrwx 1 root root   22  7Ղ 17 18:14 bbs -&gt; ../sites-available/bbs
-lrwxrwxrwx 1 root root   21  7Ղ 17 18:14 oa -&gt; ../sites-available/oa
-lrwxrwxrwx 1 root root   24  7Ղ 17 18:14 video -&gt; ../sites-available/video
-dgnet@dgnet-ip:/etc/apache2/sites-enabled$ sudo service apache2 restart
-</code></pre><p> 浏览器中查看对应的域名：</p>
-<p>bbs.lsz.com</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/bbsdir.png" alt=""></p>
-<p>video.lsz.com</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/videodir.png" alt=""></p>
-<p>oa.lsz.com</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/oadir.png" alt=""></p>
-<p>11）安装数据库管理工具phpmyadmin</p>
-<pre><code>dgnet@dgnet-ip:~$ sudo apt-get install phpmyadmin
-dgnet@dgnet-ip:~$ cd /var/www
-dgnet@dgnet-ip:/var/www$ sudo ln -s /usr/share/phpmyadmin phpmyadmin
-</code></pre><p>浏览器打开</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/php.png" alt="">    </p>
-<p> 开启MySQL的remote access</p>
-<pre><code>dgnet@dgnet-ip:/var/www$ sudo vim /etc/mysql/my.cnf
-</code></pre><p>找到bind-address注释</p>
-<pre><code>#bind-address           = 127.0.0.1
-</code></pre><p>使用phpmyadmin用户密码登陆 (root,baidu.com@ip)</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/php-11.png" alt=""></p>
-<p>添加一个用户linshizhe 允许公网ip 访问</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/php-12.png" alt=""></p>
-<p>重启mysql重新加载配置：</p>
-<pre><code>dgnet@dgnet-ip:/var/www$ sudo service mysql restart
-</code></pre><p>通过Navicat测试远程连接数据库</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/cs.png" alt=""></p>
-<p>到这里lamp基本就已经部署完成了！！！</p>
+listen_port=21                        设置FTP服务的监听端口。
 
+download_enable＝[YES|NO]            是否允许下载文件。
+
+userlist_enable=[YES|NO]            是否启用“禁止登陆用户名单”。
+
+userlist_deny=[YES|NO]                是否启用“禁止登陆用户名单”。
+
+max_clients=0                        最大客户端连接数，0为不限制。
+
+max_per_ip=0                        同一IP地址最大连接数，0为不限制。
+
+anonymous_enable=[YES|NO]            是否允许匿名用户访问。
+
+anon_upload_enable=[YES|NO]            是否允许匿名用户上传文件。
+
+anon_umask=022                        匿名用户上传文件的umask值。
+
+anon_root=/var/ftp                    匿名用户的FTP根目录。
+
+anon_mkdir_write_enable=[YES|NO]    是否允许匿名用户创建目录。
+
+anon_other_write_enable=[YES|NO]    是否开放匿名用户其他写入权限。
+
+anon_max_rate=0                        匿名用户最大传输速率(字节)，0为不限制。
+
+local_enable=[YES|NO]                是否允许本地用户登陆FTP。
+
+local_umask=022                        本地用户上传文件的umask值。
+
+local_root=/var/ftp                    本地用户的FTP根目录。
+
+chroot_local_user=[YES|NO]            是否将用户权限禁锢在FTP目录，更加的安全。
+
+local_max_rate=0                    本地用户最大传输速率(字节)，0为不限制。
+</code></pre><h2 id="四、配置vsftpd"><a href="#四、配置vsftpd" class="headerlink" title="四、配置vsftpd"></a>四、配置vsftpd</h2><p>vsftpd作为更加安全的FTP文件传输协议的服务程序，可以让用户分别通过匿名开放、本地用户和虚拟用户三种身份验证方式来登陆到FTP服务器上面。</p>
+<p>1) 匿名访问模式</p>
+<pre><code>[root@vsftpdserver ~]# mv /etc/vsftpd/vsftpd.conf /etc/vsftpd/vsftpd.conf_bak
+[root@vsftpdserver ~]# grep -v &quot;#&quot; /etc/vsftpd/vsftpd.conf_bak &gt; /etc/vsftpd/vsftpd.conf
+[root@vsftpdserver ~]# cat /etc/vsftpd/vsftpd.conf
+anonymous_enable=YES
+local_enable=YES
+write_enable=YES
+local_umask=022
+dirmessage_enable=YES
+xferlog_enable=YES
+connect_from_port_20=YES
+xferlog_std_format=YES
+listen=YES
+
+pam_service_name=vsftpd
+userlist_enable=YES
+tcp_wrappers=YES
+</code></pre><p>修改vsftpd.conf配置</p>
+<pre><code>[root@vsftpdserver ~]# vi /etc/vsftpd/vsftpd.conf
+anonymous_enable=YES
+anon_umask=022
+anon_upload_enable=YES
+anon_mkdir_write_enable=YES
+anon_other_write_enable=YES
+local_enable=YES
+write_enable=YES
+local_umask=022
+dirmessage_enable=YES
+xferlog_enable=YES
+connect_from_port_20=YES
+xferlog_std_format=YES
+listen=YES
+
+pam_service_name=vsftpd
+userlist_enable=YES
+tcp_wrappers=YES
+</code></pre><p>保存配置后重启服务，并设置服务开机自启动</p>
+<pre><code>[root@vsftpdserver ~]# service vsftpd restart
+Shutting down vsftpd:                                      [FAILED]
+Starting vsftpd for vsftpd:                                [  OK  ]
+[root@vsftpdserver ~]# chkconfig vsftpd on
+</code></pre><p>在客户端测试：</p>
+<pre><code>[root@ip-ftp_client ~]# ftp 192.168.198.141
+Connected to 192.168.198.141 (192.168.198.141).
+220 (vsFTPd 2.2.2)
+Name (192.168.198.141:root): anonymous  （用户名anonymous）
+331 Please specify the password.
+Password:  （此次直接回车）
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp&gt; 
+</code></pre><p>cd到pub目录，创建一个SYS目录</p>
+<pre><code>ftp&gt; cd pub
+250 Directory successfully changed.
+ftp&gt; mkdir SYS
+550 Create directory operation failed.
+</code></pre><p>我们看到mkdir SYS 提示550 Create directory operation failed.（？？？fuck,什么原因？？，前面我们设置 了anon_mkdir_write_enable=YES)，原来FTP服务的匿名开放模式是默认登陆到了/var/ftp目录中，查看下这个目录的权限后才发现原来只有root管理员用户才有写入权限的，怪不得会提示写入出错呢，只需要把目录的所有者身份改成系统帐户ftp即可，这样就应该可以了~</p>
+<pre><code>[root@vsftpdserver ~]# ls -ld /var/ftp/pub
+drwxr-xr-x. 6 root root 4096 Mar 22 12:14 /var/ftp/pub
+[root@vsftpdserver ~]#  chown -Rf ftp /var/ftp/pub
+[root@vsftpdserver ~]# ls -ld /var/ftp/pub
+drwxr-xr-x. 6 ftp root 4096 Mar 22 12:14 /var/ftp/pub
+</code></pre><p>然后再创建几个目录看看行不行</p>
+<pre><code>ftp&gt; cd pub
+250 Directory successfully changed.
+ftp&gt; mkdir SYS
+257 &quot;/pub/SYS&quot; created
+ftp&gt; mkdir NET
+257 &quot;/pub/NET&quot; created
+ftp&gt; mkdir CWB
+257 &quot;/pub/CWB&quot; created
+ftp&gt; 
+</code></pre><p>回到服务端查看目录：</p>
+<pre><code>[root@vsftpdserver ~]# cd /var/ftp/pub
+[root@vsftpdserver pub]# ll
+total 12
+drwxr-xr-x 2 ftp ftp 4096 Jul 19 20:35 CWB
+drwxr-xr-x 2 ftp ftp 4096 Jul 19 20:35 NET
+drwxr-xr-x 2 ftp ftp 4096 Jul 19 20:35 SYS
+</code></pre><p>客户端上传文件：</p>
+<pre><code>ftp&gt; cd /pub/SYS
+250 Directory successfully changed.
+ftp&gt; put sys.text
+local: sys.text remote: sys.text
+227 Entering Passive Mode (192,168,198,141,95,201).
+150 Ok to send data.
+226 Transfer complete.
+ftp&gt; cd /pub/NET
+250 Directory successfully changed.
+ftp&gt; put net.text
+local: net.text remote: net.text
+227 Entering Passive Mode (192,168,198,141,73,52).
+150 Ok to send data.
+226 Transfer complete.
+ftp&gt; cd /pub/CWB
+250 Directory successfully changed.
+ftp&gt; put cwb.text
+local: cwb.text remote: cwb.text
+227 Entering Passive Mode (192,168,198,141,121,92).
+150 Ok to send data.
+226 Transfer complete
+</code></pre><p>服务端查看：</p>
+<pre><code>[root@vsftpdserver pub]# cd NET
+[root@vsftpdserver NET]# ll
+total 0
+ -rw-r--r-- 1 ftp ftp 0 Jul 19 20:46 net.text
+</code></pre><p>客户端测试下载：</p>
+<p>现在服务端创建一个iphone.txt的文件</p>
+<pre><code>[root@vsftpdserver ~]# cd /var/ftp/pub
+[root@vsftpdserver pub]# touch iphone.txt
+[root@vsftpdserver pub]# ll
+ total 12
+ drwxr-xr-x 2 ftp  ftp  4096 Jul 19 20:46 CWB
+ -rw-r--r-- 1 root root    0 Jul 19 20:53 iphone.txt
+ drwxr-xr-x 2 ftp  ftp  4096 Jul 19 20:46 NET
+ drwxr-xr-x 2 ftp  ftp  4096 Jul 19 20:45 SYS
+</code></pre><p>客户端下载：</p>
+<pre><code>ftp&gt; get iphone.txt
+local: iphone.txt remote: iphone.txt
+227 Entering Passive Mode (192,168,198,141,213,175).
+150 Opening BINARY mode data connection for iphone.txt (0 bytes).
+226 Transfer complete.
+</code></pre><p>下载到对应目录</p>
+<pre><code>[root@ip-ftp_client iphone]# ll
+总用量 0
+ -rw-r--r-- 1 root root 0 7月  18 16:56 iphone.txt
+</code></pre><p>2）本地用户模式    </p>
+<p>本地用户模式是通过Linux系统本地的帐号密码信息进行的验证方式，这种模式相比较匿名开放模式来说比较安全，因此推荐既然开启了本地用户模式，就把匿名开放模式给关闭了吧~</p>
+<p>a)编辑配置文件vsftpd.conf</p>
+<pre><code>[root@vsftpdserver ~]# vi /etc/vsftpd/vsftpd.conf
+anonymous_enable=NO
+local_enable=YES
+write_enable=YES
+local_umask=022
+dirmessage_enable=YES
+xferlog_enable=YES
+connect_from_port_20=YES
+xferlog_std_format=YES
+listen=YES
+pam_service_name=vsftpd
+userlist_enable=YES
+tcp_wrappers=YES
+</code></pre><p>b)修改默认端口</p>
+<p>默认FTP服务器端口号是21，出于安全目的，有时需修改默认端口号，修改/etc/vsftpd/vsftpd.conf，添加语句(例)：listen_port=4449</p>
+<pre><code>[root@vsftpdserver ~]# vi /etc/vsftpd/vsftpd.conf
+listen_port=4449
+</code></pre><p>c)重启服务，并设置开机自启</p>
+<pre><code>[root@vsftpdserver ~]# service vsftpd restart
+Shutting down vsftpd:                                      [  OK  ]
+Starting vsftpd for vsftpd:                                [  OK  ]
+</code></pre><p>d)设置用户组</p>
+<p>递归创建新目录</p>
+<pre><code>[root@vsftpdserver ~]# mkdir -p /home/SYS
+</code></pre><p>新建组</p>
+<pre><code>[root@vsftpdserver ~]# groupadd SYS
+</code></pre><p>新建用户SYS-01、SYS-02、SYS-03并指定家目录和属组</p>
+<pre><code>[root@vsftpdserver ~]# useradd -g SYS -d /home/SYS SYS-01
+[root@vsftpdserver ~]# useradd -g SYS -d /home/SYS SYS-02
+[root@vsftpdserver ~]# useradd -g SYS -d /home/SYS SYS-03
+</code></pre><p>为新用户SYS-01、SYS-02、SYS-03设密码 （baidu.com@ip）</p>
+<pre><code>[root@vsftpdserver ~]# passwd SYS-01
+Changing password for user SYS-01.
+New password: 
+Retype new password: 
+passwd: all authentication tokens updated successfully.
+[root@vsftpdserver ~]# passwd SYS-02
+Changing password for user SYS-02.
+New password: 
+Retype new password: 
+passwd: all authentication tokens updated successfully.
+[root@vsftpdserver ~]# passwd SYS-03
+Changing password for user SYS-03.
+New password: 
+Retype new password: 
+passwd: all authentication tokens updated successfully.
+</code></pre><p>设置目录属主为用户SYS-01</p>
+<pre><code>[root@vsftpdserver ~]# chown SYS-01 /home/SYS
+</code></pre><p>设置目录属组为组SYS</p>
+<pre><code>[root@vsftpdserver ~]# chown .SYS /home/SYS
+</code></pre><p>设置目录访问权限SYS-01为读，写，执行；SYS-02，SYS-03为读，执行</p>
+<pre><code>[root@vsftpdserver ~]# chmod 750 /home/SYS
+</code></pre><p>使用SYS-01登陆到服务端：分别执行创建目录文件、重命名文件以及删除目录文件</p>
+<pre><code>[root@ip-ftp_client ~]# ftp 192.168.198.141 4449
+Connected to 192.168.198.141 (192.168.198.141).
+220 (vsFTPd 2.2.2)
+Name (192.168.198.141:root): SYS-01
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp&gt; cd /home/SYS
+250 Directory successfully changed.
+ftp&gt; mkdir SYS-01
+257 &quot;/home/SYS/SYS-01&quot; created
+ftp&gt; rename SYS-01 SYS-01_database
+350 Ready for RNTO.
+250 Rename successful.
+ftp&gt; rmdir SYS-01_database
+250 Remove directory operation successful.
+</code></pre><p>使用SYS-02登陆到服务端：分别执行创建目录文件、重命名文件以及删除目录文件</p>
+<pre><code>[root@ip-ftp_client ~]# ftp 192.168.198.141 4449
+Connected to 192.168.198.141 (192.168.198.141).
+220 (vsFTPd 2.2.2)
+Name (192.168.198.141:root): SYS-02
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp&gt; ls
+227 Entering Passive Mode (192,168,198,141,228,42).
+150 Here comes the directory listing.
+ -rw-r--r--    1 0        0               0 Jul 19 22:08 sys_log
+226 Directory send OK.
+tp&gt; mkdir SYS-02
+550 Create directory operation failed.
+</code></pre><p>使用SYS-03登陆到服务端：分别执行创建目录文件、重命名文件以及删除目录文件</p>
+<pre><code>root@ip-ftp_client ~]# ftp 192.168.198.141 4449
+Connected to 192.168.198.141 (192.168.198.141).
+220 (vsFTPd 2.2.2)
+Name (192.168.198.141:root): SYS-03
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp&gt; cd /home/SYS
+250 Directory successfully changed.
+ftp&gt; ls
+227 Entering Passive Mode (192,168,198,141,178,100).
+150 Here comes the directory listing.
+ -rw-r--r--    1 0        0               0 Jul 19 22:08 sys_log
+226 Directory send OK.
+ftp&gt; mkdir SYS-03
+550 Create directory operation failed.
+</code></pre><p>由于本地用户登录FTP服务器后进入自己主目录，而SYS-01,SYS-02 SYS-03对主目录/home/SYS分配的权限不同，所以通过FTP访问的权限也不同，SYS-01访问权限为：上传，下载，建目录；SYS-02，SYS-03访问权限为下载，浏览，不能建目录和上传。实现了群组中用户不同访问级别，加强了对FTP服务器的分级安全管理。</p>
+<p>3）虚拟用户模式</p>
+<p>虚拟用户模式是一种相比较来说最为安全的验证方式，需要为FTP传输服务单独建立用户数据库文件，虚拟出用来口令验证的帐户信息，这些帐号是在服务器系统中不存在的，仅供FTP传输服务做验证使用，因此这样即便骇客破解出了帐号口令密码后也无法登录到服务器主机上面，有效的降低了破坏范围和影响。所以只要在配置妥当合理的情况下，虚拟用户模式要比前两种验证方式更加的安全，同时配置的流程也稍微会复杂一些。</p>
+<p>第一步：创建用于进行FTP验证的帐号密码数据库文件，单数行为账户名，偶数行为密码，例如分别创建出support-01和support-02两个用户，密码均为baidu.com@ip</p>
+<pre><code>[root@vsftpdserver SYS]# cd /etc/vsftpd/
+[root@vsftpdserver vsftpd]# vi vuser.list
+support-01
+baidu.com@ip
+support-02
+baidu.com@ip
+</code></pre><p>明文信息既不安全，也不能让vsftpd服务程序直接读取，因此需要使用db_load命令用HASH算法将这个原始的明文信息文件转换成数据库文件，并且再把数据库文件权限调小一些（避免其他人能看到数据库文件的内容），然后再把原始的明文信息文件删除掉。</p>
+<pre><code>[root@vsftpdserver vsftpd]# db_load -T -t hash -f vuser.list vuser.db
+[root@vsftpdserver vsftpd]# file vuser.db
+vuser.db: Berkeley DB (Hash, version 9, native byte-order)
+[root@vsftpdserver vsftpd]# chmod 600 vuser.db
+[root@vsftpdserver vsftpd]# rm -f vuser.list
+</code></pre><p>第2步：创建用于FTP服务存储文件的根目录以及虚拟用户映射的系统本地用户，FTP服务存储文件的根目录指的是当虚拟用户登陆后默认所在的位置，但在Linux系统中的每一个文件都是有所有者和所有组属性的，例如用support-01帐户创建了一个新文件，但是support-01这个用户在系统中是找不到的，就会导致Linux系统中这个文件权限出现错误。因此还需要再创建一个用来让虚拟用户映射的系统本地用户，简单来说就是让虚拟用户默认登陆到这个本地用户的家目录中，创建的文件属性也都归属于这个本地用户，避免本地Linux系统无法处理这种虚拟用户创建的文件属性权限。为了方便管理FTP资料，可以把这个用于虚拟用户映射的系统本地用户的家目录设置到/var目录中（因为该目录是用来存放经常发生改变的数据），并且为了安全起见把这个系统本地用户的终端设置成不允许登陆，这不会影响虚拟用户的使用 。</p>
+<pre><code>[root@vsftpdserver vsftpd]# useradd -d /var/ftproot -s /sbin/nologin virtual
+[root@vsftpdserver vsftpd]# ls -ld /var/ftproot/
+drwx------ 4 virtual virtual 4096 Jul 19 22:38 /var/ftproot/
+[root@vsftpdserver vsftpd]# chmod -Rf 755 /var/ftproot/
+</code></pre><p>第3步：建立用于支持虚拟用户的PAM认证文件</p>
+<pre><code>[root@vsftpdserver vsftpd]# vi /etc/pam.d/vsftpd.vu
+auth       required     pam_userdb.so db=/etc/vsftpd/vuser
+account    required     pam_userdb.so db=/etc/vsftpd/vuser
+</code></pre><p>第4步：在vsftpd服务程序主配置文件中修改PAM支持文件</p>
+<pre><code>[root@vsftpdserver vsftpd]# vi /etc/vsftpd/vsftpd.confanonymous_enable=NO
+local_enable=YES
+guest_enable=YES
+guest_username=virtual
+allow_writeable_chroot=YES
+write_enable=YES
+local_umask=022
+dirmessage_enable=YES
+xferlog_enable=YES
+connect_from_port_20=YES
+xferlog_std_format=YES
+listen=YES
+listen_port=4449
+pam_service_name=vsftpd.vu
+userlist_enable=YES
+tcp_wrappers=YES
+</code></pre><p>第5步：为虚拟用户设置不同的权限，虽然support-01和support-02两个帐户都是用于FTP服务验证的虚拟帐户，但也想在他们之间区别对待。比如只允许support-01用户能够上传、创建、修改、查看、删除文件，而support-02只能查看文件，这其实也是可以让vsftpd服务程序实现的，只需要新建一个目录，在里面分别创建两个以support-01和support-02命名的文件，其中在support-01命名的文件中写入相关允许的权限</p>
+<pre><code>[root@vsftpdserver vsftpd]# mkdir /etc/vsftpd/vusers_dir/
+[root@vsftpdserver vsftpd]#  cd /etc/vsftpd/vusers_dir/
+[root@vsftpdserver vusers_dir]# touch support-02
+[root@vsftpdserver vusers_dir]# vi support-01
+anon_upload_enable=YES
+anon_mkdir_write_enable=YES
+anon_other_write_enable=YES
+</code></pre><p>再次修改下vsftpd主配置文件，添加user_config_dir参数来定义这两个虚拟用户不同权限的配置文件所存放的路径即可，为了让刚刚配置的服务程序新参数立即生效，需要把vsftpd再来重新启动一下，并加入到开机启动项中。</p>
+<pre><code>[root@vsftpdserver vusers_dir]# vi /etc/vsftpd/vsftpd.conf
+anonymous_enable=NO
+local_enable=YES
+guest_enable=YES
+guest_username=virtual
+allow_writeable_chroot=YES
+pam_service_name=vsftpd.vu
+write_enable=YES
+local_umask=022
+dirmessage_enable=YES
+xferlog_enable=YES
+connect_from_port_20=YES
+xferlog_std_format=YES
+listen=YES
+user_config_dir=/etc/vsftpd/vusers_dir
+listen_port=4449
+userlist_enable=YES
+tcp_wrappers=YES
+[root@vsftpdserver vusers_dir]# service vsftpd restart
+Shutting down vsftpd:                                      [  OK  ]
+Starting vsftpd for vsftpd:                                [  OK  ]
+[root@vsftpdserver vusers_dir]# chkconfig vsftpd on
+</code></pre><p> 客户端测试登陆support-02：</p>
+<pre><code>[root@ip-ftp_client ~]# ftp 192.168.198.141 4449
+Connected to 192.168.198.141 (192.168.198.141).
+220 (vsFTPd 2.2.2)
+Name (192.168.198.141:root): support-02
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp&gt; mkdir support-02
+550 Permission denied.
+</code></pre><p> 客户端测试登陆support-01：</p>
+<pre><code>[root@ip-ftp_client ~]# ftp 192.168.198.141 4449
+Connected to 192.168.198.141 (192.168.198.141).
+220 (vsFTPd 2.2.2)
+Name (192.168.198.141:root): support-01
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp&gt; mkdir support-01
+257 &quot;/support-01&quot; created
+ftp&gt; rename support-01 support-01_log
+350 Ready for RNTO.
+250 Rename successful.
+ftp&gt; rmdir support-01_log
+250 Remove directory operation successful.
+</code></pre>
       
     </div>
 
@@ -776,9 +917,7 @@ dgnet@dgnet-ip:/var/www$ sudo ln -s /usr/share/phpmyadmin phpmyadmin
       
         <div class="post-tags">
           
-            <a href="/tags/Ubuntu/" rel="tag"># Ubuntu</a>
-          
-            <a href="/tags/LAMP/" rel="tag"># LAMP</a>
+            <a href="/tags/Vsftpd/" rel="tag"># Vsftpd</a>
           
         </div>
       
@@ -791,8 +930,8 @@ dgnet@dgnet-ip:/var/www$ sudo ln -s /usr/share/phpmyadmin phpmyadmin
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/15/PXE+Kickstart/" rel="next" title="CentOS 6.5下PXE+Kickstart无人值守安装操作系统">
-                <i class="fa fa-chevron-left"></i> CentOS 6.5下PXE+Kickstart无人值守安装操作系统
+              <a href="/2017/07/19/Linux禁止ping以及开启ping的方法/" rel="next" title="Linux禁止ping以及开启ping的方法">
+                <i class="fa fa-chevron-left"></i> Linux禁止ping以及开启ping的方法
               </a>
             
           </div>
@@ -800,10 +939,6 @@ dgnet@dgnet-ip:/var/www$ sudo ln -s /usr/share/phpmyadmin phpmyadmin
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/07/19/Linux禁止ping以及开启ping的方法/" rel="prev" title="Linux禁止ping以及开启ping的方法">
-                Linux禁止ping以及开启ping的方法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -1003,7 +1138,7 @@ dgnet@dgnet-ip:/var/www$ sudo ln -s /usr/share/phpmyadmin phpmyadmin
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、前言"><span class="nav-number">1.</span> <span class="nav-text">一、前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1LAMP详解"><span class="nav-number">1.1.</span> <span class="nav-text">1.1LAMP详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件组件："><span class="nav-number">1.2.</span> <span class="nav-text">软件组件：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2LAMP工作原理"><span class="nav-number">1.3.</span> <span class="nav-text">1.2LAMP工作原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、实验环境："><span class="nav-number">2.</span> <span class="nav-text">二、实验环境：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、Ubuntu-server-管理员权限解读"><span class="nav-number">3.</span> <span class="nav-text">三、Ubuntu server 管理员权限解读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、安装软件"><span class="nav-number">4.</span> <span class="nav-text">四、安装软件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、其他设置"><span class="nav-number">5.</span> <span class="nav-text">五、其他设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、LAMP环境配置文件"><span class="nav-number">6.</span> <span class="nav-text">六、LAMP环境配置文件</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、文件传输协议"><span class="nav-number">1.</span> <span class="nav-text">一、文件传输协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、实验环境"><span class="nav-number">2.</span> <span class="nav-text">二、实验环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、安装软件"><span class="nav-number">3.</span> <span class="nav-text">三、安装软件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、配置vsftpd"><span class="nav-number">4.</span> <span class="nav-text">四、配置vsftpd</span></a></li></ol></div>
             
 
           </div>
