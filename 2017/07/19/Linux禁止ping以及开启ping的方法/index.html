@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="ping,linux," />
 
 
 
@@ -87,13 +87,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Stefanie&#39;Notes">
-<meta property="og:url" content="http://yoursite.com/tags/index.html">
+<meta name="description" content="Linux默认是允许Ping响应的，系统是否允许Ping由2个因素决定的： 1）内核参数 2）防火墙 需要2个因素同时允许才能允许Ping，2个因素有任意一个禁Ping就无法Ping。 第一种设置内核参数： 1）允许ping : a:临时允许PING配置 [root@CCIELAB lszlab]# echo 0 &amp;gt;/proc/sys/net/ipv4/icmp_echo_ignore_al">
+<meta name="keywords" content="ping,linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux禁止ping以及开启ping的方法">
+<meta property="og:url" content="http://yoursite.com/2017/07/19/Linux禁止ping以及开启ping的方法/index.html">
 <meta property="og:site_name" content="Stefanie&#39;Notes">
-<meta property="og:updated_time" content="2017-07-13T15:06:00.287Z">
+<meta property="og:description" content="Linux默认是允许Ping响应的，系统是否允许Ping由2个因素决定的： 1）内核参数 2）防火墙 需要2个因素同时允许才能允许Ping，2个因素有任意一个禁Ping就无法Ping。 第一种设置内核参数： 1）允许ping : a:临时允许PING配置 [root@CCIELAB lszlab]# echo 0 &amp;gt;/proc/sys/net/ipv4/icmp_echo_ignore_al">
+<meta property="og:updated_time" content="2017-07-19T07:15:20.152Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Stefanie&#39;Notes">
+<meta name="twitter:title" content="Linux禁止ping以及开启ping的方法">
+<meta name="twitter:description" content="Linux默认是允许Ping响应的，系统是否允许Ping由2个因素决定的： 1）内核参数 2）防火墙 需要2个因素同时允许才能允许Ping，2个因素有任意一个禁Ping就无法Ping。 第一种设置内核参数： 1）允许ping : a:临时允许PING配置 [root@CCIELAB lszlab]# echo 0 &amp;gt;/proc/sys/net/ipv4/icmp_echo_ignore_al">
 
 
 
@@ -121,19 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/07/19/Linux禁止ping以及开启ping的方法/"/>
 
 
 
 
 
-  <title>
-  
-
-  
-    标签 | Stefanie'Notes
-  
-</title>
+  <title> Linux禁止ping以及开启ping的方法 | Stefanie'Notes </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -168,7 +166,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -307,25 +305,342 @@
             
 
   <div id="posts" class="posts-expand">
-  <header class="post-header">
+    
 
-	<h2 class="post-title" itemprop="name headline"></h2>
+  
 
+  
+  
+  
 
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/19/Linux禁止ping以及开启ping的方法/">
 
-</header>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Stefanie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stefanie'Notes">
+    </span>
 
     
-    
-      <div class="tag-cloud">
-        <div class="tag-cloud-title">
-            目前共计 6 个标签
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                Linux禁止ping以及开启ping的方法
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-19T15:17:16+08:00">
+                2017-07-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/运维/" itemprop="url" rel="index">
+                    <span itemprop="name">运维</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/07/19/Linux禁止ping以及开启ping的方法/" class="leancloud_visitors" data-flag-title="Linux禁止ping以及开启ping的方法">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  643
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
         </div>
-        <div class="tag-cloud-tags">
-          <a href="/tags/Kickstart/" style="font-size: 12px; color: #ccc">Kickstart</a> <a href="/tags/LAMP/" style="font-size: 12px; color: #ccc">LAMP</a> <a href="/tags/PXE/" style="font-size: 12px; color: #ccc">PXE</a> <a href="/tags/Ubuntu/" style="font-size: 12px; color: #ccc">Ubuntu</a> <a href="/tags/linux/" style="font-size: 12px; color: #ccc">linux</a> <a href="/tags/ping/" style="font-size: 12px; color: #ccc">ping</a>
-        </div>
-      </div>
+      </header>
     
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Linux默认是允许Ping响应的，系统是否允许Ping由2个因素决定的：</p>
+<p>1）内核参数</p>
+<p>2）防火墙</p>
+<p>需要2个因素同时允许才能允许Ping，2个因素有任意一个禁Ping就无法Ping。</p>
+<p>第一种设置内核参数：</p>
+<p>1）允许ping :</p>
+<p>a:临时允许PING配置</p>
+<pre><code>[root@CCIELAB lszlab]# echo 0 &gt;/proc/sys/net/ipv4/icmp_echo_ignore_all
+</code></pre><p>b:永久允许PING配置</p>
+<p>编辑/etc/sysctl.conf 文件 加入 net.ipv4.icmp_echo_ignore_all=0</p>
+<pre><code>[root@CCIELAB lszlab]# vi /etc/sysctl.conf
+
+
+#ping （0表示允许，1表示禁止）
+net.ipv4.icmp_echo_ignore_all=0
+</code></pre><p>修改完成使用sysctl -p使其新配置生效    </p>
+<pre><code>[root@CCIELAB lszlab]# sysctl -p
+net.ipv4.ip_forward = 0
+net.ipv4.conf.default.rp_filter = 1
+net.ipv4.conf.default.accept_source_route = 0
+kernel.sysrq = 0
+kernel.core_uses_pid = 1
+net.ipv4.tcp_syncookies = 1
+error: &quot;net.bridge.bridge-nf-call-ip6tables&quot; is an unknown key
+error: &quot;net.bridge.bridge-nf-call-iptables&quot; is an unknown key
+error: &quot;net.bridge.bridge-nf-call-arptables&quot; is an unknown key
+kernel.msgmnb = 65536
+kernel.msgmax = 65536
+kernel.shmmax = 68719476736
+kernel.shmall = 4294967296
+net.ipv4.icmp_echo_ignore_all = 0
+</code></pre><p>2）禁止Ping：</p>
+<p>a：临时禁止PING配置：</p>
+<pre><code>[root@CCIELAB lszlab]# echo 1 &gt;/proc/sys/net/ipv4/icmp_echo_ignore_all 
+</code></pre><p>禁止ping 前</p>
+<pre><code>[qd01@ip-CentOS-6 ~]$ ping -c 3 192.168.198.141
+PING 192.168.198.141 (192.168.198.141) 56(84) bytes of data.
+64 bytes from 192.168.198.141: icmp_seq=1 ttl=64 time=0.291 ms
+64 bytes from 192.168.198.141: icmp_seq=2 ttl=64 time=0.484 ms
+64 bytes from 192.168.198.141: icmp_seq=3 ttl=64 time=0.475 ms
+
+ --- 192.168.198.141 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2002ms
+rtt min/avg/max/mdev = 0.291/0.416/0.484/0.092 ms
+</code></pre><p>禁止ping 后</p>
+<pre><code>PING 192.168.198.141 (192.168.198.141) 56(84) bytes of data.
+
+ --- 192.168.198.141 ping statistics ---
+3 packets transmitted, 0 received, 100% packet loss, time 12002ms
+</code></pre><p>b:永久禁止PING配置 </p>
+<p>编辑/etc/sysctl.conf 文件 加入 net.ipv4.icmp_echo_ignore_all=1</p>
+<pre><code>[root@CCIELAB lszlab]# vi /etc/sysctl.conf
+
+
+#ping （0表示允许，1表示禁止）
+net.ipv4.icmp_echo_ignore_all=1
+</code></pre><p>修改完成使用sysctl -p使其新配置生效    </p>
+<pre><code>[root@CCIELAB lszlab]# sysctl -p
+net.ipv4.ip_forward = 0
+net.ipv4.conf.default.rp_filter = 1
+net.ipv4.conf.default.accept_source_route = 0
+kernel.sysrq = 0
+kernel.core_uses_pid = 1
+net.ipv4.tcp_syncookies = 1
+error: &quot;net.bridge.bridge-nf-call-ip6tables&quot; is an unknown key
+error: &quot;net.bridge.bridge-nf-call-iptables&quot; is an unknown key
+error: &quot;net.bridge.bridge-nf-call-arptables&quot; is an unknown key
+kernel.msgmnb = 65536
+kernel.msgmax = 65536
+kernel.shmmax = 68719476736
+kernel.shmall = 4294967296
+net.ipv4.icmp_echo_ignore_all = 1
+</code></pre><p>第二种：设置防火墙：</p>
+<p>内核配置是默认值，也就是没有禁止Ping下进行设置</p>
+<p>1）允许ping 操作</p>
+<pre><code>[root@CCIELAB lszlab]# iptables -A INPUT -p icmp --icmp-type echo-request -j ACCEPT
+[root@CCIELAB lszlab]# iptables -A OUTPUT -p icmp --icmp-type echo-reply -j ACCEPT
+</code></pre><p>或者临时关闭防火墙：</p>
+<pre><code>[root@CCIELAB lszlab]# service iptables stop
+iptables: Flushing firewall rules:                         [  OK  ]
+iptables: Setting chains to policy ACCEPT: filter          [  OK  ]
+iptables: Unloading modules:                               [  OK  ]
+</code></pre><p>2）禁止ping操作</p>
+<pre><code>[root@CCIELAB lszlab]#  iptables -A INPUT -p icmp --icmp-type 8 -s 0/0 -j DROP
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>如果您觉得这篇文章对您有帮助，不妨支持我一下！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-image.png" alt="Stefanie WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+<div>
+  
+    
+<div style="text-align:center;color: #ccc;font-size:14px;">
+------ 本文结束 ------</div>
+<br/>
+<div style="border: 1px solid black">
+<div style="margin-left:10px">
+<span style="font-weight:blod">版权声明</span>
+<img src=http://ot2nwtxbo.bkt.clouddn.com/passage.png>
+<br/>
+<p style="font-size: 10px;line-height: 30px"><a href="linshizhe.github.io" style="color:#258FC6">Stefanie'Notes</a> by <a href="https://linshizhe.github.io/" style="color:#258FC6">Stefanie</a> is licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" style="color:#258FC6">Creative Commons BY-NC-ND 4.0 International License</a>.<br/>
+由<a href="https://linshizhe.github.io/" style="color:#258FC6">Stefanie</a>创作并维护的<a href="https://linshizhe.github.io/" style="color:#258FC6">Stefanie'Notes</a>博客采用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" style="color:#258FC6">创作共用保留署名-非商业-禁止演绎4.0国际许可证</a>。<br/>
+本文首发于<a href="https://linshizhe.github.io/" style="color:#258FC6">Stefanie'Notes</a> 博客（ <a href="https://linshizhe.github.io/" style="color:#258FC6">https://linshizhe.github.io/</a> ），版权所有，侵权必究。</p>
+</div>
+</div>
+
+  
+</div>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ping/" rel="tag"># ping</a>
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/17/在Ubuntu Server下搭建LAMP环境/" rel="next" title="在Ubuntu Server下搭建LAMP环境">
+                <i class="fa fa-chevron-left"></i> 在Ubuntu Server下搭建LAMP环境
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?'];
+</script>
+
+      
+    </div>
   </div>
 
 
@@ -603,6 +918,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
