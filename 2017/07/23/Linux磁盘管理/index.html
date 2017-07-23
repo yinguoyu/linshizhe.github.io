@@ -1,0 +1,1715 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="fdisk,parted," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="一、关于硬盘硬盘最小储存单位是：扇区 文件系统最小储存单位是：block （1kb or 4kb) 操作系统读取硬盘时，不会一个个扇区地去读取，这样效率太低，而是一次性读取多个扇区，即一次性读取一个“块”（block）。这种由多个扇区组成的“块”，是文件存取的最小单位，block的大小。最常见是1kb ，即连2个扇区组成一个block。（4K=8扇区） 硬盘类型： SAS、SATA、SSD、SCS">
+<meta name="keywords" content="fdisk,parted">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux磁盘管理">
+<meta property="og:url" content="http://yoursite.com/2017/07/23/Linux磁盘管理/index.html">
+<meta property="og:site_name" content="Stefanie&#39;Notes">
+<meta property="og:description" content="一、关于硬盘硬盘最小储存单位是：扇区 文件系统最小储存单位是：block （1kb or 4kb) 操作系统读取硬盘时，不会一个个扇区地去读取，这样效率太低，而是一次性读取多个扇区，即一次性读取一个“块”（block）。这种由多个扇区组成的“块”，是文件存取的最小单位，block的大小。最常见是1kb ，即连2个扇区组成一个block。（4K=8扇区） 硬盘类型： SAS、SATA、SSD、SCS">
+<meta property="og:updated_time" content="2017-07-23T05:21:46.809Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux磁盘管理">
+<meta name="twitter:description" content="一、关于硬盘硬盘最小储存单位是：扇区 文件系统最小储存单位是：block （1kb or 4kb) 操作系统读取硬盘时，不会一个个扇区地去读取，这样效率太低，而是一次性读取多个扇区，即一次性读取一个“块”（block）。这种由多个扇区组成的“块”，是文件存取的最小单位，block的大小。最常见是1kb ，即连2个扇区组成一个block。（4K=8扇区） 硬盘类型： SAS、SATA、SSD、SCS">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/23/Linux磁盘管理/"/>
+
+
+
+
+
+  <title> Linux磁盘管理 | Stefanie'Notes </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?cb99e5ae55a4cab26fd0e7238629a90e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Stefanie'Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/23/Linux磁盘管理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Stefanie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stefanie'Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                Linux磁盘管理
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-23T13:22:31+08:00">
+                2017-07-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/运维/" itemprop="url" rel="index">
+                    <span itemprop="name">运维</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/07/23/Linux磁盘管理/" class="leancloud_visitors" data-flag-title="Linux磁盘管理">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  4,565
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  25
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="一、关于硬盘"><a href="#一、关于硬盘" class="headerlink" title="一、关于硬盘"></a>一、关于硬盘</h2><p>硬盘最小储存单位是：扇区</p>
+<p>文件系统最小储存单位是：block （1kb or 4kb)</p>
+<p>操作系统读取硬盘时，不会一个个扇区地去读取，这样效率太低，而是一次性读取多个扇区，即一次性读取一个“块”（block）。这种由多个扇区组成的“块”，是文件存取的最小单位，block的大小。最常见是1kb ，即连2个扇区组成一个block。（4K=8扇区）</p>
+<p>硬盘类型：</p>
+<p>SAS、SATA、SSD、SCSI、IDE</p>
+<p>MBR与GPT分区表：</p>
+<p>a) MBR,主引导记录（Master Boot Record）现有硬盘分区模式，MBR分区的标准决定了MBR只支持在2TB以内的硬盘，超过2TB的硬盘也只能管理2TB</p>
+<p>磁盘的0柱面、0磁头、1扇区称为主引导扇区（也叫主引导记录MBR），它由三个部分组成，主引导程序、硬盘分区表DPT（Disk Partition table）和分区有效标志（55AA).</p>
+<p>在总共512字节的主引导扇区里主引导程序（boot loader）占446个字节，第二部分是partition table区（分区表），即DPT，占64个字节，硬盘中分区有多少以及没一分区的大小都记在其中。第三部分magic number ，占2个字节，固定为55AA</p>
+<p>b) GPT,全局唯一标识分区表（GUID Partition Table）,GUID全局唯一标识符（Globally Unique Identifier）。与MBR最大4个分区 表项的限制相比，GPT对分区数量没有限制。GPT可管理硬盘大小达到18EB（1EB=1024PB=1048576TB）</p>
+<h2 id="二、fdisk分区工具"><a href="#二、fdisk分区工具" class="headerlink" title="二、fdisk分区工具"></a>二、fdisk分区工具</h2><p>先查看磁盘，sdb、sdc、sdd、sde、sdf、五个磁盘还没有分区</p>
+<p>使用fdisk工具分区：一块磁盘可以分成4个主分区（4P）或者3个主分区加一个扩展分区（3p+1e）</p>
+<pre><code>[root@ip-lab_client ~]# lsblk
+NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sr0     11:0    1 1024M  0 rom  
+sda      8:0    0   20G  0 disk 
+├─sda1   8:1    0  200M  0 part /boot
+├─sda2   8:2    0    3G  0 part [SWAP]
+└─sda3   8:3    0 16.8G  0 part /
+sdb      8:16   0   20G  0 disk 
+sdd      8:48   0   20G  0 disk 
+sdc      8:32   0   20G  0 disk 
+sdf      8:80   0  4.9T  0 disk 
+sde      8:64   0   20G  0 disk 
+</code></pre><p>现在开始分区（4p）：</p>
+<pre><code>[root@ip-lab_client ~]# fdisk /dev/sdb
+Device contains neither a valid DOS partition table, nor Sun, SGI or OSF disklabel
+Building a new DOS disklabel with disk identifier 0x4c4254db.
+Changes will remain in memory only, until you decide to write them.
+After that, of course, the previous content won&apos;t be recoverable.
+
+Warning: invalid flag 0x0000 of partition table 4 will be corrected by w(rite)
+
+WARNING: DOS-compatible mode is deprecated. It&apos;s strongly recommended to
+switch off the mode (command &apos;c&apos;) and change display units to
+sectors (command &apos;u&apos;).
+
+Command (m for help): help #输入help可以查看相应的命令
+h: unknown command
+Command action
+ a   toggle a bootable flag
+ b   edit bsd disklabel
+ c   toggle the dos compatibility flag
+ d   delete a partition
+ l   list known partition types
+ m   print this menu
+ n   add a new partition
+ o   create a new empty DOS partition table
+ p   print the partition table
+ q   quit without saving changes
+ s   create a new empty Sun disklabel
+ t   change a partition&apos;s system id
+ u   change display/entry units
+ v   verify the partition table
+ w   write table to disk and exit
+ x   extra functionality (experts only)
+Command (m for help): n #输入n,增加一个分区
+Command action
+ e   extended
+ p   primary partition (1-4)
+p  #输入p,为主分区
+Partition number (1-4): 1 #输入1，表示第一个主分区
+First cylinder (1-2610, default 1): 1  #默认从第一个分区表开始
+Last cylinder, +cylinders or +size{K,M,G} (1-2610, default 2610):+5G  #+5G 表示第一个分区大小为5GB
+Command (m for help): n #输入n,新增加一个分区
+Command action
+ e   extended
+ p   primary partition (1-4)
+p  #输入p,为主分区
+Partition number (1-4): 2 #输入2，表示第二个主分区
+First cylinder (655-2610, default 655):  直接回车
+Using default value 655
+Last cylinder, +cylinders or +size{K,M,G} (655-2610, default 2610):+5G# +5G 表示第二个分区大小为5GB
+Command (m for help): n  #输入n,新增加一个分区
+Command action
+ e   extended
+ p   primary partition (1-4)
+p  #输入p,为主分区
+Partition number (1-4): 3  #输入3，表示第三个主分区
+First cylinder (1309-2610, default 1309):  直接回车
+Using default value 1309
+Last cylinder, +cylinders or +size{K,M,G} (1309-2610, default 2610):+5G #+5G 表示第二个分区大小为5GB
+Command (m for help): n  #输入n,新增加一个分区
+Command action
+ e   extended
+ p   primary partition (1-4)
+p   #输入p,为主分区
+Selected partition 4 自动会默认为4
+First cylinder (1963-2610, default 1963): 回车
+Using default value 1963
+Last cylinder, +cylinders or +size{K,M,G} (1963-2610, default 2610): #回车，把剩下空间全部发给第四个主分区
+Using default value 2610
+Command (m for help): p #输入p 打印所有已经分好的分区
+
+Disk /dev/sdb: 21.5 GB, 21474836480 bytes
+255 heads, 63 sectors/track, 2610 cylinders
+Units = cylinders of 16065 * 512 = 8225280 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0xf6c94b22
+
+ Device Boot      Start         End      Blocks   Id  System
+/dev/sdb1               1         654     5253223+  83  Linux
+/dev/sdb2             655        1308     5253255   83  Linux
+/dev/sdb3            1309        1962     5253255   83  Linux
+/dev/sdb4            1963        2610     5205060   83  Linux
+Command (m for help): w  最后一步，输入W 保存所有分区
+The partition table has been altered!
+
+Calling ioctl() to re-read partition table.
+Syncing disks.
+</code></pre><p>现在为止磁盘sdb已经分好了四个主分区，接下来要把分区全部格式化后，挂载到相应目录，<br>让磁盘开机自动挂载。挂载好磁盘才可以进行读写操作</p>
+<p>将sdb1，sdb2，sdb3，sdb4格式化成ext3文件系统</p>
+<pre><code>[root@ip-lab_client ~]# mkfs -t ext3 -c /dev/sdb1
+[root@ip-lab_client ~]# mkfs -t ext3 -c /dev/sdb2
+[root@ip-lab_client ~]# mkfs -t ext3 -c /dev/sdb3
+[root@ip-lab_client ~]# mkfs -t ext3 -c /dev/sdb4
+</code></pre><p>然后将sdb1挂载在/home目录下，sdb2,sdb3,sdb4,分别挂载到/home/disk0, /home/disk1<br>, /home/disk2下</p>
+<pre><code>[root@ip-lab_client ~]# mkdir bak
+[root@ip-lab_client ~]# cd bak
+[root@ip-lab_client home]# mkdir disk0
+[root@ip-lab_client home]# mkdir disk1
+[root@ip-lab_client home]# mkdir disk2
+</code></pre><p>编辑配置文件 /etc/fstab</p>
+<pre><code>[root@ip-lab_client home]# vi /etc/fstab
+#
+# /etc/fstab
+# Created by anaconda on Wed Mar 15 20:06:16 2017
+#
+# Accessible filesystems, by reference, are maintained under &apos;/dev/disk&apos;
+# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info
+#
+UUID=d142517f-ad58-4f98-9cd8-558f6cf6c0be /                       ext4    defaults        1 1
+UUID=4ff6775f-7726-4104-9ad2-6ec78925ee45 /boot                   ext4    defaults        1 2
+UUID=46489792-1d2c-4c3c-965c-ababd0a57d87 swap                    swap    defaults        0 0
+
+tmpfs                   /dev/shm                tmpfs   defaults        0 0
+devpts                  /dev/pts                devpts  gid=5,mode=620  0 0
+sysfs                   /sys                    sysfs   defaults        0 0
+proc                    /proc                   proc    defaults        0 0
+/dev/sdb1   /home                        ext3    defaults        0 0
+/dev/sdb2   /home/disk0                  ext3    defaults        0 0
+/dev/sdb3   /home/disk1                  ext3    defaults        0 0
+/dev/sdb4   /home/disk2                  ext3    defaults        0 0
+</code></pre><p>保存配置退出后，挂载一下全部分区</p>
+<pre><code>[root@ip-lab_client ~]# mount -a
+</code></pre><p>查看挂载</p>
+<pre><code>[root@ip-lab_client ~]# mount
+/dev/sda3 on / type ext4 (rw)
+proc on /proc type proc (rw)
+sysfs on /sys type sysfs (rw)
+devpts on /dev/pts type devpts (rw,gid=5,mode=620)
+tmpfs on /dev/shm type tmpfs (rw)
+/dev/sda1 on /boot type ext4 (rw)
+none on /proc/sys/fs/binfmt_misc type binfmt_misc (rw)
+/dev/sdb1 on /home type ext3 (rw)
+/dev/sdb2 on /home/disk0 type ext3 (rw)
+/dev/sdb3 on /home/disk1 type ext3 (rw)
+/dev/sdb4 on /home/disk2 type ext3 (rw)
+
+ OR
+[root@ip-lab_client ~]# lsblk
+NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sr0     11:0    1 1024M  0 rom  
+sda      8:0    0   20G  0 disk 
+├─sda1   8:1    0  200M  0 part /boot
+├─sda2   8:2    0    3G  0 part [SWAP]
+└─sda3   8:3    0 16.8G  0 part /
+sdb      8:16   0   20G  0 disk 
+├─sdb1   8:17   0    5G  0 part /home
+├─sdb2   8:18   0    5G  0 part /home/disk0
+├─sdb3   8:19   0    5G  0 part /home/disk1
+└─sdb4   8:20   0    5G  0 part /home/disk2
+</code></pre><p>挂载有两种方式，一种使用分区对应的UUID 或者块设备如 /sdb1</p>
+<p>查看分区对应UUID</p>
+<pre><code>[root@ip-lab_client ~]# blkid
+/dev/sda1: UUID=&quot;4ff6775f-7726-4104-9ad2-6ec78925ee45&quot; TYPE=&quot;ext4&quot; 
+/dev/sda2: UUID=&quot;46489792-1d2c-4c3c-965c-ababd0a57d87&quot; TYPE=&quot;swap&quot; 
+/dev/sda3: UUID=&quot;d142517f-ad58-4f98-9cd8-558f6cf6c0be&quot; TYPE=&quot;ext4&quot; 
+/dev/sdb1: UUID=&quot;2a297f59-8bd9-48b5-99c9-1a420e271ada&quot; SEC_TYPE=&quot;ext2&quot; TYPE=&quot;ext3&quot; 
+/dev/sdb2: UUID=&quot;a5517b1c-9c89-40cf-aca8-b748e866dd8a&quot; SEC_TYPE=&quot;ext2&quot; TYPE=&quot;ext3&quot; 
+/dev/sdb3: UUID=&quot;a77f5d27-8313-442d-9367-2b225f4cdcbf&quot; SEC_TYPE=&quot;ext2&quot; TYPE=&quot;ext3&quot; 
+/dev/sdb4: UUID=&quot;36bf0458-c221-4bc3-a060-8912a97be07b&quot; SEC_TYPE=&quot;ext2&quot; TYPE=&quot;ext3&quot; 
+</code></pre><p> 分区完成就可以对磁盘进行读写操作了~。</p>
+<p>在对sdc磁盘进行分区这一次（3p+1e）,然后采用UUid方式挂载。</p>
+<pre><code>[root@ip-lab_client ~]# fdisk /dev/sdc
+Device contains neither a valid DOS partition table, nor Sun, SGI or OSF disklabel
+Building a new DOS disklabel with disk identifier 0x5cf6f80f.
+Changes will remain in memory only, until you decide to write them.
+After that, of course, the previous content won&apos;t be recoverable.
+
+Warning: invalid flag 0x0000 of partition table 4 will be corrected by w(rite)
+
+WARNING: DOS-compatible mode is deprecated. It&apos;s strongly recommended to
+     switch off the mode (command &apos;c&apos;) and change display units to
+     sectors (command &apos;u&apos;).
+
+Command (m for help): n
+Command action
+ e   extended
+ p   primary partition (1-4)
+p
+Partition number (1-4): 1
+First cylinder (1-2610, default 1): 
+Using default value 1
+Last cylinder, +cylinders or +size{K,M,G} (1-2610, default 2610): +5G
+
+Command (m for help): n
+Command action
+ e   extended
+ p   primary partition (1-4)
+P
+Partition number (1-4): 2
+First cylinder (655-2610, default 655): 
+Using default value 655
+Last cylinder, +cylinders or +size{K,M,G} (655-2610, default 2610): +5G
+
+Command (m for help): n
+Command action
+  e   extended
+  p   primary partition (1-4)
+P
+Partition number (1-4): 3
+First cylinder (1309-2610, default 1309): 
+Using default value 1309
+Last cylinder, +cylinders or +size{K,M,G} (1309-2610, default 2610): +5G
+
+Command (m for help):n
+Command action
+ e   extended
+ p   primary partition (1-4)
+e e为扩展分区，第四个为扩展分区
+Selected partition 4
+First cylinder (1963-2610, default 1963): 回车
+Using default value 1963
+Last cylinder, +cylinders or +size{K,M,G} (1963-2610, default 2610): 回车，剩下都为扩展分区
+Using default value 2610
+
+Command (m for help): n #在扩展分区中在分逻辑分区
+First cylinder (1963-2610, default 1963): 
+Using default value 1963
+Last cylinder, +cylinders or +size{K,M,G} (1963-2610, default 2610): 
+Using default value 2610
+
+Command (m for help): p 打印分区表
+
+Disk /dev/sdc: 21.5 GB, 21474836480 bytes
+255 heads, 63 sectors/track, 2610 cylinders
+Units = cylinders of 16065 * 512 = 8225280 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x5cf6f80f
+
+ Device Boot      Start         End      Blocks   Id  System
+/dev/sdc1               1         654     5253223+  83  Linux
+/dev/sdc2             655        1308     5253255   83  Linux
+/dev/sdc3            1309        1962     5253255   83  Linux
+/dev/sdc4            1963        2610     5205060    5  Extended
+/dev/sdc5            1963        2610     5205028+  83  Linux
+
+Command (m for help): w  #保存分区
+</code></pre><p>将分区格式</p>
+<pre><code>[root@ip-lab_client ~]# mkfs -t ext3 -c /dev/sdc1
+[root@ip-lab_client ~]# mkfs -t ext3 -c /dev/sdc2
+[root@ip-lab_client ~]# mkfs -t ext3 -c /dev/sdc3
+[root@ip-lab_client ~]# mkfs -t ext3 -c /dev/sdc5
+</code></pre><p>查看uuid</p>
+<pre><code>[root@ip-lab_client ~]# blkid
+/dev/sda1: UUID=&quot;4ff6775f-7726-4104-9ad2-6ec78925ee45&quot; TYPE=&quot;ext4&quot; 
+/dev/sda2: UUID=&quot;46489792-1d2c-4c3c-965c-ababd0a57d87&quot; TYPE=&quot;swap&quot; 
+/dev/sda3: UUID=&quot;d142517f-ad58-4f98-9cd8-558f6cf6c0be&quot; TYPE=&quot;ext4&quot; 
+/dev/sdb1: UUID=&quot;2a297f59-8bd9-48b5-99c9-1a420e271ada&quot; SEC_TYPE=&quot;ext2&quot; TYPE=&quot;ext3&quot; 
+/dev/sdb2: UUID=&quot;a5517b1c-9c89-40cf-aca8-b748e866dd8a&quot; SEC_TYPE=&quot;ext2&quot; TYPE=&quot;ext3&quot; 
+/dev/sdb3: UUID=&quot;a77f5d27-8313-442d-9367-2b225f4cdcbf&quot; SEC_TYPE=&quot;ext2&quot; TYPE=&quot;ext3&quot; 
+/dev/sdb4: UUID=&quot;36bf0458-c221-4bc3-a060-8912a97be07b&quot; SEC_TYPE=&quot;ext2&quot; TYPE=&quot;ext3&quot; 
+/dev/sdc1: UUID=&quot;98a45b99-f7b4-4c1d-9263-5099058b49cd&quot; SEC_TYPE=&quot;ext2&quot; TYPE=&quot;ext3&quot; 
+/dev/sdc2: UUID=&quot;1707af59-7e03-48f7-a884-fd88294f821c&quot; SEC_TYPE=&quot;ext2&quot; TYPE=&quot;ext3&quot; 
+/dev/sdc3: UUID=&quot;a16d8850-ea9d-4ec4-89ec-13001e9f3b3c&quot; SEC_TYPE=&quot;ext2&quot; TYPE=&quot;ext3&quot; 
+/dev/sdc5: UUID=&quot;0be10fe0-525f-4f14-ada5-7f1dcc3bf5b0&quot; SEC_TYPE=&quot;ext2&quot; TYPE=&quot;ext3&quot;
+</code></pre><p>创建目录</p>
+<pre><code>[root@ip-lab_client ~]# cd /home
+[root@ip-lab_client home]# mkdir disk3
+[root@ip-lab_client home]# mkdir disk4
+[root@ip-lab_client home]# mkdir disk5
+[root@ip-lab_client home]# mkdir disk6
+</code></pre><p>编辑/etc/fstab把分区挂载到/home/disk3, /home/disk4  , /home/disk5  , /home/disk6, 采用uuid的方式</p>
+<pre><code>[root@ip-lab_client ~]# vi /etc/fstab
+
+#
+# Accessible filesystems, by reference, are maintained under &apos;/dev/disk&apos;
+# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info
+#
+UUID=d142517f-ad58-4f98-9cd8-558f6cf6c0be /                       ext4    defaults        1 1
+UUID=4ff6775f-7726-4104-9ad2-6ec78925ee45 /boot                   ext4    defaults        1 2
+UUID=46489792-1d2c-4c3c-965c-ababd0a57d87 swap                    swap    defaults        0 0
+tmpfs                   /dev/shm                tmpfs   defaults        0 0
+devpts                  /dev/pts                devpts  gid=5,mode=620  0 0
+sysfs                   /sys                    sysfs   defaults        0 0
+proc                    /proc                   proc    defaults        0 0
+/dev/sdb1   /home                        ext3    defaults        0 0
+/dev/sdb2   /home/disk0                  ext3    defaults        0 0
+/dev/sdb3   /home/disk1                  ext3    defaults        0 0
+/dev/sdb4   /home/disk2                  ext3    defaults        0 0
+UUID=98a45b99-f7b4-4c1d-9263-5099058b49cd  /home/disk3   ext3    defaults        0 0
+UUID=1707af59-7e03-48f7-a884-fd88294f821c  /home/disk4   ext3    defaults        0 0
+UUID=a16d8850-ea9d-4ec4-89ec-13001e9f3b3c  /home/disk5   ext3    defaults        0 0
+UUID=0be10fe0-525f-4f14-ada5-7f1dcc3bf5b0  /home/disk6   ext3    defaults        0 0
+</code></pre><p>保存配置退出</p>
+<p>重新挂载一下全部分区</p>
+<pre><code>[root@ip-lab_client home]# mount -a
+</code></pre><p>查看挂载</p>
+<pre><code>[root@ip-lab_client home]# mount
+/dev/sda3 on / type ext4 (rw)
+proc on /proc type proc (rw)
+sysfs on /sys type sysfs (rw)
+devpts on /dev/pts type devpts (rw,gid=5,mode=620)
+tmpfs on /dev/shm type tmpfs (rw)
+/dev/sda1 on /boot type ext4 (rw)
+none on /proc/sys/fs/binfmt_misc type binfmt_misc (rw)
+/dev/sdb1 on /home type ext3 (rw)
+/dev/sdb2 on /home/disk0 type ext3 (rw)
+/dev/sdb3 on /home/disk1 type ext3 (rw)
+/dev/sdb4 on /home/disk2 type ext3 (rw)
+/dev/sdc1 on /home/disk3 type ext3 (rw)
+/dev/sdc2 on /home/disk4 type ext3 (rw)
+/dev/sdc3 on /home/disk5 type ext3 (rw)
+/dev/sdc5 on /home/disk6 type ext3 (rw)
+[root@ip-lab_client home]# lsblk
+NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sr0     11:0    1 1024M  0 rom  
+sda      8:0    0   20G  0 disk 
+├─sda1   8:1    0  200M  0 part /boot
+├─sda2   8:2    0    3G  0 part [SWAP]
+└─sda3   8:3    0 16.8G  0 part /
+sdb      8:16   0   20G  0 disk 
+├─sdb1   8:17   0    5G  0 part /home
+├─sdb2   8:18   0    5G  0 part /home/disk0
+├─sdb3   8:19   0    5G  0 part /home/disk1
+└─sdb4   8:20   0    5G  0 part /home/disk2
+sdd      8:48   0   20G  0 disk 
+sdc      8:32   0   20G  0 disk 
+├─sdc1   8:33   0    5G  0 part /home/disk3
+├─sdc2   8:34   0    5G  0 part /home/disk4
+├─sdc3   8:35   0    5G  0 part /home/disk5
+├─sdc4   8:36   0    1K  0 part 
+└─sdc5   8:37   0    5G  0 part /home/disk6
+sdf      8:80   0  4.9T  0 disk 
+sde      8:64   0   20G  0 disk 
+</code></pre><p>分区挂载已经全部完成</p>
+<h2 id="三、parted分区工具"><a href="#三、parted分区工具" class="headerlink" title="三、parted分区工具"></a>三、parted分区工具</h2><p>接下来对sdf（5T）硬盘进行分区</p>
+<pre><code>[root@ip-lab_client ~]# parted /dev/sdf
+GNU Parted 2.1
+使用 /dev/sdf
+Welcome to GNU Parted! Type &apos;help&apos; to view a list of commands.
+(parted) help #输入help可以查看分区的命令
+align-check TYPE N                        check partition N for TYPE(min|opt) alignment
+check NUMBER                             do a simple check on the file system
+cp [FROM-DEVICE] FROM-NUMBER TO-NUMBER   copy file system to another partition
+help [COMMAND]                           print general help, or help on COMMAND
+mklabel,mktable LABEL-TYPE               create a new disklabel (partition table)
+mkfs NUMBER FS-TYPE                      make a FS-TYPE file system on partition NUMBER
+mkpart PART-TYPE [FS-TYPE] START END     make a partition
+mkpartfs PART-TYPE FS-TYPE START END     make a partition with a file system
+move NUMBER START END                    move partition NUMBER
+name NUMBER NAME                         name partition NUMBER as NAME
+print [devices|free|list,all|NUMBER]     display the partition table, available devices, free space, all found partitions,
+    or a particular partition
+quit                                     exit program
+rescue START END                         rescue a lost partition near START and END
+resize NUMBER START END                  resize partition NUMBER and its file system
+rm NUMBER                                delete partition NUMBER
+select DEVICE                            choose the device to edit
+set NUMBER FLAG STATE                    change the FLAG on partition NUMBER
+toggle [NUMBER [FLAG]]                   toggle the state of FLAG on partition NUMBER
+unit UNIT                                set the default unit to UNIT
+version                                  display the version number and copyright information of GNU Parted
+(parted)  mklabel      #mklable 新建一个分区表                                                   
+新的磁盘标签类型？ GPT   #分区表的类型为GPT
+(parted) mkpart        #mkpart，新建一个分区                                                     
+分区名称？  []? 1       #给分区命名
+文件系统类型？  [ext2]? ext3        #现在文件系统类型 ，这个可以在后续格式化选择想要的
+起始点？ 1             #从第一个扇区开始分                                                           
+结束点？ 500G          #设置500G大小
+(parted) mkpart       #mklable 新建一个分区表                                                        
+分区名称？  []? 2      #给分区命名                                                
+文件系统类型？  [ext2]? ext3   #现在文件系统类型 ，这个可以在后续格式化选择想要的                                           
+起始点？ 500G   #从上一次分区结束开始                                                         
+结束点？ 1000G  #设置500G大小
+(parted) mkpart                                                           
+分区名称？  []? 3                                                         
+文件系统类型？  [ext2]? ext3                                              
+起始点？ 1000G                                                            
+结束点？ 1500G
+(parted) mkpart
+分区名称？  []? 4                                                         
+文件系统类型？  [ext2]? ext3                                              
+起始点？ 1500G                                                            
+结束点？ 2000G                                                            
+(parted) mkpart
+分区名称？  []? 5                                                         
+文件系统类型？  [ext2]? ext3                                              
+起始点？ 2000G                                                            
+结束点？ 3000G
+(parted) mkpart
+分区名称？  []? 6                                                         
+文件系统类型？  [ext2]? ext3                                              
+起始点？ 3000G                                                            
+结束点？ 5000G
+(parted) P                                                                
+Model: VMware, VMware Virtual S (scsi)
+Disk /dev/sdf: 5369GB
+Sector size (logical/physical): 512B/512B
+Partition Table: gpt
+
+Number   Start    End     Size    File system  Name  标志
+  1      1049kB  500GB   500GB                1
+  2      500GB   1000GB  500GB                2
+  3      1000GB  1500GB  500GB                3
+  4      1500GB  2000GB  500GB                4
+  5      2000GB  3000GB  1000GB               5
+  6      3000GB  5000GB  2000GB               6
+ (parted) q    #退出                                                            
+信息: You may need to update /etc/fstab.                                  
+</code></pre><p>将分区格式化：</p>
+<pre><code>[root@ip-lab_client ~]# mkfs -t ext3 -c /dev/sdf1
+[root@ip-lab_client ~]# mkfs -t ext3 -c /dev/sdf2
+[root@ip-lab_client ~]# mkfs -t ext3 -c /dev/sdf3
+[root@ip-lab_client ~]# mkfs -t ext3 -c /dev/sdf4
+[root@ip-lab_client ~]# mkfs -t ext3 -c /dev/sdf5
+[root@ip-lab_client ~]# mkfs -t ext3 -c /dev/sdf6
+</code></pre><p>先创建对应的目录</p>
+<pre><code>[root@ip-lab_client ~]# mkdir /bak
+[root@ip-lab_client ~]# cd /bak
+[root@ip-lab_client bak]# mkdir disk{0,1,2,3,4}
+</code></pre><p>编辑/ect/fstab文件，把分区分别挂载到/bak  ，/bak/disk0   ， /bak/disk1   ，/bak/disk2  ，/bak/disk3  ， /bak/disk4</p>
+<pre><code>[root@ip-lab_client bak]# vi /etc/fstab
+
+
+#
+# /etc/fstab
+# Created by anaconda on Wed Mar 15 20:06:16 2017
+UUID=4ff6775f-7726-4104-9ad2-6ec78925ee45 /boot                   ext4    defaults        1 2
+UUID=46489792-1d2c-4c3c-965c-ababd0a57d87 swap                    swap    defaults        0 0
+tmpfs                   /dev/shm                tmpfs   defaults        0 0
+devpts                  /dev/pts                devpts  gid=5,mode=620  0 0
+sysfs                   /sys                    sysfs   defaults        0 0
+proc                    /proc                   proc    defaults        0 0
+/dev/sdb1   /home                        ext3    defaults        0 0
+/dev/sdb2   /home/disk0                  ext3    defaults        0 0
+/dev/sdb3   /home/disk1                  ext3    defaults        0 0
+/dev/sdb4   /home/disk2                  ext3    defaults        0 0
+UUID=98a45b99-f7b4-4c1d-9263-5099058b49cd  /home/disk3   ext3    defaults        0 0
+UUID=1707af59-7e03-48f7-a884-fd88294f821c  /home/disk4   ext3    defaults        0 0
+UUID=a16d8850-ea9d-4ec4-89ec-13001e9f3b3c  /home/disk5   ext3    defaults        0 0
+UUID=0be10fe0-525f-4f14-ada5-7f1dcc3bf5b0  /home/disk6   ext3    defaults        0 0
+/dev/sdf1    /bak           ext3    defaults        0 0
+/dev/sdf2    /bak/disk0     ext3    defaults        0 0
+/dev/sdf3    /bak/disk1     ext3    defaults        0 0
+/dev/sdf4    /bak/disk2     ext3    defaults        0 0
+/dev/sdf5    /bak/disk3     ext3    defaults        0 0
+/dev/sdf6    /bak/disk4     ext3    defaults        0 0
+</code></pre><p>保存退出后重新挂载：</p>
+<pre><code>[root@ip-lab_client ~]# mount -a
+[root@ip-lab_client ~]# mount
+/dev/sda3 on / type ext4 (rw)
+proc on /proc type proc (rw)
+sysfs on /sys type sysfs (rw)
+devpts on /dev/pts type devpts (rw,gid=5,mode=620)
+tmpfs on /dev/shm type tmpfs (rw)
+/dev/sda1 on /boot type ext4 (rw)
+none on /proc/sys/fs/binfmt_misc type binfmt_misc (rw)
+/dev/sdb1 on /home type ext3 (rw)
+/dev/sdb2 on /home/disk0 type ext3 (rw)
+/dev/sdb3 on /home/disk1 type ext3 (rw)
+/dev/sdb4 on /home/disk2 type ext3 (rw)
+/dev/sdc1 on /home/disk3 type ext3 (rw)
+/dev/sdc2 on /home/disk4 type ext3 (rw)
+/dev/sdc3 on /home/disk5 type ext3 (rw)
+/dev/sdc5 on /home/disk6 type ext3 (rw)
+/dev/sdf1 on /bak type ext3 (rw)
+/dev/sdf2 on /bak/disk0 type ext3 (rw)
+/dev/sdf3 on /bak/disk1 type ext3 (rw)
+/dev/sdf4 on /bak/disk2 type ext3 (rw)
+/dev/sdf5 on /bak/disk3 type ext3 (rw)
+/dev/sdf6 on /bak/disk4 type ext3 (rw
+</code></pre><p>分区完成可以进行读写操作~~~</p>
+<pre><code>[root@ip-lab_client ~]# lsblk
+NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+sr0     11:0    1  1024M  0 rom  
+sda      8:0    0    20G  0 disk 
+├─sda1   8:1    0   200M  0 part /boot
+├─sda2   8:2    0     3G  0 part [SWAP]
+└─sda3   8:3    0  16.8G  0 part /
+sdb      8:16   0    20G  0 disk 
+├─sdb1   8:17   0     5G  0 part /home
+├─sdb2   8:18   0     5G  0 part /home/disk0
+├─sdb3   8:19   0     5G  0 part /home/disk1
+└─sdb4   8:20   0     5G  0 part /home/disk2
+sdd      8:48   0    20G  0 disk 
+sdc      8:32   0    20G  0 disk 
+├─sdc1   8:33   0     5G  0 part /home/disk3
+├─sdc2   8:34   0     5G  0 part /home/disk4
+├─sdc3   8:35   0     5G  0 part /home/disk5
+├─sdc4   8:36   0     1K  0 part 
+└─sdc5   8:37   0     5G  0 part /home/disk6
+sdf      8:80   0   4.9T  0 disk 
+├─sdf1   8:81   0 465.7G  0 part /bak
+├─sdf2   8:82   0 465.7G  0 part /bak/disk0
+├─sdf3   8:83   0 465.7G  0 part /bak/disk1
+├─sdf4   8:84   0 465.7G  0 part /bak/disk2
+├─sdf5   8:85   0 931.3G  0 part /bak/disk3
+└─sdf6   8:86   0   1.8T  0 part /bak/disk4
+sde      8:64   0    20G  0 disk 
+</code></pre><p>查看一下分区UUID</p>
+<pre><code>[root@ip-lab_client ~]# blkid
+/dev/sda1: UUID=&quot;4ff6775f-7726-4104-9ad2-6ec78925ee45&quot; TYPE=&quot;ext4&quot; 
+/dev/sda2: UUID=&quot;46489792-1d2c-4c3c-965c-ababd0a57d87&quot; TYPE=&quot;swap&quot; 
+/dev/sda3: UUID=&quot;d142517f-ad58-4f98-9cd8-558f6cf6c0be&quot; TYPE=&quot;ext4&quot; 
+/dev/sdb1: UUID=&quot;2a297f59-8bd9-48b5-99c9-1a420e271ada&quot; SEC_TYPE=&quot;ext2&quot; TYPE=&quot;ext3&quot; 
+/dev/sdb2: UUID=&quot;a5517b1c-9c89-40cf-aca8-b748e866dd8a&quot; SEC_TYPE=&quot;ext2&quot; TYPE=&quot;ext3&quot; 
+/dev/sdb3: UUID=&quot;a77f5d27-8313-442d-9367-2b225f4cdcbf&quot; SEC_TYPE=&quot;ext2&quot; TYPE=&quot;ext3&quot; 
+/dev/sdb4: UUID=&quot;36bf0458-c221-4bc3-a060-8912a97be07b&quot; SEC_TYPE=&quot;ext2&quot; TYPE=&quot;ext3&quot; 
+/dev/sdc1: UUID=&quot;98a45b99-f7b4-4c1d-9263-5099058b49cd&quot; SEC_TYPE=&quot;ext2&quot; TYPE=&quot;ext3&quot; 
+/dev/sdc2: UUID=&quot;1707af59-7e03-48f7-a884-fd88294f821c&quot; SEC_TYPE=&quot;ext2&quot; TYPE=&quot;ext3&quot; 
+/dev/sdc3: UUID=&quot;a16d8850-ea9d-4ec4-89ec-13001e9f3b3c&quot; SEC_TYPE=&quot;ext2&quot; TYPE=&quot;ext3&quot; 
+/dev/sdc5: UUID=&quot;0be10fe0-525f-4f14-ada5-7f1dcc3bf5b0&quot; SEC_TYPE=&quot;ext2&quot; TYPE=&quot;ext3&quot; 
+/dev/sdf1: UUID=&quot;a0c22db6-442b-4283-afc8-75de6102132c&quot; TYPE=&quot;ext3&quot; 
+/dev/sdf2: UUID=&quot;d9216bae-fb4b-4f63-aecf-1f76e34d6429&quot; TYPE=&quot;ext3&quot; 
+/dev/sdf3: UUID=&quot;894375c9-7c80-4c23-a869-ae2ae16807a6&quot; TYPE=&quot;ext3&quot; 
+/dev/sdf4: UUID=&quot;93f2663a-ac59-4467-82cd-119d486dcac6&quot; TYPE=&quot;ext3&quot; 
+/dev/sdf5: UUID=&quot;8d628d3e-6264-4880-9e30-e742bf345f00&quot; TYPE=&quot;ext3&quot; 
+/dev/sdf6: UUID=&quot;ab1a2ba8-9df7-4e93-b5fa-37ba72433e72&quot; TYPE=&quot;ext3&quot; 
+</code></pre><p> (~^ v  ^~)</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>如果您觉得这篇文章对您有帮助，不妨支持我一下！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-image.png" alt="Stefanie WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+<div>
+  
+    
+<div style="text-align:center;color: #ccc;font-size:14px;">
+------ 本文结束 ------</div>
+<br/>
+<div style="border: 1px solid black">
+<div style="margin-left:10px">
+<span style="font-weight:blod">版权声明</span>
+<img src=http://ot2nwtxbo.bkt.clouddn.com/passage.png>
+<br/>
+<p style="font-size: 10px;line-height: 30px"><a href="linshizhe.github.io" style="color:#258FC6">Stefanie'Notes</a> by <a href="https://linshizhe.github.io/" style="color:#258FC6">Stefanie</a> is licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" style="color:#258FC6">Creative Commons BY-NC-ND 4.0 International License</a>.<br/>
+由<a href="https://linshizhe.github.io/" style="color:#258FC6">Stefanie</a>创作并维护的<a href="https://linshizhe.github.io/" style="color:#258FC6">Stefanie'Notes</a>博客采用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" style="color:#258FC6">创作共用保留署名-非商业-禁止演绎4.0国际许可证</a>。<br/>
+本文首发于<a href="https://linshizhe.github.io/" style="color:#258FC6">Stefanie'Notes</a> 博客（ <a href="https://linshizhe.github.io/" style="color:#258FC6">https://linshizhe.github.io/</a> ），版权所有，侵权必究。</p>
+</div>
+</div>
+
+  
+</div>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/fdisk/" rel="tag"># fdisk</a>
+          
+            <a href="/tags/parted/" rel="tag"># parted</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/22/RAID磁盘阵列的搭建/" rel="next" title="RAID磁盘阵列的搭建 (一)">
+                <i class="fa fa-chevron-left"></i> RAID磁盘阵列的搭建 (一)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?'];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTUwNy82MDc1"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Stefanie" />
+          <p class="site-author-name" itemprop="name">Stefanie</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/linshizhe/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/6235046429/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://wpa.qq.com/msgrd?v=3&uin=2053731402&site=qq&menu=yes" target="_blank" title="QQ">
+                  
+                    <i class="fa fa-fw fa-qq"></i>
+                  
+                  QQ
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/stefanie-70-98" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://hexo.io/zh-cn/" title="hexo" target="_blank">hexo</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://theme-next.iissnan.com/" title="next" target="_blank">next</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.linuxprobe.com/" title="linuxprobe" target="_blank">linuxprobe</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://cn.linux.vbird.org/" title="vbird" target="_blank">vbird</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=2&id=287035&auto=0&height=32"></iframe>
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、关于硬盘"><span class="nav-number">1.</span> <span class="nav-text">一、关于硬盘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、fdisk分区工具"><span class="nav-number">2.</span> <span class="nav-text">二、fdisk分区工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、parted分区工具"><span class="nav-number">3.</span> <span class="nav-text">三、parted分区工具</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Stefanie</span>
+</div>
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问用户：
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 访问次数：
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("trgxCA7199xWpuY351IE7h9X-gzGzoHsz", "Qs5Gbvx8lw7ij7aFgwL70fSI");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+
+</body>
+</html>
