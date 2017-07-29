@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="RAID," />
+  <meta name="keywords" content="sshd," />
 
 
 
@@ -87,91 +87,17 @@
 
 
 
-<meta name="description" content="一、RAID概念RAID（Redundant Array of Independent Disks，独立磁盘冗余阵列）可以提供较普通磁盘更高的速度、安全性，所以服务器在安装时都会选择创建RAID。 RAID的创建有两种方式：软RAID（通过操作系统软件来实现）和硬RAID（使用硬件阵列卡）；在企业中用的最多的是：raid0、raid1、raid10和raid5。不过随着云的高速发展，供应商一般可以">
-<meta name="keywords" content="RAID">
+<meta name="description" content="一、sshd服务防止暴力破解1)使用强密码 8位以上，大小写，特殊符号 2修改默认端口号（22） [root@lszlab01 ~]# vi /etc/ssh/sshd_config #Port 22 port 801 #默认为22 3）不使用root账号登陆 有两种方法实现 a) 修改/etc/passwd 文件 [root@lszlab01 ~]# vi /etc/passwd root:x:">
+<meta name="keywords" content="sshd">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RAID磁盘阵列的搭建 (一)">
-<meta property="og:url" content="http://yoursite.com/2017/07/22/RAID磁盘阵列的搭建/index.html">
+<meta property="og:title" content="sshd服务防止暴力破解">
+<meta property="og:url" content="http://yoursite.com/2017/07/29/sshd服务防止暴力破解/index.html">
 <meta property="og:site_name" content="Stefanie&#39;Notes">
-<meta property="og:description" content="一、RAID概念RAID（Redundant Array of Independent Disks，独立磁盘冗余阵列）可以提供较普通磁盘更高的速度、安全性，所以服务器在安装时都会选择创建RAID。 RAID的创建有两种方式：软RAID（通过操作系统软件来实现）和硬RAID（使用硬件阵列卡）；在企业中用的最多的是：raid0、raid1、raid10和raid5。不过随着云的高速发展，供应商一般可以">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/raid.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/raid-10.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid_config_01.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid_config_02.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid_config_03.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_01.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_02.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_03.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_04.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_05.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_06.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_07.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_08.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_09.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_10.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_11.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_12.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_13.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_14.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_15.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_16.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_17.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_18.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_19.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_GlobalHSP_01.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_GlobalHSP_02.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_GlobalHSP_03.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_GlobalHSP_04.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_01.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_02.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_03.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_04.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid5_05.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid5_06.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid5_07.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid5_08.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid5_09.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid5_10.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_11.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_12.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid5_13.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_14.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_15.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_16.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid5_17.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid5_18.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid5_19.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_clear_config_01.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_clear_config_02.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_clear_config_03.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_clear_config_04.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_01.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_02.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_03.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_04.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_05.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_06.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_07.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_08.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_09.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_10.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_11.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_12.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_13.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_14.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_15.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_16.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_17.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_18.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_19.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_20.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_21.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_22.png">
-<meta property="og:updated_time" content="2017-07-22T06:53:45.788Z">
+<meta property="og:description" content="一、sshd服务防止暴力破解1)使用强密码 8位以上，大小写，特殊符号 2修改默认端口号（22） [root@lszlab01 ~]# vi /etc/ssh/sshd_config #Port 22 port 801 #默认为22 3）不使用root账号登陆 有两种方法实现 a) 修改/etc/passwd 文件 [root@lszlab01 ~]# vi /etc/passwd root:x:">
+<meta property="og:updated_time" content="2017-07-29T08:25:44.491Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RAID磁盘阵列的搭建 (一)">
-<meta name="twitter:description" content="一、RAID概念RAID（Redundant Array of Independent Disks，独立磁盘冗余阵列）可以提供较普通磁盘更高的速度、安全性，所以服务器在安装时都会选择创建RAID。 RAID的创建有两种方式：软RAID（通过操作系统软件来实现）和硬RAID（使用硬件阵列卡）；在企业中用的最多的是：raid0、raid1、raid10和raid5。不过随着云的高速发展，供应商一般可以">
-<meta name="twitter:image" content="http://ot2nwtxbo.bkt.clouddn.com/raid.png">
+<meta name="twitter:title" content="sshd服务防止暴力破解">
+<meta name="twitter:description" content="一、sshd服务防止暴力破解1)使用强密码 8位以上，大小写，特殊符号 2修改默认端口号（22） [root@lszlab01 ~]# vi /etc/ssh/sshd_config #Port 22 port 801 #默认为22 3）不使用root账号登陆 有两种方法实现 a) 修改/etc/passwd 文件 [root@lszlab01 ~]# vi /etc/passwd root:x:">
 
 
 
@@ -199,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/07/22/RAID磁盘阵列的搭建/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/07/29/sshd服务防止暴力破解/"/>
 
 
 
 
 
-  <title> RAID磁盘阵列的搭建 (一) | Stefanie'Notes </title>
+  <title> sshd服务防止暴力破解 | Stefanie'Notes </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -388,7 +314,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/22/RAID磁盘阵列的搭建/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/29/sshd服务防止暴力破解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Stefanie">
@@ -409,7 +335,7 @@
             
             
               
-                RAID磁盘阵列的搭建 (一)
+                sshd服务防止暴力破解
               
             
           </h2>
@@ -424,8 +350,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-22T14:55:07+08:00">
-                2017-07-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-29T16:27:22+08:00">
+                2017-07-29
               </time>
             
 
@@ -464,7 +390,7 @@
 
           
           
-             <span id="/2017/07/22/RAID磁盘阵列的搭建/" class="leancloud_visitors" data-flag-title="RAID磁盘阵列的搭建 (一)">
+             <span id="/2017/07/29/sshd服务防止暴力破解/" class="leancloud_visitors" data-flag-title="sshd服务防止暴力破解">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -488,7 +414,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  2,351
+                  1,629
                 </span>
               
 
@@ -523,178 +449,203 @@
       
 
       
-        <h2 id="一、RAID概念"><a href="#一、RAID概念" class="headerlink" title="一、RAID概念"></a>一、RAID概念</h2><p>RAID（Redundant Array of Independent Disks，独立磁盘冗余阵列）可以提供较普通磁盘更高的速度、安全性，所以服务器在安装时都会选择创建RAID。</p>
-<p>RAID的创建有两种方式：软RAID（通过操作系统软件来实现）和硬RAID（使用硬件阵列卡）；在企业中用的最多的是：raid0、raid1、raid10和raid5。不过随着云的高速发展，供应商一般可以把硬件问题解决掉。</p>
-<h2 id="二、常用的RAID"><a href="#二、常用的RAID" class="headerlink" title="二、常用的RAID"></a>二、常用的RAID</h2><p>1) RAID-0</p>
-<p>条带 （strping），也是我们最早出现的RAID模式,需磁盘数量:2块以上(大小最好相同)<br>是组建磁盘阵列中最简单的一种形式，只需要2块以上的硬盘即可.</p>
-<p>特点:</p>
-<p>a)成本低，可以提高整个磁盘的性能和吞吐量</p>
-<p>b)RAID 0没有提供冗余或错误修复能力，速度快</p>
-<p>c)任何一个磁盘的损坏将损坏全部数据；磁盘利用率为100%</p>
-<p>2) RAID-1</p>
-<p>mirroring（镜像卷）,原理:是把一个磁盘的数据镜像到另一个磁盘上，也就是说数据在写入一块磁盘的同时，会在另一块闲置的磁盘上生成镜像文件，(同步)</p>
-<p>RAID 1 mirroring（镜像卷），至少需要两块硬盘，raid大小等于两个raid分区中最小的容量(最好将分区大小分为一样），数据有冗余，在存储时同时写入两块硬盘，实现了数据备份；<br>磁盘利用率为50%</p>
-<p>3）RAID-5</p>
-<p>RAID 5不是对存储的数据进行备份，而是把数据和相对应的奇偶校验信息存储到组成RAID5的各个磁盘上，并且奇偶校验信息和相对应的数据分别存储于不同的磁盘上。当RAID5的一个磁盘数据发生损坏后，可以利用剩下的数据和相应的奇偶校验信息去恢复被损坏的数据。RAID 5可以理解为是RAID 0和RAID 1的折衷方案。</p>
-<p>需要三块或以上硬盘，可以提供热备盘实现故障的恢复；只损坏一块，没有问题。但如果同时损坏两块磁盘，则数据将都会损坏。 空间利用率： (n-1)/n   </p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/raid.png" alt=""></p>
-<p>4) RAID-10</p>
-<p>镜像+条带,先创建raid1，再使用创建的raid1设备创建raid0,RAID 1与RAID 0的组合，先作RAID 1，再作RAID 0，也就是对多组RAID 1彼此构成Stripe访问。由于RAID 10是以RAID 1为基础，而RAID 1至少需要2块硬盘，因此要以多组RAID 1构成RAID 10，至少需要4块硬盘。以RAID 10最小的4台硬盘组态为例，先把4台硬盘分为2组，每组2台构成RAID 1，如此就得到两组RAID 1，然后再把两组RAID 1构成RAID 0。</p>
-<p>RAID 10在底层的任一组或多组RAID 1中出现1台硬盘损坏时，仍能维持运作，不过如果任一组RAID 1中的两块硬盘损毁，整组RAID10就会失效。</p>
-<p>RAID 10由于在上层把多组RAID 1构成Stripe，容量利用率是50%，例如：4块硬盘做的raid10的总容量是两块硬盘的容量。</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/raid-10.png" alt=""></p>
-<h2 id="三、搭建RAID（有硬件RAID卡-浪潮系列服务器基于LSI芯片Raid卡）"><a href="#三、搭建RAID（有硬件RAID卡-浪潮系列服务器基于LSI芯片Raid卡）" class="headerlink" title="三、搭建RAID（有硬件RAID卡,浪潮系列服务器基于LSI芯片Raid卡）"></a>三、搭建RAID（有硬件RAID卡,浪潮系列服务器基于LSI芯片Raid卡）</h2><p>1）RAID-1配置与管理</p>
-<p>服务器开机自检到浪潮logo画面后，下一步就会进入Raid卡自检过程，此时显示器上会出现Ctrl -H提示，如下图：</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid_config_01.png" alt=""></p>
-<p>按下Ctrl -H组合键后，自检完成就会进入Raid卡配置界面，如下图。在这里可以看到Raid卡的型号和Firmware固件版本，点击【Start】按钮进入Raid卡主页。</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid_config_02.png" alt=""></p>
-<p>Raid卡首页叫作WebBIOS，如下图。左侧是功能菜单，右侧可以看到所有物理磁盘，本例安装了4块500G硬盘，后面所有的配置都可以在这里完成！</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid_config_03.png" alt=""></p>
-<p>在WebBIOS主页点击【Configuration Wizard】，打开配置向导</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_01.png" alt=""></p>
-<p>选择【Add Configuration】，点击【Next】下一步</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_02.png" alt=""></p>
-<p>选择【Manual Configuration】，点击【Next】下一步</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_03.png" alt=""></p>
-<p>左侧方框内可以看到所有未使用的硬盘。因为要做Raid1，我们选择前两块，然后点击下方的【Add to Array】将其加入到右侧方框内。</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_04.png" alt=""></p>
-<p>点击【Accept DG】，创建磁盘组</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_05.png" alt=""></p>
-<p>点击【Next】下一步</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_06.png" alt=""></p>
-<p>点击【Add to SPAN】，将刚才创建好的磁盘组加入到右侧方框内</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_07.png" alt=""></p>
-<p>点击【Next】下一步</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_08.png" alt=""></p>
-<p>阵列参数配置：第一个参数“Raid Level”选择Raid1，其余保持默认</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_09.png" alt=""></p>
-<p>最后一个参数“Select Size”输入阵列容量大小，最大值可参考右侧绿字提示（其中R0代表做Raid0最大容量，R1代表做Raid1最大容量），完成后点击【Accept】</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_10.png" alt=""></p>
-<p>弹出的任何提示均选择【yes】</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_11.png" alt=""></p>
-<p>回到配置页面，点击【Next】下一步</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_12.png" alt=""></p>
-<p>点击【Accept】配置完成！</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_13.png" alt=""></p>
-<p>提示保存，选择【yes】</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_14.png" alt=""></p>
-<p>（依Raid卡型号不同，有些可能没有此功能，如没有请跳过此步）提示SSD缓存，选择【Cancel】</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_15.png" alt=""></p>
-<p>提示初始化，选择【yes】</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_16.png" alt=""></p>
-<p>正在初始化，能看到百分比进度条（速度较快，可能一闪而过）</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_17.png" alt=""></p>
-<p>初始化完成！点击【Home】返回首页</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_18.png" alt=""></p>
-<p>阵列配置完成！</p>
-<p>Raid1状态显示“Optimal”表示正常，Drives显示两块硬盘绿色Online正常，如果还有其它未使用的硬盘，会在unconfigured Drives下面蓝色显示。</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_19.png" alt=""></p>
-<p>最后点击【Exit】退出，然后【Ctrl-Alt-Delete】组合键重启服务器！</p>
-<p>未使用的硬盘可以继续创建阵列，也可以配置成热备盘</p>
-<p>热备盘（Hotspare）配置<br>热备盘的作用是如果阵列中有硬盘发生故障，热备盘可以立即顶替，及时将阵列恢复为正常状态。热备盘的配置非常简单，做完阵列后，未使用的硬盘会在WebBIOS中显示为蓝色unconfigured状态，选中该硬盘进入属性页面。</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_GlobalHSP_01.png" alt=""></p>
-<p>选择【Make Global HSP】，点击【GO】执行</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_GlobalHSP_02.png" alt=""></p>
-<p>配置完成！点击【Home】返回首页</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_GlobalHSP_03.png" alt=""></p>
-<p>热备盘显示为粉色Hotspare状态</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_GlobalHSP_04.png" alt=""></p>
-<p>2)RAID-5配置与管理  </p>
-<p>在WebBIOS主页点击【Configuration Wizard】，打开配置向导</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_01.png" alt=""></p>
-<p>选择【Add Configuration】，点击【Next】下一步</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_02.png" alt=""></p>
-<p>选择【Manual Configuration】，点击【Next】下一步</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_03.png" alt=""></p>
-<p>左侧方框内可以看到所有未使用的硬盘。我们选择全部（也可以逐个选择），然后点击下方的【Add to Array】将其加入到右侧方框内。</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_04.png" alt=""></p>
-<p>点击【Accept DG】，创建磁盘组</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid5_05.png" alt=""></p>
-<p>点击【Next】下一步</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid5_06.png" alt=""></p>
-<p>点击【Add to SPAN】，将刚才创建好的磁盘组加入到右侧方框内</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid5_07.png" alt=""></p>
-<p>点击【Next】下一步</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid5_08.png" alt=""></p>
-<p>阵列参数配置：第一个参数“Raid Level”选择Raid5，其余保持默认</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid5_09.png" alt=""></p>
-<p>最后一个参数“Select Size”输入阵列容量大小，最大值可参考右侧绿字提示（其中R5代表做Raid5的最大容量），完成后点击【Accept】</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid5_10.png" alt=""></p>
-<p>弹出的任何提示均选择【yes】</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_11.png" alt=""></p>
-<p>回到配置页面，点击【Next】下一步</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_12.png" alt=""></p>
-<p>点击【Accept】配置完成！</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid5_13.png" alt=""></p>
-<p>提示保存，选择【yes】</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_14.png" alt=""></p>
-<p>（依Raid卡型号不同，有些可能没有此功能，如没有请跳过此步）提示SSD缓存，选择【Cancel】</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_15.png" alt=""></p>
-<p>提示初始化，选择【yes】</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_16.png" alt=""></p>
-<p>正在初始化，能看到百分比进度条（速度较快，可能一闪而过）</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid5_17.png" alt=""></p>
-<p>初始化完成！点击【Home】返回首页</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid5_18.png" alt=""></p>
-<p>阵列配置完成！</p>
-<p>Raid5状态显示“Optimal”表示正常，Drives显示四块硬盘绿色Online正常</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid5_19.png" alt=""></p>
-<p>最后点击【Exit】退出，然后【Ctrl-Alt-Delete】组合键重启服务器！</p>
-<p>删除配置:</p>
-<p>在WebBIOS主页点击【Configuration Wizard】，打开配置向导</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_clear_config_01.png" alt=""></p>
-<p>选择【Clear Configuration】，点击【Next】下一步</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_clear_config_02.png" alt=""></p>
-<p>提示清除，选择【yes】</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_clear_config_03.png" alt=""></p>
-<p>阵列删除成功！所有硬盘显示为蓝色unconfigured Good状态</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_clear_config_04.png" alt=""></p>
-<p>3)RAID-10配置与管理         </p>
-<p>在WebBIOS主页点击【Configuration Wizard】，打开配置向导</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_01.png" alt=""></p>
-<p>选择【Add Configuration】，点击【Next】下一步</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_02.png" alt=""></p>
-<p>选择【Manual Configuration】，点击【Next】下一步</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_03.png" alt=""></p>
-<p>左侧方框内可以看到所有未使用的硬盘。因为要做Raid10，我们先选择前两块，然后点击下方的【Add to Array】将其加入到右侧方框内。</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_04.png" alt=""></p>
-<p>点击【Accept DG】，创建第一个磁盘组：Drive Group0</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_05.png" alt=""></p>
-<p>然后再选择后两块硬盘，也点击下方的【Add to Array】将其加入到右侧方框内</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_06.png" alt=""></p>
-<p>点击【Accept DG】，创建第二个磁盘组：Drive Group1</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_07.png" alt=""></p>
-<p>点击【Next】下一步</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_08.png" alt=""></p>
-<p>点击【Add to SPAN】，将刚才创建好的两个磁盘组分别加入到右侧方框内</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_09.png" alt=""></p>
-<p>将第二个磁盘组也添加过来</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_10.png" alt=""></p>
-<p>点击【Next】下一步</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_11.png" alt=""></p>
-<p>阵列参数配置：第一个参数“Raid Level”选择Raid10，其余保持默认</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_12.png" alt=""></p>
-<p>最后一个参数“Select Size”输入阵列容量大小，最大值可参考右侧绿字提示（其中R10代表做Raid10的最大容量），完成后点击【Accept】</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_13.png" alt=""></p>
-<p>弹出的任何提示均选择【yes】</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_14.png" alt=""></p>
-<p>回到配置页面，点击【Next】下一步</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_15.png" alt=""></p>
-<p>点击【Accept】配置完成！</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_16.png" alt=""></p>
-<p>提示保存，选择【yes】</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_17.png" alt=""></p>
-<p>（依Raid卡型号不同，有些可能没有此功能，如没有请跳过此步）提示SSD缓存，选择【Cancel】</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_18.png" alt=""></p>
-<p>提示初始化，选择【yes】</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_19.png" alt=""></p>
-<p>正在初始化，能看到百分比进度条（速度较快，可能一闪而过）</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_20.png" alt=""></p>
-<p>初始化完成！点击【Home】返回首页</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_21.png" alt=""></p>
-<p>阵列配置完成！Raid10状态显示“Optimal”表示正常，所有硬盘绿色Online正常。最后点击【Exit】退出，然后【Ctrl-Alt-Delete】组合键重启服务器！</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_22.png" alt=""></p>
+        <h2 id="一、sshd服务防止暴力破解"><a href="#一、sshd服务防止暴力破解" class="headerlink" title="一、sshd服务防止暴力破解"></a>一、sshd服务防止暴力破解</h2><p>1)使用强密码</p>
+<p>8位以上，大小写，特殊符号</p>
+<p>2修改默认端口号（22）</p>
+<pre><code>[root@lszlab01 ~]# vi /etc/ssh/sshd_config
+#Port 22
+port 801 #默认为22
+</code></pre><p>3）不使用root账号登陆</p>
+<p>有两种方法实现</p>
+<p>a) 修改/etc/passwd 文件</p>
+<pre><code>[root@lszlab01 ~]# vi /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+修改为：
+root:x:0:0:root:/root:/sbin/nologin
+</code></pre><p>b)修改/etc/ssh/sshd_config文件</p>
+<pre><code>[root@lszlab01 ~]# vi /etc/ssh/sshd_config
+#PermitRootLogin yes
+PermitRootLogin no
+</code></pre><p>将普通用户，设置成系统管理员，因为有些程序需要使用root权限</p>
+<pre><code>[root@lszlab01 ~]# vi /etc/passwd
+gzns:x:500:500::/home/gzns:/bin/bash
+改为：
+gzns:x:0:0::/home/gzns:/bin/bash
+</code></pre><p>判断用户是否是超级管理员，就看它的 UID=0</p>
+<p>测试一下，使用root账号登陆</p>
+<pre><code>[root@lszlab01 ~]# ssh 192.168.198.137
+root@192.168.198.137&apos;s password: 
+Last login: Thu May 25 23:38:18 2017 from 192.168.198.137
+This account is currently not available.
+Connection to 192.168.198.137 closed.
+</code></pre><p>使用gzns登陆</p>
+<pre><code>[root@lszlab01 ~]# ssh gzns@192.168.198.137
+gzns@192.168.198.137&apos;s password: 
+Last login: Thu May 25 23:54:27 2017 from 192.168.198.137
+[root@lszlab01 ~]# pwd
+/home/gzns
+</code></pre><p>4)暴力破解问题严重，使用fail2ban,把暴力破解的ip地址直接禁掉</p>
+<p>如果公网网站被暴力破解时，虽然破解不成功，会导致系统负载很高，暴力破解时，系统要不断地去验证用户，这时系统的开销会增加，导致网站速度变慢。</p>
+<p>a)下载fail2ban源码包，上传服务器（www.fail2ban.org）</p>
+<p>解压代码包</p>
+<pre><code>[root@lszlab01 ~]# tar -zxvf fail2ban-0.8.14.tar.gz 
+</code></pre><p>cd到fail2ban-0.9.4目录下</p>
+<pre><code>[root@lszlab01 ~]# cd fail2ban-0.8.14
+</code></pre><p>可以查看一下fail2ban-0.8.14目录下的README.md文件，里面有安装的说明</p>
+<pre><code>[root@lszlab01 fail2ban-0.8.14]# cat README.md
 
+
+ Installation:
+ -------------
+
+ **It is possible that Fail2ban is already packaged for your distribution.  In
+this case, you should use it instead.**
+
+Required:
+- [Python2 &gt;= 2.6 or Python &gt;= 3.2](http://www.python.org) or [PyPy](http://pypy.org)
+
+Optional:
+- [pyinotify &gt;= 0.8.3](https://github.com/seb-m/pyinotify)
+- Linux &gt;= 2.6.13
+- [gamin &gt;= 0.0.21](http://www.gnome.org/~veillard/gamin)
+- [systemd &gt;= 204](http://www.freedesktop.org/wiki/Software/systemd)
+- [dnspython](http://www.dnspython.org/)
+
+ To install, just do:
+
+tar xvfj fail2ban-0.8.14.tar.bz2
+cd fail2ban-0.8.14
+python setup.py install
+</code></pre><p> 查看python的版本</p>
+<pre><code>[root@lszlab01 fail2ban-0.8.14]#python -V
+Python 2.6.6
+</code></pre><p>安装：</p>
+<pre><code>[root@lszlab01 fail2ban-0.8.14]# python setup.py install
+</code></pre><p>生成服务启动的脚本</p>
+<pre><code>[root@lszlab01 fail2ban-0.8.14]# grep chkconfig ./* -R --color
+./files/redhat-initd:# chkconfig: - 92 08
+[root@lszlab01 fail2ban-0.8.14]# cp files/redhat-initd /etc/init.d/fail2ban
+[root@lszlab01 fail2ban-0.8.14]# chkconfig  --add fail2ban
+[root@lszlab01 fail2ban-0.8.14]# chkconfig --list fail2ban
+fail2ban           0:off    1:off    2:off    3:on    4:on    5:on    6:off
+</code></pre><p>配置文件</p>
+<pre><code>/etc/fail2ban/fail2ban.conf #定义fail2ban 日志级别，日志位置及sock文件位置
+
+/etc/fail2ban/jail.conf     #主配置文件
+
+/etc/fail2ban/action.d      #动作文件夹，包含默认文件，，iptables以及mail动作
+
+/etc/fail2ban/filter.d      #条件文件夹，包含默认文件，过滤日志关键内容位置
+</code></pre><p>案例：ssh远程5分钟3次密码验证失败，禁止用户iP访问主机5小时，5小时限制自动解除，用户重新登陆</p>
+<p>修改主配置文件</p>
+<pre><code>[root@lszlab01 fail2ban-0.8.14]# vi /etc/fail2ban/jail.conf 
+[ssh-iptables]
+
+enabled  = true
+filter   = sshd
+action   = iptables[name=SSH, port=ssh, protocol=tcp]
+       sendmail-whois[name=SSH, dest=you@example.com, sender=fail2ban@example.com, sendername=&quot;Fail2Ban&quot;]
+logpath  = /var/log/secure
+maxretry = 3
+findtime = 500
+bantime  =18000
+</code></pre><p>保存退出后重启服务：</p>
+<pre><code>[root@lszlab01 fail2ban-0.8.14]# service fail2ban start
+</code></pre><p>测试：</p>
+<p>先查看一下防火墙的列表：</p>
+<pre><code>[root@lszlab01 fail2ban-0.8.14]#ptables -L
+Chain INPUT (policy ACCEPT)
+target     prot opt source               destination         
+fail2ban-SSH  tcp  --  anywhere             anywhere            tcp dpt:ssh 
+
+Chain FORWARD (policy ACCEPT)
+target     prot opt source               destination         
+
+Chain OUTPUT (policy ACCEPT)
+target     prot opt source               destination         
+</code></pre><p>列表里面增加了一条关于fail2ban的策略</p>
+<p>先清空一下登陆的日志</p>
+<pre><code>[root@lszlab01 fail2ban-0.8.14]# &gt; /var/log/secure
+</code></pre><p>然后连续登录输错密码3次</p>
+<pre><code>[root@lszlab02 ~]# ssh 192.168.198.140
+root@192.168.198.140&apos;s password: 
+Permission denied, please try again.
+root@192.168.198.140&apos;s password: 
+Permission denied, please try again.
+root@192.168.198.140&apos;s password: 
+Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password).
+[root@lszlab01 ~]# ssh 192.168.198.140
+ssh: connect to host 192.168.198.140 port 22: Connection refused
+</code></pre><p>三次输入密码后，直接把ip地址禁掉</p>
+<p>在查看一下日志</p>
+<pre><code>[root@lszlab01 fail2ban-0.8.14]# cat /var/log/secure
+Jul 29 14:31:33 slave_mysql sshd[3813]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=192.168.198.102  user=root
+Jul 29 14:31:36 slave_mysql sshd[3813]: Failed password for root from 192.168.198.102 port 48165 ssh2
+Jul 29 14:31:41 slave_mysql sshd[3813]: Failed password for root from 192.168.198.102 port 48165 ssh2
+Jul 29 14:31:45 slave_mysql sshd[3813]: Failed password for root from 192.168.198.102 port 48165 ssh2
+Jul 29 14:31:45 slave_mysql sshd[3814]: Connection closed by 192.168.198.102
+Jul 29 14:31:45 slave_mysql sshd[3813]: PAM 2 more authentication failures; logname= uid=0 euid=0 tty=ssh ruser= rhost=192.168.198.102  user=root
+</code></pre><p>在查看一下防火墙</p>
+<pre><code>[root@lszlab01 fail2ban-0.8.14]#ptables -L
+Chain INPUT (policy ACCEPT)
+target     prot opt source               destination         
+fail2ban-SSH  tcp  --  anywhere             anywhere            tcp dpt:ssh 
+
+Chain FORWARD (policy ACCEPT)
+target     prot opt source               destination         
+
+Chain OUTPUT (policy ACCEPT)
+target     prot opt source               destination         
+
+Chain fail2ban-SSH (1 references)
+target     prot opt source               destination         
+REJECT     all  --  192.168.198.102      anywhere            reject-with icmp-port-unreachable 
+
+RETURN     all  --  anywhere             anywhere 
+</code></pre><p>查看fail2ban工作状态</p>
+<pre><code>[root@lszlab01 fail2ban-0.8.14]# fail2ban-client status
+Status
+|- Number of jail:    1
+`- Jail list:        ssh-iptables
+</code></pre><p>查看ssh-iptables这一项</p>
+<pre><code>[root@lszlab01 fail2ban-0.8.14]# fail2ban-client status ssh-iptables
+Status for the jail: ssh-iptables
+|- filter
+|  |- File list:    /var/log/secure 
+|  |- Currently failed:    0
+|  `- Total failed:    6
+`- action
+|- Currently banned:    2
+|  `- IP list:    192.168.198.137 192.168.198.102 
+`- Total banned:    2
+</code></pre><p>如果想要禁用的ip重连，我们可以清空fail2ban的日志或者清空防火墙规则</p>
+<pre><code>[root@lszlab01 fail2ban-0.8.14]# cat /var/log/fail2ban.log
+2017-07-29 14:13:50,260 fail2ban.server [2035]: INFO    Changed logging target to /var/log/fail2ban.log for Fail2ban v0.8.14
+2017-07-29 14:13:50,262 fail2ban.jail   [2035]: INFO    Creating new jail &apos;ssh-iptables&apos;
+2017-07-29 14:13:50,264 fail2ban.jail   [2035]: INFO    Jail &apos;ssh-iptables&apos; uses poller
+2017-07-29 14:13:50,342 fail2ban.jail   [2035]: INFO    Initiated &apos;polling&apos; backend
+2017-07-29 14:13:50,346 fail2ban.filter [2035]: INFO    Added logfile = /var/log/secure
+2017-07-29 14:13:50,349 fail2ban.filter [2035]: INFO    Set maxRetry = 3
+2017-07-29 14:13:50,353 fail2ban.filter [2035]: INFO    Set findtime = 500
+2017-07-29 14:13:50,355 fail2ban.actions[2035]: INFO    Set banTime = 3600
+2017-07-29 14:13:50,857 fail2ban.jail   [2035]: INFO    Jail &apos;ssh-iptables&apos; started
+2017-07-29 14:14:27,181 fail2ban.actions[2035]: WARNING [ssh-iptables] Ban 192.168.198.137
+2017-07-29 14:31:46,515 fail2ban.actions[2035]: WARNING [ssh-iptables] Ban 192.168.198.102
+[root@lszlab01 fail2ban-0.8.14]# &gt; /var/log/fail2ban.log
+
+[root@lszlab01 fail2ban-0.8.14]# service fail2ban restart
+Stopping fail2ban:                                         [  OK  ]
+Starting fail2ban:                                         [  OK  ]
+</code></pre><p>重新远程</p>
+<pre><code>[root@lszlab02 ~]# ssh 192.168.198.140
+ssh: connect to host 192.168.198.140 port 22: Connection refused
+[root@lszlab02 ~]# ssh 192.168.198.140
+root@192.168.198.140&apos;s password: 
+Last login: Sat Jul 29 14:07:50 2017 from 192.168.198.1
+[root@lszlab01 ~]# 
+</code></pre><p>或者直接情况防火墙策略</p>
+<pre><code>[root@lszlab01 ~]# iptables -F
+</code></pre>
       
     </div>
 
@@ -757,7 +708,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/RAID/" rel="tag"># RAID</a>
+            <a href="/tags/sshd/" rel="tag"># sshd</a>
           
         </div>
       
@@ -770,8 +721,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/20/搭建vsftpd服务/" rel="next" title="CentOS6.5下搭建vsftpd服务">
-                <i class="fa fa-chevron-left"></i> CentOS6.5下搭建vsftpd服务
+              <a href="/2017/07/27/LVM逻辑卷-磁盘配额技术/" rel="next" title="LVM逻辑卷-磁盘配额技术">
+                <i class="fa fa-chevron-left"></i> LVM逻辑卷-磁盘配额技术
               </a>
             
           </div>
@@ -779,10 +730,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/07/23/Linux磁盘管理/" rel="prev" title="Linux磁盘管理">
-                Linux磁盘管理 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -982,7 +929,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、RAID概念"><span class="nav-number">1.</span> <span class="nav-text">一、RAID概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、常用的RAID"><span class="nav-number">2.</span> <span class="nav-text">二、常用的RAID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、搭建RAID（有硬件RAID卡-浪潮系列服务器基于LSI芯片Raid卡）"><span class="nav-number">3.</span> <span class="nav-text">三、搭建RAID（有硬件RAID卡,浪潮系列服务器基于LSI芯片Raid卡）</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、sshd服务防止暴力破解"><span class="nav-number">1.</span> <span class="nav-text">一、sshd服务防止暴力破解</span></a></li></ol></div>
             
 
           </div>
