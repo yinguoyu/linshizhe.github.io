@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="KVM," />
 
 
 
@@ -87,13 +87,21 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="search">
-<meta property="og:url" content="https://linshizhe.github.io/search/index.html">
+<meta name="description" content="一、关于虚拟化目前市场主要虚拟化厂商及产品 •  VMware vSphere •  微软 Hyper-V •  Citrix XenServer •  IBM PowerVM •  Red Hat Enterprise Virtulization •  开源的KVM、 Xen 、VirtualBSD等。 •  KVM （Kernel-Based Virtual Machine） •  2007年">
+<meta name="keywords" content="KVM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="KVM虚拟化（一）">
+<meta property="og:url" content="https://linshizhe.github.io/2017/12/15/KVM虚拟化（一）/index.html">
 <meta property="og:site_name" content="Stefanie&#39;Notes">
-<meta property="og:updated_time" content="2017-07-12T09:49:21.560Z">
+<meta property="og:description" content="一、关于虚拟化目前市场主要虚拟化厂商及产品 •  VMware vSphere •  微软 Hyper-V •  Citrix XenServer •  IBM PowerVM •  Red Hat Enterprise Virtulization •  开源的KVM、 Xen 、VirtualBSD等。 •  KVM （Kernel-Based Virtual Machine） •  2007年">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/kvm-1.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/kvm-3.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/kvm-2.png">
+<meta property="og:updated_time" content="2017-12-14T15:58:40.858Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="search">
+<meta name="twitter:title" content="KVM虚拟化（一）">
+<meta name="twitter:description" content="一、关于虚拟化目前市场主要虚拟化厂商及产品 •  VMware vSphere •  微软 Hyper-V •  Citrix XenServer •  IBM PowerVM •  Red Hat Enterprise Virtulization •  开源的KVM、 Xen 、VirtualBSD等。 •  KVM （Kernel-Based Virtual Machine） •  2007年">
+<meta name="twitter:image" content="http://ot2nwtxbo.bkt.clouddn.com/kvm-1.png">
 
 
 
@@ -121,19 +129,13 @@
 
 
 
-  <link rel="canonical" href="https://linshizhe.github.io/search/"/>
+  <link rel="canonical" href="https://linshizhe.github.io/2017/12/15/KVM虚拟化（一）/"/>
 
 
 
 
 
-  <title>
-  
-
-  
-    search | Stefanie'Notes
-  
-</title>
+  <title> KVM虚拟化（一） | Stefanie'Notes </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -168,7 +170,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -307,18 +309,414 @@
             
 
   <div id="posts" class="posts-expand">
-  <header class="post-header">
+    
 
-	<h2 class="post-title" itemprop="name headline">search</h2>
+  
 
+  
+  
+  
 
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://linshizhe.github.io/2017/12/15/KVM虚拟化（一）/">
 
-</header>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Stefanie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stefanie'Notes">
+    </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                KVM虚拟化（一）
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-15T00:00:03+08:00">
+                2017-12-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/运维/" itemprop="url" rel="index">
+                    <span itemprop="name">运维</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/12/15/KVM虚拟化（一）/" class="leancloud_visitors" data-flag-title="KVM虚拟化（一）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  1,872
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  10
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
     
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
+      
+
+      
+        <h2 id="一、关于虚拟化"><a href="#一、关于虚拟化" class="headerlink" title="一、关于虚拟化"></a>一、关于虚拟化</h2><p>目前市场主要虚拟化厂商及产品</p>
+<p>•  VMware vSphere</p>
+<p>•  微软 Hyper-V</p>
+<p>•  Citrix XenServer</p>
+<p>•  IBM PowerVM</p>
+<p>•  Red Hat Enterprise Virtulization</p>
+<p>•  开源的KVM、 Xen 、VirtualBSD等。</p>
+<p>•  KVM （Kernel-Based Virtual Machine）</p>
+<p>•  2007年10月份发布Linux 2.6.20内核第一次包含KVM</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/kvm-1.png" alt=""></p>
+<h2 id="二、实验环境："><a href="#二、实验环境：" class="headerlink" title="二、实验环境："></a>二、实验环境：</h2><pre><code>[root@kvm-server-01 ~]# cat /etc/redhat-release 
+CentOS Linux release 7.4.1708 (Core) 
+[root@kvm-server-01 ~]# uname -r
+3.10.0-693.el7.x86_64
+</code></pre><p> ip：192.168.198.24</p>
+<p>实验前先禁止防火墙，NetworkManager，和关闭selinux</p>
+<pre><code>[root@kvm-server-01 ~]# systemctl disable firewalld
+Removed symlink /etc/systemd/system/multi-user.target.wants/firewalld.service.
+Removed symlink /etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service.
+[root@kvm-server-01 ~]# systemctl disable NetworkManager
+Removed symlink /etc/systemd/system/multi-user.target.wants/NetworkManager.service.
+Removed symlink /etc/systemd/system/dbus-org.freedesktop.NetworkManager.service.
+Removed symlink /etc/systemd/system/dbus-org.freedesktop.nm-dispatcher.service.
+[root@kvm-server-01 ~]# systemctl stop firewalld
+[root@kvm-server-01 ~]# systemctl stop NetworkManager
+</code></pre><p>编辑selinux的配置文件，把SELINUX=enforcing 的值改成    disabled 保存退出。</p>
+<pre><code>[root@kvm-server-01 ~]# vi /etc/selinux/config
+# This file controls the state of SELinux on the system.
+# SELINUX= can take one of these three values:
+#     enforcing - SELinux security policy is enforced.
+#     permissive - SELinux prints warnings instead of enforcing.
+#     disabled - No SELinux policy is loaded.
+#SELINUX=enforcing
+ SELINUX=disabled
+# SELINUXTYPE= can take one of three two values:
+#     targeted - Targeted processes are protected,
+#     minimum - Modification of targeted policy. Only selected processes are protected.
+#     mls - Multi Level Security protection.
+SELINUXTYPE=targeted
+</code></pre><p>重启机器配置生效</p>
+<pre><code>[root@kvm-server-01 ~]# reboot
+</code></pre><h2 id="三、安装KVM相关软件："><a href="#三、安装KVM相关软件：" class="headerlink" title="三、安装KVM相关软件："></a>三、安装KVM相关软件：</h2><p>1) 查看CPU是否支持KVM虚拟化。</p>
+<pre><code>[root@kvm-server-01 ~]# grep -E &quot;svm | vmx &quot; /proc/cpuinfo
+flags        : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts nopl xtopology tsc_reliable nonstop_tsc aperfmperf eagerfpu pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer xsave avx f16c rdrand hypervisor lahf_lm abm epb tpr_shadow vnmi ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 invpcid xsaveopt dtherm arat pln pts
+flags        : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts nopl xtopology tsc_reliable nonstop_tsc aperfmperf eagerfpu pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer xsave avx f16c rdrand hypervisor lahf_lm abm epb tpr_shadow vnmi ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 invpcid xsaveopt dtherm arat pln pts
+flags        : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts nopl xtopology tsc_reliable nonstop_tsc aperfmperf eagerfpu pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer xsave avx f16c rdrand hypervisor lahf_lm abm epb tpr_shadow vnmi ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 invpcid xsaveopt dtherm arat pln pts
+flags        : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts nopl xtopology tsc_reliable nonstop_tsc aperfmperf eagerfpu pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer xsave avx f16c rdrand hypervisor lahf_lm abm epb tpr_shadow vnmi ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 invpcid xsaveopt dtherm arat pln pts
+</code></pre><p>如果无输出信息，可以进去机器BIOS里面改 Intel(R) Virtualization Technology(Disable &amp;&amp;Enable)选项卡的值改成Enable</p>
+<p>2）安装相关KVM软件</p>
+<pre><code>[root@kvm-server-01 ~]# yum -y install qemu-kvm qemu-kvm-tools virt-manager libvirt virt-install
+</code></pre><p>3）查看KVM模块是否加载</p>
+<pre><code>[root@kvm-server-01 ~]# lsmod | grep kvm
+kvm_intel             170086  0 
+kvm                   566340  1 kvm_intel
+irqbypass             13503  1 kvm
+</code></pre><p>4）查看网卡配置</p>
+<pre><code>[root@kvm-server-01 ~]# ifconfig
+ens33: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
+    inet 192.168.198.24  netmask 255.255.255.0  broadcast 192.168.198.255
+    inet6 fe80::20c:29ff:fecb:f3df  prefixlen 64  scopeid 0x20&lt;link&gt;
+    ether 00:0c:29:cb:f3:df  txqueuelen 1000  (Ethernet)
+    RX packets 74536  bytes 106116373 (101.2 MiB)
+    RX errors 0  dropped 0  overruns 0  frame 0
+    TX packets 30060  bytes 2494387 (2.3 MiB)
+    TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73&lt;UP,LOOPBACK,RUNNING&gt;  mtu 65536
+    inet 127.0.0.1  netmask 255.0.0.0
+    inet6 ::1  prefixlen 128  scopeid 0x10&lt;host&gt;
+    loop  txqueuelen 1  (Local Loopback)
+    RX packets 0  bytes 0 (0.0 B)
+    RX errors 0  dropped 0  overruns 0  frame 0
+    TX packets 0  bytes 0 (0.0 B)
+    TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+</code></pre><p>5）启用并启动ibvirtd.service服务</p>
+<pre><code>[root@kvm-server-01 ~]# systemctl enable libvirtd.service
+[root@kvm-server-01 ~]# systemctl start libvirtd.service
+[root@kvm-server-01 ~]# ifconfig
+ens33: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
+    inet 192.168.198.24  netmask 255.255.255.0  broadcast 192.168.198.255
+    inet6 fe80::20c:29ff:fecb:f3df  prefixlen 64  scopeid 0x20&lt;link&gt;
+    ether 00:0c:29:cb:f3:df  txqueuelen 1000  (Ethernet)
+    RX packets 74734  bytes 106133307 (101.2 MiB)
+    RX errors 0  dropped 0  overruns 0  frame 0
+    TX packets 30169  bytes 2507305 (2.3 MiB)
+    TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73&lt;UP,LOOPBACK,RUNNING&gt;  mtu 65536
+    inet 127.0.0.1  netmask 255.0.0.0
+    inet6 ::1  prefixlen 128  scopeid 0x10&lt;host&gt;
+    loop  txqueuelen 1  (Local Loopback)
+    RX packets 0  bytes 0 (0.0 B)
+    RX errors 0  dropped 0  overruns 0  frame 0
+    TX packets 0  bytes 0 (0.0 B)
+    TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+virbr0: flags=4099&lt;UP,BROADCAST,MULTICAST&gt;  mtu 1500
+    inet 192.168.122.1  netmask 255.255.255.0  broadcast 192.168.122.255
+    ether 52:54:00:3b:2f:6d  txqueuelen 1000  (Ethernet)
+    RX packets 0  bytes 0 (0.0 B)
+    RX errors 0  dropped 0  overruns 0  frame 0
+    TX packets 0  bytes 0 (0.0 B)
+    TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+</code></pre><p>6）我把以后要创建的虚拟放在磁盘sdb1，对应/home/KVM_data目录</p>
+<pre><code>[root@kvm-server-01 ~]# lsblk
+NAME                                 MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda                                    8:0    0  160G  0 disk 
+├─sda1                                 8:1    0    1G  0 part /boot
+└─sda2                                 8:2    0  159G  0 part 
+├─centos_pxe--server--centos7-root 253:0    0   50G  0 lvm  /
+├─centos_pxe--server--centos7-swap 253:1    0    2G  0 lvm  [SWAP]
+└─centos_pxe--server--centos7-home 253:2    0  107G  0 lvm  /home
+sdb                                    8:16   0  160G  0 disk 
+└─sdb1                                 8:17   0  160G  0 part /home/KVM_data
+sr0                                   11:0    1  4.2G  0 rom  
+</code></pre><p>7）虚拟机磁盘格式，raw 、qcow2</p>
+<p>•  raw</p>
+<p>格式是最简单，什么都没有，所以叫raw格式。连头文件都没有，就是一个直接给虚拟机进行读写的文件。raw不支持动态增长空间，必须一开始就指定空间大小。所以相当的耗费磁盘空间。</p>
+<p>•  qcow2</p>
+<p>qcow2是集各种技术为一体的超级镜像格式，支持内部快照，加密，压缩等一系列功能，访问性能也在不断提高。但qcow2的问题就是过于臃肿，把什么功能都集于一身。</p>
+<p>8）创建虚拟机磁盘文件</p>
+<pre><code>[root@kvm-server-01 ~]# cd /home/KVM_data/
+[root@kvm-server-01 KVM_data]# ll
+总用量 16
+drwx------ 2 root root 16384 12月 14 13:44 lost+found
+
+[root@kvm-server-01 KVM_data]# qemu-img create -f qcow2 CentOS-7.4-x86_64.qcow2 10G
+Formatting &apos;CentOS-7.4-x86_64.qcow2&apos;, fmt=qcow2 size=10737418240 encryption=off cluster_size=65536 lazy_refcounts=off 
+[root@kvm-server-01 KVM_data]# ll
+总用量 216
+ -rw-r--r-- 1 root root 197120 12月 14 15:10 CentOS-7.4-x86_64.qcow2
+ drwx------ 2 root root  16384 12月 14 13:44 lost+found
+</code></pre><p> 9）安装centos7虚拟机的需要用到镜像，先把镜像临时挂载到/mnt/cdrom 目录</p>
+<pre><code>[root@kvm-server-01 ~]# mkdir /mnt/cdrom
+[root@kvm-server-01 ~]# mount -t iso9660  /dev/cdrom /mnt/cdrom
+</code></pre><p>10）把镜像，转换成安装虚拟机用到的iso文件</p>
+<pre><code>[root@kvm-server-01 KVM_data]# dd if=/dev/cdrom of=/home/KVM_data/CentOS-7.4-x86_64.iso
+</code></pre><p>11）安装centos7虚拟机</p>
+<pre><code>[root@kvm-server-01 KVM_data]# virt-install --name CentOS-7-x86-64 --virt-type kvm --ram 1024--cdrom=/home/KVM_data/CentOS-7.4-x86_64.iso --disk path=/home/KVM_data/CentOS-7.4-x86_64.qcow2 --network network=default --graphics vnc,listen=0.0.0.0 –noautoconsole
+</code></pre><p>12）使用vnc客户端连接安装的虚拟机</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/kvm-3.png" alt=""></p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/kvm-2.png" alt=""></p>
+<p>13)查看虚拟机，和虚拟机使用的端口</p>
+<pre><code>[root@kvm-server-01 ~]# virsh list --all
+Id    名称                         状态
+----------------------------------------------------
+1     CentOS-7-x86-64                running
+
+[root@kvm-server-01 ~]# netstat -anlp| grep 5900
+tcp        0      0 0.0.0.0:5900            0.0.0.0:*               LISTEN      12152/qemu-kvm      
+</code></pre><p>14）常用命令</p>
+<p>a) 虚拟机配置文件，就是xml文件所在的目录是 </p>
+<pre><code>/etc/libvirt/qemu/
+</code></pre><p>b) 查看运行的虚拟机</p>
+<pre><code>virsh list
+</code></pre><p>c) 查看所有的虚拟机（运行和关闭的虚拟机）</p>
+<pre><code>virsh list --all
+</code></pre><p>d) 关闭虚拟机（强制关机）</p>
+<pre><code>virsh destroy +domain
+</code></pre><p>e) 挂起虚拟机</p>
+<pre><code>virsh suspend +domain
+</code></pre><p>f) 恢复被挂起的虚拟机</p>
+<pre><code>virsh resume +domain
+</code></pre><p>g) 子机随宿主主机启动而启动</p>
+<pre><code>virsh autostart +domain
+</code></pre><p>h) 取消自动启动</p>
+<pre><code>virsh autostart --disable +domain
+</code></pre><p>i） 删除创建的虚拟机</p>
+<pre><code>virshundefine +domain
+</code></pre><p>j) 启动虚拟机</p>
+<pre><code>virsh start +domain
+</code></pre><p>k) 关闭虚拟机</p>
+<pre><code>virsh shutdown +domain
+</code></pre><p>内容太多，下节继续。~~~~</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>如果您觉得这篇文章对您有帮助，不妨支持我一下！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-image.png" alt="Stefanie WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+<div>
+  
     
+<div style="text-align:center;color: #ccc;font-size:14px;">
+------ 本文结束 ------</div>
+<br/>
+<div style="border: 1px solid black">
+<div style="margin-left:10px">
+<span style="font-weight:blod">版权声明</span>
+<img src=http://ot2nwtxbo.bkt.clouddn.com/passage.png>
+<br/>
+<p style="font-size: 10px;line-height: 30px"><a href="linshizhe.github.io" style="color:#258FC6">Stefanie'Notes</a> by <a href="https://linshizhe.github.io/" style="color:#258FC6">Stefanie</a> is licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" style="color:#258FC6">Creative Commons BY-NC-ND 4.0 International License</a>.<br/>
+由<a href="https://linshizhe.github.io/" style="color:#258FC6">Stefanie</a>创作并维护的<a href="https://linshizhe.github.io/" style="color:#258FC6">Stefanie'Notes</a>博客采用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" style="color:#258FC6">创作共用保留署名-非商业-禁止演绎4.0国际许可证</a>。<br/>
+本文首发于<a href="https://linshizhe.github.io/" style="color:#258FC6">Stefanie'Notes</a> 博客（ <a href="https://linshizhe.github.io/" style="color:#258FC6">https://linshizhe.github.io/</a> ），版权所有，侵权必究。</p>
+</div>
+</div>
+
+  
+</div>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/KVM/" rel="tag"># KVM</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?'];
+</script>
+
+      
+    </div>
   </div>
 
 
@@ -352,8 +750,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -479,6 +886,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、关于虚拟化"><span class="nav-number">1.</span> <span class="nav-text">一、关于虚拟化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、实验环境："><span class="nav-number">2.</span> <span class="nav-text">二、实验环境：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、安装KVM相关软件："><span class="nav-number">3.</span> <span class="nav-text">三、安装KVM相关软件：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -596,6 +1019,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 

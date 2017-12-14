@@ -1,3 +1,1 @@
-https://linshizhe.github.io/2017/12/06/CentOS7.3搭建owncloud私有云/
-https://linshizhe.github.io/2017/08/07/编译pcre/
-https://linshizhe.github.io/2017/08/05/nginx编译安装/
+https://linshizhe.github.io/2017/12/15/KVM虚拟化（一）/
