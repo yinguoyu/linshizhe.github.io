@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="KVM," />
+  <meta name="keywords" content="RAID," />
 
 
 
@@ -87,21 +87,91 @@
 
 
 
-<meta name="description" content="一、关于虚拟化目前市场主要虚拟化厂商及产品 •  VMware vSphere •  微软 Hyper-V •  Citrix XenServer •  IBM PowerVM •  Red Hat Enterprise Virtulization •  开源的KVM、 Xen 、VirtualBSD等。 •  KVM （Kernel-Based Virtual Machine） •  2007年">
-<meta name="keywords" content="KVM">
+<meta name="description" content="一、RAID概念RAID（Redundant Array of Independent Disks，独立磁盘冗余阵列）可以提供较普通磁盘更高的速度、安全性，所以服务器在安装时都会选择创建RAID。 RAID的创建有两种方式：软RAID（通过操作系统软件来实现）和硬RAID（使用硬件阵列卡）；在企业中用的最多的是：raid0、raid1、raid10和raid5。不过随着云的高速发展，供应商一般可以">
+<meta name="keywords" content="RAID">
 <meta property="og:type" content="article">
-<meta property="og:title" content="KVM虚拟化（一）">
-<meta property="og:url" content="https://linshizhe.github.io/2017/12/15/KVM虚拟化（一）/index.html">
+<meta property="og:title" content="RAID磁盘阵列的搭建 (一)">
+<meta property="og:url" content="https://linshizhe.github.io/2017/12/15/RAID磁盘阵列的搭建/index.html">
 <meta property="og:site_name" content="Stefanie&#39;Notes">
-<meta property="og:description" content="一、关于虚拟化目前市场主要虚拟化厂商及产品 •  VMware vSphere •  微软 Hyper-V •  Citrix XenServer •  IBM PowerVM •  Red Hat Enterprise Virtulization •  开源的KVM、 Xen 、VirtualBSD等。 •  KVM （Kernel-Based Virtual Machine） •  2007年">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/kvm-1.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/kvm-3.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/kvm-2.png">
-<meta property="og:updated_time" content="2017-12-14T15:58:40.858Z">
+<meta property="og:description" content="一、RAID概念RAID（Redundant Array of Independent Disks，独立磁盘冗余阵列）可以提供较普通磁盘更高的速度、安全性，所以服务器在安装时都会选择创建RAID。 RAID的创建有两种方式：软RAID（通过操作系统软件来实现）和硬RAID（使用硬件阵列卡）；在企业中用的最多的是：raid0、raid1、raid10和raid5。不过随着云的高速发展，供应商一般可以">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/raid.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/raid-10.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid_config_01.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid_config_02.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid_config_03.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_01.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_02.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_03.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_04.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_05.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_06.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_07.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_08.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_09.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_10.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_11.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_12.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_13.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_14.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_15.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_16.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_17.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_18.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_19.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_GlobalHSP_01.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_GlobalHSP_02.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_GlobalHSP_03.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_GlobalHSP_04.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_01.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_02.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_03.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_04.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid5_05.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid5_06.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid5_07.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid5_08.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid5_09.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid5_10.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_11.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_12.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid5_13.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_14.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_15.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_16.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid5_17.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid5_18.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid5_19.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_clear_config_01.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_clear_config_02.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_clear_config_03.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_clear_config_04.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_01.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_02.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_03.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_04.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_05.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_06.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_07.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_08.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_09.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_10.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_11.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_12.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_13.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_14.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_15.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_16.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_17.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_18.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_19.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_20.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_21.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_22.png">
+<meta property="og:updated_time" content="2017-07-22T06:53:45.788Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="KVM虚拟化（一）">
-<meta name="twitter:description" content="一、关于虚拟化目前市场主要虚拟化厂商及产品 •  VMware vSphere •  微软 Hyper-V •  Citrix XenServer •  IBM PowerVM •  Red Hat Enterprise Virtulization •  开源的KVM、 Xen 、VirtualBSD等。 •  KVM （Kernel-Based Virtual Machine） •  2007年">
-<meta name="twitter:image" content="http://ot2nwtxbo.bkt.clouddn.com/kvm-1.png">
+<meta name="twitter:title" content="RAID磁盘阵列的搭建 (一)">
+<meta name="twitter:description" content="一、RAID概念RAID（Redundant Array of Independent Disks，独立磁盘冗余阵列）可以提供较普通磁盘更高的速度、安全性，所以服务器在安装时都会选择创建RAID。 RAID的创建有两种方式：软RAID（通过操作系统软件来实现）和硬RAID（使用硬件阵列卡）；在企业中用的最多的是：raid0、raid1、raid10和raid5。不过随着云的高速发展，供应商一般可以">
+<meta name="twitter:image" content="http://ot2nwtxbo.bkt.clouddn.com/raid.png">
 
 
 
@@ -129,13 +199,13 @@
 
 
 
-  <link rel="canonical" href="https://linshizhe.github.io/2017/12/15/KVM虚拟化（一）/"/>
+  <link rel="canonical" href="https://linshizhe.github.io/2017/12/15/RAID磁盘阵列的搭建/"/>
 
 
 
 
 
-  <title> KVM虚拟化（一） | Stefanie'Notes </title>
+  <title> RAID磁盘阵列的搭建 (一) | Stefanie'Notes </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -318,7 +388,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://linshizhe.github.io/2017/12/15/KVM虚拟化（一）/">
+    <link itemprop="mainEntityOfPage" href="https://linshizhe.github.io/2017/12/15/RAID磁盘阵列的搭建/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Stefanie">
@@ -339,7 +409,7 @@
             
             
               
-                KVM虚拟化（一）
+                RAID磁盘阵列的搭建 (一)
               
             
           </h2>
@@ -354,7 +424,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-15T00:00:03+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-15T00:05:07+08:00">
                 2017-12-15
               </time>
             
@@ -394,7 +464,7 @@
 
           
           
-             <span id="/2017/12/15/KVM虚拟化（一）/" class="leancloud_visitors" data-flag-title="KVM虚拟化（一）">
+             <span id="/2017/12/15/RAID磁盘阵列的搭建/" class="leancloud_visitors" data-flag-title="RAID磁盘阵列的搭建 (一)">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -418,7 +488,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  1,872
+                  2,351
                 </span>
               
 
@@ -434,7 +504,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  10
+                  9
                 </span>
               
             </div>
@@ -453,180 +523,177 @@
       
 
       
-        <h2 id="一、关于虚拟化"><a href="#一、关于虚拟化" class="headerlink" title="一、关于虚拟化"></a>一、关于虚拟化</h2><p>目前市场主要虚拟化厂商及产品</p>
-<p>•  VMware vSphere</p>
-<p>•  微软 Hyper-V</p>
-<p>•  Citrix XenServer</p>
-<p>•  IBM PowerVM</p>
-<p>•  Red Hat Enterprise Virtulization</p>
-<p>•  开源的KVM、 Xen 、VirtualBSD等。</p>
-<p>•  KVM （Kernel-Based Virtual Machine）</p>
-<p>•  2007年10月份发布Linux 2.6.20内核第一次包含KVM</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/kvm-1.png" alt=""></p>
-<h2 id="二、实验环境："><a href="#二、实验环境：" class="headerlink" title="二、实验环境："></a>二、实验环境：</h2><pre><code>[root@kvm-server-01 ~]# cat /etc/redhat-release 
-CentOS Linux release 7.4.1708 (Core) 
-[root@kvm-server-01 ~]# uname -r
-3.10.0-693.el7.x86_64
-</code></pre><p> ip：192.168.198.24</p>
-<p>实验前先禁止防火墙，NetworkManager，和关闭selinux</p>
-<pre><code>[root@kvm-server-01 ~]# systemctl disable firewalld
-Removed symlink /etc/systemd/system/multi-user.target.wants/firewalld.service.
-Removed symlink /etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service.
-[root@kvm-server-01 ~]# systemctl disable NetworkManager
-Removed symlink /etc/systemd/system/multi-user.target.wants/NetworkManager.service.
-Removed symlink /etc/systemd/system/dbus-org.freedesktop.NetworkManager.service.
-Removed symlink /etc/systemd/system/dbus-org.freedesktop.nm-dispatcher.service.
-[root@kvm-server-01 ~]# systemctl stop firewalld
-[root@kvm-server-01 ~]# systemctl stop NetworkManager
-</code></pre><p>编辑selinux的配置文件，把SELINUX=enforcing 的值改成    disabled 保存退出。</p>
-<pre><code>[root@kvm-server-01 ~]# vi /etc/selinux/config
-# This file controls the state of SELinux on the system.
-# SELINUX= can take one of these three values:
-#     enforcing - SELinux security policy is enforced.
-#     permissive - SELinux prints warnings instead of enforcing.
-#     disabled - No SELinux policy is loaded.
-#SELINUX=enforcing
- SELINUX=disabled
-# SELINUXTYPE= can take one of three two values:
-#     targeted - Targeted processes are protected,
-#     minimum - Modification of targeted policy. Only selected processes are protected.
-#     mls - Multi Level Security protection.
-SELINUXTYPE=targeted
-</code></pre><p>重启机器配置生效</p>
-<pre><code>[root@kvm-server-01 ~]# reboot
-</code></pre><h2 id="三、安装KVM相关软件："><a href="#三、安装KVM相关软件：" class="headerlink" title="三、安装KVM相关软件："></a>三、安装KVM相关软件：</h2><p>1) 查看CPU是否支持KVM虚拟化。</p>
-<pre><code>[root@kvm-server-01 ~]# grep -E &quot;svm | vmx &quot; /proc/cpuinfo
-flags        : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts nopl xtopology tsc_reliable nonstop_tsc aperfmperf eagerfpu pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer xsave avx f16c rdrand hypervisor lahf_lm abm epb tpr_shadow vnmi ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 invpcid xsaveopt dtherm arat pln pts
-flags        : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts nopl xtopology tsc_reliable nonstop_tsc aperfmperf eagerfpu pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer xsave avx f16c rdrand hypervisor lahf_lm abm epb tpr_shadow vnmi ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 invpcid xsaveopt dtherm arat pln pts
-flags        : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts nopl xtopology tsc_reliable nonstop_tsc aperfmperf eagerfpu pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer xsave avx f16c rdrand hypervisor lahf_lm abm epb tpr_shadow vnmi ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 invpcid xsaveopt dtherm arat pln pts
-flags        : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts nopl xtopology tsc_reliable nonstop_tsc aperfmperf eagerfpu pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer xsave avx f16c rdrand hypervisor lahf_lm abm epb tpr_shadow vnmi ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 invpcid xsaveopt dtherm arat pln pts
-</code></pre><p>如果无输出信息，可以进去机器BIOS里面改 Intel(R) Virtualization Technology(Disable &amp;&amp;Enable)选项卡的值改成Enable</p>
-<p>2）安装相关KVM软件</p>
-<pre><code>[root@kvm-server-01 ~]# yum -y install qemu-kvm qemu-kvm-tools virt-manager libvirt virt-install
-</code></pre><p>3）查看KVM模块是否加载</p>
-<pre><code>[root@kvm-server-01 ~]# lsmod | grep kvm
-kvm_intel             170086  0 
-kvm                   566340  1 kvm_intel
-irqbypass             13503  1 kvm
-</code></pre><p>4）查看网卡配置</p>
-<pre><code>[root@kvm-server-01 ~]# ifconfig
-ens33: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
-    inet 192.168.198.24  netmask 255.255.255.0  broadcast 192.168.198.255
-    inet6 fe80::20c:29ff:fecb:f3df  prefixlen 64  scopeid 0x20&lt;link&gt;
-    ether 00:0c:29:cb:f3:df  txqueuelen 1000  (Ethernet)
-    RX packets 74536  bytes 106116373 (101.2 MiB)
-    RX errors 0  dropped 0  overruns 0  frame 0
-    TX packets 30060  bytes 2494387 (2.3 MiB)
-    TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-
-lo: flags=73&lt;UP,LOOPBACK,RUNNING&gt;  mtu 65536
-    inet 127.0.0.1  netmask 255.0.0.0
-    inet6 ::1  prefixlen 128  scopeid 0x10&lt;host&gt;
-    loop  txqueuelen 1  (Local Loopback)
-    RX packets 0  bytes 0 (0.0 B)
-    RX errors 0  dropped 0  overruns 0  frame 0
-    TX packets 0  bytes 0 (0.0 B)
-    TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-</code></pre><p>5）启用并启动ibvirtd.service服务</p>
-<pre><code>[root@kvm-server-01 ~]# systemctl enable libvirtd.service
-[root@kvm-server-01 ~]# systemctl start libvirtd.service
-[root@kvm-server-01 ~]# ifconfig
-ens33: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
-    inet 192.168.198.24  netmask 255.255.255.0  broadcast 192.168.198.255
-    inet6 fe80::20c:29ff:fecb:f3df  prefixlen 64  scopeid 0x20&lt;link&gt;
-    ether 00:0c:29:cb:f3:df  txqueuelen 1000  (Ethernet)
-    RX packets 74734  bytes 106133307 (101.2 MiB)
-    RX errors 0  dropped 0  overruns 0  frame 0
-    TX packets 30169  bytes 2507305 (2.3 MiB)
-    TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-
-lo: flags=73&lt;UP,LOOPBACK,RUNNING&gt;  mtu 65536
-    inet 127.0.0.1  netmask 255.0.0.0
-    inet6 ::1  prefixlen 128  scopeid 0x10&lt;host&gt;
-    loop  txqueuelen 1  (Local Loopback)
-    RX packets 0  bytes 0 (0.0 B)
-    RX errors 0  dropped 0  overruns 0  frame 0
-    TX packets 0  bytes 0 (0.0 B)
-    TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-
-virbr0: flags=4099&lt;UP,BROADCAST,MULTICAST&gt;  mtu 1500
-    inet 192.168.122.1  netmask 255.255.255.0  broadcast 192.168.122.255
-    ether 52:54:00:3b:2f:6d  txqueuelen 1000  (Ethernet)
-    RX packets 0  bytes 0 (0.0 B)
-    RX errors 0  dropped 0  overruns 0  frame 0
-    TX packets 0  bytes 0 (0.0 B)
-    TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-</code></pre><p>6）我把以后要创建的虚拟放在磁盘sdb1，对应/home/KVM_data目录</p>
-<pre><code>[root@kvm-server-01 ~]# lsblk
-NAME                                 MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-sda                                    8:0    0  160G  0 disk 
-├─sda1                                 8:1    0    1G  0 part /boot
-└─sda2                                 8:2    0  159G  0 part 
-├─centos_pxe--server--centos7-root 253:0    0   50G  0 lvm  /
-├─centos_pxe--server--centos7-swap 253:1    0    2G  0 lvm  [SWAP]
-└─centos_pxe--server--centos7-home 253:2    0  107G  0 lvm  /home
-sdb                                    8:16   0  160G  0 disk 
-└─sdb1                                 8:17   0  160G  0 part /home/KVM_data
-sr0                                   11:0    1  4.2G  0 rom  
-</code></pre><p>7）虚拟机磁盘格式，raw 、qcow2</p>
-<p>•  raw</p>
-<p>格式是最简单，什么都没有，所以叫raw格式。连头文件都没有，就是一个直接给虚拟机进行读写的文件。raw不支持动态增长空间，必须一开始就指定空间大小。所以相当的耗费磁盘空间。</p>
-<p>•  qcow2</p>
-<p>qcow2是集各种技术为一体的超级镜像格式，支持内部快照，加密，压缩等一系列功能，访问性能也在不断提高。但qcow2的问题就是过于臃肿，把什么功能都集于一身。</p>
-<p>8）创建虚拟机磁盘文件</p>
-<pre><code>[root@kvm-server-01 ~]# cd /home/KVM_data/
-[root@kvm-server-01 KVM_data]# ll
-总用量 16
-drwx------ 2 root root 16384 12月 14 13:44 lost+found
-
-[root@kvm-server-01 KVM_data]# qemu-img create -f qcow2 CentOS-7.4-x86_64.qcow2 10G
-Formatting &apos;CentOS-7.4-x86_64.qcow2&apos;, fmt=qcow2 size=10737418240 encryption=off cluster_size=65536 lazy_refcounts=off 
-[root@kvm-server-01 KVM_data]# ll
-总用量 216
- -rw-r--r-- 1 root root 197120 12月 14 15:10 CentOS-7.4-x86_64.qcow2
- drwx------ 2 root root  16384 12月 14 13:44 lost+found
-</code></pre><p> 9）安装centos7虚拟机的需要用到镜像，先把镜像临时挂载到/mnt/cdrom 目录</p>
-<pre><code>[root@kvm-server-01 ~]# mkdir /mnt/cdrom
-[root@kvm-server-01 ~]# mount -t iso9660  /dev/cdrom /mnt/cdrom
-</code></pre><p>10）把镜像，转换成安装虚拟机用到的iso文件</p>
-<pre><code>[root@kvm-server-01 KVM_data]# dd if=/dev/cdrom of=/home/KVM_data/CentOS-7.4-x86_64.iso
-</code></pre><p>11）安装centos7虚拟机</p>
-<pre><code>[root@kvm-server-01 KVM_data]# virt-install --name CentOS-7-x86-64 --virt-type kvm --ram 1024--cdrom=/home/KVM_data/CentOS-7.4-x86_64.iso --disk path=/home/KVM_data/CentOS-7.4-x86_64.qcow2 --network network=default --graphics vnc,listen=0.0.0.0 –noautoconsole
-</code></pre><p>12）使用vnc客户端连接安装的虚拟机</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/kvm-3.png" alt=""></p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/kvm-2.png" alt=""></p>
-<p>13)查看虚拟机，和虚拟机使用的端口</p>
-<pre><code>[root@kvm-server-01 ~]# virsh list --all
-Id    名称                         状态
-----------------------------------------------------
-1     CentOS-7-x86-64                running
-
-[root@kvm-server-01 ~]# netstat -anlp| grep 5900
-tcp        0      0 0.0.0.0:5900            0.0.0.0:*               LISTEN      12152/qemu-kvm      
-</code></pre><p>14）常用命令</p>
-<p>a) 虚拟机配置文件，就是xml文件所在的目录是 </p>
-<pre><code>/etc/libvirt/qemu/
-</code></pre><p>b) 查看运行的虚拟机</p>
-<pre><code>virsh list
-</code></pre><p>c) 查看所有的虚拟机（运行和关闭的虚拟机）</p>
-<pre><code>virsh list --all
-</code></pre><p>d) 关闭虚拟机（强制关机）</p>
-<pre><code>virsh destroy +domain
-</code></pre><p>e) 挂起虚拟机</p>
-<pre><code>virsh suspend +domain
-</code></pre><p>f) 恢复被挂起的虚拟机</p>
-<pre><code>virsh resume +domain
-</code></pre><p>g) 子机随宿主主机启动而启动</p>
-<pre><code>virsh autostart +domain
-</code></pre><p>h) 取消自动启动</p>
-<pre><code>virsh autostart --disable +domain
-</code></pre><p>i） 删除创建的虚拟机</p>
-<pre><code>virshundefine +domain
-</code></pre><p>j) 启动虚拟机</p>
-<pre><code>virsh start +domain
-</code></pre><p>k) 关闭虚拟机</p>
-<pre><code>virsh shutdown +domain
-</code></pre><p>内容太多，下节继续。~~~~</p>
+        <h2 id="一、RAID概念"><a href="#一、RAID概念" class="headerlink" title="一、RAID概念"></a>一、RAID概念</h2><p>RAID（Redundant Array of Independent Disks，独立磁盘冗余阵列）可以提供较普通磁盘更高的速度、安全性，所以服务器在安装时都会选择创建RAID。</p>
+<p>RAID的创建有两种方式：软RAID（通过操作系统软件来实现）和硬RAID（使用硬件阵列卡）；在企业中用的最多的是：raid0、raid1、raid10和raid5。不过随着云的高速发展，供应商一般可以把硬件问题解决掉。</p>
+<h2 id="二、常用的RAID"><a href="#二、常用的RAID" class="headerlink" title="二、常用的RAID"></a>二、常用的RAID</h2><p>1) RAID-0</p>
+<p>条带 （strping），也是我们最早出现的RAID模式,需磁盘数量:2块以上(大小最好相同)<br>是组建磁盘阵列中最简单的一种形式，只需要2块以上的硬盘即可.</p>
+<p>特点:</p>
+<p>a)成本低，可以提高整个磁盘的性能和吞吐量</p>
+<p>b)RAID 0没有提供冗余或错误修复能力，速度快</p>
+<p>c)任何一个磁盘的损坏将损坏全部数据；磁盘利用率为100%</p>
+<p>2) RAID-1</p>
+<p>mirroring（镜像卷）,原理:是把一个磁盘的数据镜像到另一个磁盘上，也就是说数据在写入一块磁盘的同时，会在另一块闲置的磁盘上生成镜像文件，(同步)</p>
+<p>RAID 1 mirroring（镜像卷），至少需要两块硬盘，raid大小等于两个raid分区中最小的容量(最好将分区大小分为一样），数据有冗余，在存储时同时写入两块硬盘，实现了数据备份；<br>磁盘利用率为50%</p>
+<p>3）RAID-5</p>
+<p>RAID 5不是对存储的数据进行备份，而是把数据和相对应的奇偶校验信息存储到组成RAID5的各个磁盘上，并且奇偶校验信息和相对应的数据分别存储于不同的磁盘上。当RAID5的一个磁盘数据发生损坏后，可以利用剩下的数据和相应的奇偶校验信息去恢复被损坏的数据。RAID 5可以理解为是RAID 0和RAID 1的折衷方案。</p>
+<p>需要三块或以上硬盘，可以提供热备盘实现故障的恢复；只损坏一块，没有问题。但如果同时损坏两块磁盘，则数据将都会损坏。 空间利用率： (n-1)/n   </p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/raid.png" alt=""></p>
+<p>4) RAID-10</p>
+<p>镜像+条带,先创建raid1，再使用创建的raid1设备创建raid0,RAID 1与RAID 0的组合，先作RAID 1，再作RAID 0，也就是对多组RAID 1彼此构成Stripe访问。由于RAID 10是以RAID 1为基础，而RAID 1至少需要2块硬盘，因此要以多组RAID 1构成RAID 10，至少需要4块硬盘。以RAID 10最小的4台硬盘组态为例，先把4台硬盘分为2组，每组2台构成RAID 1，如此就得到两组RAID 1，然后再把两组RAID 1构成RAID 0。</p>
+<p>RAID 10在底层的任一组或多组RAID 1中出现1台硬盘损坏时，仍能维持运作，不过如果任一组RAID 1中的两块硬盘损毁，整组RAID10就会失效。</p>
+<p>RAID 10由于在上层把多组RAID 1构成Stripe，容量利用率是50%，例如：4块硬盘做的raid10的总容量是两块硬盘的容量。</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/raid-10.png" alt=""></p>
+<h2 id="三、搭建RAID（有硬件RAID卡-浪潮系列服务器基于LSI芯片Raid卡）"><a href="#三、搭建RAID（有硬件RAID卡-浪潮系列服务器基于LSI芯片Raid卡）" class="headerlink" title="三、搭建RAID（有硬件RAID卡,浪潮系列服务器基于LSI芯片Raid卡）"></a>三、搭建RAID（有硬件RAID卡,浪潮系列服务器基于LSI芯片Raid卡）</h2><p>1）RAID-1配置与管理</p>
+<p>服务器开机自检到浪潮logo画面后，下一步就会进入Raid卡自检过程，此时显示器上会出现Ctrl -H提示，如下图：</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid_config_01.png" alt=""></p>
+<p>按下Ctrl -H组合键后，自检完成就会进入Raid卡配置界面，如下图。在这里可以看到Raid卡的型号和Firmware固件版本，点击【Start】按钮进入Raid卡主页。</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid_config_02.png" alt=""></p>
+<p>Raid卡首页叫作WebBIOS，如下图。左侧是功能菜单，右侧可以看到所有物理磁盘，本例安装了4块500G硬盘，后面所有的配置都可以在这里完成！</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid_config_03.png" alt=""></p>
+<p>在WebBIOS主页点击【Configuration Wizard】，打开配置向导</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_01.png" alt=""></p>
+<p>选择【Add Configuration】，点击【Next】下一步</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_02.png" alt=""></p>
+<p>选择【Manual Configuration】，点击【Next】下一步</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_03.png" alt=""></p>
+<p>左侧方框内可以看到所有未使用的硬盘。因为要做Raid1，我们选择前两块，然后点击下方的【Add to Array】将其加入到右侧方框内。</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_04.png" alt=""></p>
+<p>点击【Accept DG】，创建磁盘组</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_05.png" alt=""></p>
+<p>点击【Next】下一步</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_06.png" alt=""></p>
+<p>点击【Add to SPAN】，将刚才创建好的磁盘组加入到右侧方框内</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_07.png" alt=""></p>
+<p>点击【Next】下一步</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_08.png" alt=""></p>
+<p>阵列参数配置：第一个参数“Raid Level”选择Raid1，其余保持默认</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_09.png" alt=""></p>
+<p>最后一个参数“Select Size”输入阵列容量大小，最大值可参考右侧绿字提示（其中R0代表做Raid0最大容量，R1代表做Raid1最大容量），完成后点击【Accept】</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_10.png" alt=""></p>
+<p>弹出的任何提示均选择【yes】</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_11.png" alt=""></p>
+<p>回到配置页面，点击【Next】下一步</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_12.png" alt=""></p>
+<p>点击【Accept】配置完成！</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_13.png" alt=""></p>
+<p>提示保存，选择【yes】</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_14.png" alt=""></p>
+<p>（依Raid卡型号不同，有些可能没有此功能，如没有请跳过此步）提示SSD缓存，选择【Cancel】</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_15.png" alt=""></p>
+<p>提示初始化，选择【yes】</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_16.png" alt=""></p>
+<p>正在初始化，能看到百分比进度条（速度较快，可能一闪而过）</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_17.png" alt=""></p>
+<p>初始化完成！点击【Home】返回首页</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_18.png" alt=""></p>
+<p>阵列配置完成！</p>
+<p>Raid1状态显示“Optimal”表示正常，Drives显示两块硬盘绿色Online正常，如果还有其它未使用的硬盘，会在unconfigured Drives下面蓝色显示。</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_19.png" alt=""></p>
+<p>最后点击【Exit】退出，然后【Ctrl-Alt-Delete】组合键重启服务器！</p>
+<p>未使用的硬盘可以继续创建阵列，也可以配置成热备盘</p>
+<p>热备盘（Hotspare）配置<br>热备盘的作用是如果阵列中有硬盘发生故障，热备盘可以立即顶替，及时将阵列恢复为正常状态。热备盘的配置非常简单，做完阵列后，未使用的硬盘会在WebBIOS中显示为蓝色unconfigured状态，选中该硬盘进入属性页面。</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_GlobalHSP_01.png" alt=""></p>
+<p>选择【Make Global HSP】，点击【GO】执行</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_GlobalHSP_02.png" alt=""></p>
+<p>配置完成！点击【Home】返回首页</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_GlobalHSP_03.png" alt=""></p>
+<p>热备盘显示为粉色Hotspare状态</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_GlobalHSP_04.png" alt=""></p>
+<p>2)RAID-5配置与管理  </p>
+<p>在WebBIOS主页点击【Configuration Wizard】，打开配置向导</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_01.png" alt=""></p>
+<p>选择【Add Configuration】，点击【Next】下一步</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_02.png" alt=""></p>
+<p>选择【Manual Configuration】，点击【Next】下一步</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_03.png" alt=""></p>
+<p>左侧方框内可以看到所有未使用的硬盘。我们选择全部（也可以逐个选择），然后点击下方的【Add to Array】将其加入到右侧方框内。</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_04.png" alt=""></p>
+<p>点击【Accept DG】，创建磁盘组</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid5_05.png" alt=""></p>
+<p>点击【Next】下一步</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid5_06.png" alt=""></p>
+<p>点击【Add to SPAN】，将刚才创建好的磁盘组加入到右侧方框内</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid5_07.png" alt=""></p>
+<p>点击【Next】下一步</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid5_08.png" alt=""></p>
+<p>阵列参数配置：第一个参数“Raid Level”选择Raid5，其余保持默认</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid5_09.png" alt=""></p>
+<p>最后一个参数“Select Size”输入阵列容量大小，最大值可参考右侧绿字提示（其中R5代表做Raid5的最大容量），完成后点击【Accept】</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid5_10.png" alt=""></p>
+<p>弹出的任何提示均选择【yes】</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_11.png" alt=""></p>
+<p>回到配置页面，点击【Next】下一步</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_12.png" alt=""></p>
+<p>点击【Accept】配置完成！</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid5_13.png" alt=""></p>
+<p>提示保存，选择【yes】</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_14.png" alt=""></p>
+<p>（依Raid卡型号不同，有些可能没有此功能，如没有请跳过此步）提示SSD缓存，选择【Cancel】</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_15.png" alt=""></p>
+<p>提示初始化，选择【yes】</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_16.png" alt=""></p>
+<p>正在初始化，能看到百分比进度条（速度较快，可能一闪而过）</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid5_17.png" alt=""></p>
+<p>初始化完成！点击【Home】返回首页</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid5_18.png" alt=""></p>
+<p>阵列配置完成！</p>
+<p>Raid5状态显示“Optimal”表示正常，Drives显示四块硬盘绿色Online正常</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid5_19.png" alt=""></p>
+<p>最后点击【Exit】退出，然后【Ctrl-Alt-Delete】组合键重启服务器！</p>
+<p>删除配置:</p>
+<p>在WebBIOS主页点击【Configuration Wizard】，打开配置向导</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_clear_config_01.png" alt=""></p>
+<p>选择【Clear Configuration】，点击【Next】下一步</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_clear_config_02.png" alt=""></p>
+<p>提示清除，选择【yes】</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_clear_config_03.png" alt=""></p>
+<p>阵列删除成功！所有硬盘显示为蓝色unconfigured Good状态</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_clear_config_04.png" alt=""></p>
+<p>3)RAID-10配置与管理         </p>
+<p>在WebBIOS主页点击【Configuration Wizard】，打开配置向导</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_01.png" alt=""></p>
+<p>选择【Add Configuration】，点击【Next】下一步</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_02.png" alt=""></p>
+<p>选择【Manual Configuration】，点击【Next】下一步</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_03.png" alt=""></p>
+<p>左侧方框内可以看到所有未使用的硬盘。因为要做Raid10，我们先选择前两块，然后点击下方的【Add to Array】将其加入到右侧方框内。</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid1_04.png" alt=""></p>
+<p>点击【Accept DG】，创建第一个磁盘组：Drive Group0</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_05.png" alt=""></p>
+<p>然后再选择后两块硬盘，也点击下方的【Add to Array】将其加入到右侧方框内</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_06.png" alt=""></p>
+<p>点击【Accept DG】，创建第二个磁盘组：Drive Group1</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_07.png" alt=""></p>
+<p>点击【Next】下一步</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_08.png" alt=""></p>
+<p>点击【Add to SPAN】，将刚才创建好的两个磁盘组分别加入到右侧方框内</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_09.png" alt=""></p>
+<p>将第二个磁盘组也添加过来</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_10.png" alt=""></p>
+<p>点击【Next】下一步</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_11.png" alt=""></p>
+<p>阵列参数配置：第一个参数“Raid Level”选择Raid10，其余保持默认</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_12.png" alt=""></p>
+<p>最后一个参数“Select Size”输入阵列容量大小，最大值可参考右侧绿字提示（其中R10代表做Raid10的最大容量），完成后点击【Accept】</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_13.png" alt=""></p>
+<p>弹出的任何提示均选择【yes】</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_14.png" alt=""></p>
+<p>回到配置页面，点击【Next】下一步</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_15.png" alt=""></p>
+<p>点击【Accept】配置完成！</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_16.png" alt=""></p>
+<p>提示保存，选择【yes】</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_17.png" alt=""></p>
+<p>（依Raid卡型号不同，有些可能没有此功能，如没有请跳过此步）提示SSD缓存，选择【Cancel】</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_18.png" alt=""></p>
+<p>提示初始化，选择【yes】</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_19.png" alt=""></p>
+<p>正在初始化，能看到百分比进度条（速度较快，可能一闪而过）</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_20.png" alt=""></p>
+<p>初始化完成！点击【Home】返回首页</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_21.png" alt=""></p>
+<p>阵列配置完成！Raid10状态显示“Optimal”表示正常，所有硬盘绿色Online正常。最后点击【Exit】退出，然后【Ctrl-Alt-Delete】组合键重启服务器！</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/Leon_Raid10_22.png" alt=""></p>
 
       
     </div>
@@ -690,7 +757,7 @@ tcp        0      0 0.0.0.0:5900            0.0.0.0:*               LISTEN      
       
         <div class="post-tags">
           
-            <a href="/tags/KVM/" rel="tag"># KVM</a>
+            <a href="/tags/RAID/" rel="tag"># RAID</a>
           
         </div>
       
@@ -703,14 +770,18 @@ tcp        0      0 0.0.0.0:5900            0.0.0.0:*               LISTEN      
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/12/15/PXE+Kickstart/" rel="next" title="CentOS 6.5下PXE+Kickstart无人值守安装操作系统">
+                <i class="fa fa-chevron-left"></i> CentOS 6.5下PXE+Kickstart无人值守安装操作系统
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/15/CentOS7.3搭建owncloud私有云/" rel="prev" title="基于CentOS7.3搭建owncloud私有云">
-                基于CentOS7.3搭建owncloud私有云 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/12/15/sshd服务防止暴力破解/" rel="prev" title="sshd服务防止暴力破解">
+                sshd服务防止暴力破解 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -911,7 +982,7 @@ tcp        0      0 0.0.0.0:5900            0.0.0.0:*               LISTEN      
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、关于虚拟化"><span class="nav-number">1.</span> <span class="nav-text">一、关于虚拟化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、实验环境："><span class="nav-number">2.</span> <span class="nav-text">二、实验环境：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、安装KVM相关软件："><span class="nav-number">3.</span> <span class="nav-text">三、安装KVM相关软件：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、RAID概念"><span class="nav-number">1.</span> <span class="nav-text">一、RAID概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、常用的RAID"><span class="nav-number">2.</span> <span class="nav-text">二、常用的RAID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、搭建RAID（有硬件RAID卡-浪潮系列服务器基于LSI芯片Raid卡）"><span class="nav-number">3.</span> <span class="nav-text">三、搭建RAID（有硬件RAID卡,浪潮系列服务器基于LSI芯片Raid卡）</span></a></li></ol></div>
             
 
           </div>

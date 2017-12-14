@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Ubuntu,LAMP," />
 
 
 
@@ -87,12 +87,39 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Stefanie&#39;Notes">
-<meta property="og:url" content="https://linshizhe.github.io/index.html">
+<meta name="description" content="一、前言1.1LAMP详解经过多年是Web技术发展，在业内被广泛使用的一种Web服务器解决方案之一（LNMP也非常受欢迎），由一些独立的系统或软件组合而成。 软件组件：  Linux:  Linux 是免费开源软件，这意味着源代码可用的操作系统。  Apache: Apache 是使用中最受欢迎的一个开放源码的WEB服务器软件。  MySQL:  MySQL 是多线程、多用户的SQL数据库管理系统">
+<meta name="keywords" content="Ubuntu,LAMP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在Ubuntu Server下搭建LAMP环境">
+<meta property="og:url" content="https://linshizhe.github.io/2017/12/15/在Ubuntu Server下搭建LAMP环境/index.html">
 <meta property="og:site_name" content="Stefanie&#39;Notes">
+<meta property="og:description" content="一、前言1.1LAMP详解经过多年是Web技术发展，在业内被广泛使用的一种Web服务器解决方案之一（LNMP也非常受欢迎），由一些独立的系统或软件组合而成。 软件组件：  Linux:  Linux 是免费开源软件，这意味着源代码可用的操作系统。  Apache: Apache 是使用中最受欢迎的一个开放源码的WEB服务器软件。  MySQL:  MySQL 是多线程、多用户的SQL数据库管理系统">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/lamp2.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/lamp1.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/apache.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/mysql-1.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/mysql-2.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/mysql-3.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/php.info.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/gd.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/ll.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/apache4.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/ln-s.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/host-v.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/host.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/weboa.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/bbsdir.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/videodir.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/oadir.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/php.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/php-11.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/php-12.png">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/cs.png">
+<meta property="og:updated_time" content="2017-07-17T12:02:46.840Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Stefanie&#39;Notes">
+<meta name="twitter:title" content="在Ubuntu Server下搭建LAMP环境">
+<meta name="twitter:description" content="一、前言1.1LAMP详解经过多年是Web技术发展，在业内被广泛使用的一种Web服务器解决方案之一（LNMP也非常受欢迎），由一些独立的系统或软件组合而成。 软件组件：  Linux:  Linux 是免费开源软件，这意味着源代码可用的操作系统。  Apache: Apache 是使用中最受欢迎的一个开放源码的WEB服务器软件。  MySQL:  MySQL 是多线程、多用户的SQL数据库管理系统">
+<meta name="twitter:image" content="http://ot2nwtxbo.bkt.clouddn.com/lamp2.png">
 
 
 
@@ -120,13 +147,13 @@
 
 
 
-  <link rel="canonical" href="https://linshizhe.github.io/"/>
+  <link rel="canonical" href="https://linshizhe.github.io/2017/12/15/在Ubuntu Server下搭建LAMP环境/"/>
 
 
 
 
 
-  <title> Stefanie'Notes </title>
+  <title> 在Ubuntu Server下搭建LAMP环境 | Stefanie'Notes </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -161,9 +188,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -300,9 +325,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -332,10 +357,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2017/12/15/在Ubuntu Server下搭建LAMP环境/" itemprop="url">
-                  在Ubuntu Server下搭建LAMP环境
-                </a>
+                在Ubuntu Server下搭建LAMP环境
               
             
           </h2>
@@ -449,883 +471,357 @@
       
 
       
-        
-          
-          一、前言1.1LAMP详解经过多年是Web技术发展，在业内被广泛使用的一种Web服务器解决方案之一（LNMP也非常受欢迎），由一些独立的系统或软件组合而成。
-软件组件：
+        <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><h3 id="1-1LAMP详解"><a href="#1-1LAMP详解" class="headerlink" title="1.1LAMP详解"></a>1.1LAMP详解</h3><p>经过多年是Web技术发展，在业内被广泛使用的一种Web服务器解决方案之一（LNMP也非常受欢迎），由一些独立的系统或软件组合而成。</p>
+<h3 id="软件组件："><a href="#软件组件：" class="headerlink" title="软件组件："></a>软件组件：</h3><p><img src="http://ot2nwtxbo.bkt.clouddn.com/lamp2.png" alt=""></p>
+<ol>
+<li><p>Linux:  Linux 是免费开源软件，这意味着源代码可用的操作系统。</p>
+</li>
+<li><p>Apache: Apache 是使用中最受欢迎的一个开放源码的WEB服务器软件。</p>
+</li>
+<li><p>MySQL:  MySQL 是多线程、多用户的SQL数据库管理系统。</p>
+</li>
+<li><p>PHP:    PHP 是一种编程语言最初设计生产动态网站。PHP 是主要用于服务器端的应用程序软件。Perl 和 Python 类似。</p>
+</li>
+</ol>
+<h3 id="1-2LAMP工作原理"><a href="#1-2LAMP工作原理" class="headerlink" title="1.2LAMP工作原理"></a>1.2LAMP工作原理</h3><p><img src="http://ot2nwtxbo.bkt.clouddn.com/lamp1.png" alt=""></p>
+<h2 id="二、实验环境："><a href="#二、实验环境：" class="headerlink" title="二、实验环境："></a>二、实验环境：</h2><p>发行版本: Ubuntu 12.04.5 LTS</p>
+<p>内核版本：3.13.0-32-generic</p>
+<p>ip:192.168.198.5</p>
+<h2 id="三、Ubuntu-server-管理员权限解读"><a href="#三、Ubuntu-server-管理员权限解读" class="headerlink" title="三、Ubuntu server 管理员权限解读"></a>三、Ubuntu server 管理员权限解读</h2><p>为了安全Ubuntu 官方不推荐使用root账户远程登陆，安装系统的时候会强制要设置一个不同于root的普通用户。</p>
+<p>操作ubuntu的预备知识：</p>
+<p>1）命令行</p>
+<pre><code>dgnet@dgnet-ip:~$
+</code></pre><p>dgnet表示用户名 </p>
+<p>@dgnet-ip 表示@主机名</p>
+<p>~ 表示当前目录</p>
+<p>$ 表示用户类型标记</p>
+<p>-$表示普通用户，#表示超级管理员</p>
+<p>2）通过passwd命令修改账户密码</p>
+<p>2.1）先查看当前用户</p>
+<pre><code>dgnet@dgnet-ip:~$ pwd
+/home/dgnet
+</code></pre><p>2.2）让当前用户获得临时超级管理员权限</p>
+<pre><code>dgnet@dgnet-ip:~$ sudo passwd root
+[sudo] password for dgnet:          #输入用户dgnet的秘密
+Enter new UNIX password:            #给root用户设置新密码
+Retype new UNIX password:           #确认root密码
+passwd: password updated successfully
+</code></pre><p>注意事项：</p>
+<p>1）普通账户没有管理员权限</p>
+<p>2）默认情况下ROOT账户无法登陆</p>
+<p>3）su (switch user)切换到超级管理员</p>
+<p>4）sudo (switch user and do) 以超级管理员身份执行</p>
+<p>5）sudo弥补了su产生的多账户安全问题</p>
+<p>使用su命令所有管理员都必须知道root账户的密码，sudo使得普通管理员使用自己的秘密也可以获得超级管理员权限。</p>
+<h2 id="四、安装软件"><a href="#四、安装软件" class="headerlink" title="四、安装软件"></a>四、安装软件</h2><p>1）先安装apt-get软件安装工具</p>
+<pre><code>gnet@dgnet-ip:~$ sudo apt-get update
+</code></pre><p>2) 使用apt-get软件安装工具安装apache2</p>
+<pre><code>dgnet@dgnet-ip:~$ sudo apt-get install apache2
+</code></pre><p>检查一下apache的版本</p>
+<pre><code>dgnet@dgnet-ip:~$ apache2 -v
+Server version: Apache/2.2.22 (Ubuntu)
+Server built:   Jul 15 2016 15:32:45
+</code></pre><p>打开浏览器输入ip地址检查apache是否正常工作</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/apache.png" alt=""></p>
+<p>3)使用apt-get软件安装工具安装php5</p>
+<pre><code>dgnet@dgnet-ip:~$ sudo apt-get install php5
+</code></pre><p>检查一下php的版本</p>
+<pre><code>dgnet@dgnet-ip:~$ php5 -v
+PHP 5.3.10-1ubuntu3.26 with Suhosin-Patch (cli) (built: Feb 13 2017 20:37:53) 
+Copyright (c) 1997-2012 The PHP Group
+Zend Engine v2.3.0, Copyright (c) 1998-2012 Zend Technologies
+</code></pre><p>检查一下apache是否加载了libphp5.so这个模块</p>
+<pre><code>dgnet@dgnet-ip:~$ cat /etc/apache2/mods-enabled/php5.load
+LoadModule php5_module /usr/lib/apache2/modules/libphp5.so
+</code></pre><p>4)使用apt-get软件安装工具安装mysql-server</p>
+<pre><code>dgnet@dgnet-ip:~$ sudo apt-get install mysql-server
+</code></pre><p>先给mysql-server设置密码（baidu.com@ip）</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/mysql-1.png" alt=""></p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/mysql-2.png" alt=""></p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/mysql-3.png" alt=""></p>
+<p>接着安装一下mysql的扩展</p>
+<pre><code>dgnet@dgnet-ip:~$ sudo apt-get install php5-mysql
+</code></pre><p>检查一下mysql.so模块是否正常加载</p>
+<pre><code>dgnet@dgnet-ip:~$ cat /etc/php5/conf.d/mysql.ini
+; configuration for php MySQL module
+extension=mysql.so
+</code></pre><p>确保php5与mysql能正常工作，重启一下mysql</p>
+<pre><code>dgnet@dgnet-ip:~$ sudo service mysql restart
+</code></pre><p>重启apache</p>
+<pre><code>dgnet@dgnet-ip:~$ sudo service mysql restart
+</code></pre><p>到目前lamp软件已经安装完成，分开各个软件安装是为了更好了理解各个软件之间的关系，我们清楚了解了lamp之后可以使用一条命令就把lamp安装好。</p>
+<pre><code>dgnet@dgnet-ip:~$ sudo apt-get install -y apache2 php5 mysql-server php5-mysql
+</code></pre><p>或者</p>
+<pre><code>dgnet@dgnet-ip:~$ sudo tasksel install -y lamp-servver
+</code></pre><h2 id="五、其他设置"><a href="#五、其他设置" class="headerlink" title="五、其他设置"></a>五、其他设置</h2><p>1）创建phpinfo服务器探针</p>
+<pre><code>dgnet@dgnet-ip:~$ cd /var/www
+dgnet@dgnet-ip:/var/www$ sudo vim info.php
+[sudo] password for dgnet: 
+</code></pre><p>info.php代码</p>
+<pre><code>&lt;?phpecho mysql_connect(&apos;localhost&apos;,&apos;root&apos;,&apos;baidu.com@ip&apos;) ?  
+&apos;Mom, dont worry about my database, either&apos; : 
+&apos;Last year I bought a watch&apos;;
+ phpinfo();
+</code></pre><p>在浏览器中打开info.php查看,php与数据库是否正常</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/php.info.png" alt="">          </p>
+<p>2)PHP添加常用扩展</p>
+<pre><code>dgnet@dgnet-ip:~$ sudo apt-get install php5-gd curl libcurl3-dev php5-curl
+</code></pre><p>安装完成重启apache</p>
+<pre><code>dgnet@dgnet-ip:~$ sudo service apache2 restart
+</code></pre><p>浏览器中查看扩展是否工作正常</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/gd.png" alt=""></p>
+<h2 id="六、LAMP环境配置文件"><a href="#六、LAMP环境配置文件" class="headerlink" title="六、LAMP环境配置文件"></a>六、LAMP环境配置文件</h2><p>1）Ubuntu系统配置文件目录：/etc</p>
+<p>2)各组件配置文件位置</p>
+<p>-Apache /etc/apache2</p>
+<p>-MYSQL /etc/mysql</p>
+<p>-PHP   /etc/php5</p>
+<p>3)查看apache</p>
+<pre><code>dgnet@dgnet-ip:~$ cd /etc/apache2
+dgnet@dgnet-ip:/etc/apache2$ ll
+</code></pre><p><img src="http://ot2nwtxbo.bkt.clouddn.com/ll.png" alt=""></p>
+<p>apache工作过程：</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/apache4.png" alt=""></p>
+<p>apache核心配置：</p>
+<p>-mods-<em>*</em> Apache模块</p>
+<p>-sites-<em>*</em> 虚拟主机</p>
+<p>关键词 available 可以使用的；enabled 已启用的</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/ln-s.png" alt=""></p>
+<p>4)MYSQL核心配置文件 my.cnf</p>
+<p>5)php核心配置文件 php.ini</p>
+<p>6)配置apache虚拟主机</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/host-v.png" alt=""></p>
+<p>7)手动模拟DNS，修改本地hosts文件</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/host.png" alt=""></p>
+<p>浏览器查看上面三个域名，都是指向ip 192.168.198.5</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/weboa.png" alt=""></p>
+<p>8)为（oa bbs video）服务器创建目录</p>
+<pre><code>dgnet@dgnet-ip:~$ cd /var
+dgnet@dgnet-ip:/var$ sudo mkdir -p /wwwroot/{video,bbs,oa}
+dgnet@dgnet-ip:/var$ cd /wwwroot/
+dgnet@dgnet-ip:/wwwroot$ ll
+dgnet@dgnet-ip:/wwwroot$ cd video/
+dgnet@dgnet-ip:/wwwroot/video$ sudo vim index.html
+dgnet@dgnet-ip:/wwwroot/video$ cd ../bbs
+dgnet@dgnet-ip:/wwwroot/bbs$ sudo vim index.html
+dgnet@dgnet-ip:/wwwroot$ cd oa
+dgnet@dgnet-ip:/wwwroot/oa$ sudo vim index.html
+</code></pre><p>9）开始配置虚拟主机</p>
+<pre><code>dgnet@dgnet-ip:/wwwroot/oa$ cd /etc/apache2/sites-available/
+dgnet@dgnet-ip:/etc/apache2/sites-available$ ll
+ls: 初始化月份字符串出错
+总用量 20
+drwxr-xr-x 2 root root 4096  7Ղ 17 15:00 ./
+drwxr-xr-x 7 root root 4096  7Ղ 17 15:00 ../
+ -rw-r--r-- 1 root root  950  2Ղ  7  2012 default
+ -rw-r--r-- 1 root root 7469  2Ղ  7  2012 default-ssl
+</code></pre><p>复制defult文件作为video bbs oa 三个虚拟主机的蓝本</p>
+<pre><code>dgnet@dgnet-ip:/etc/apache2/sites-available$ sudo cp default video
+dgnet@dgnet-ip:/etc/apache2/sites-available$ sudo cp default bbs
+dgnet@dgnet-ip:/etc/apache2/sites-available$ sudo cp default oa
+</code></pre><p>编辑video</p>
+<pre><code>dgnet@dgnet-ip:/etc/apache2/sites-available$ sudo vim video
+</code></pre><p>虚拟配置如下：</p>
+<pre><code>&lt;VirtualHost *:80&gt;
+   ServerName video.lsz.com
+   ServerAdmin webmaster@localhost
 
-Linux:  Linux 是免费开源软件，这意味着源代码可用的操作系统。
+    DocumentRoot /wwwroot/video
+    &lt;Directory /&gt;
+            Options FollowSymLinks
+            AllowOverride None
+    &lt;/Directory&gt;
+    &lt;Directory /wwwroot/video/&gt;
+            Options Indexes FollowSymLinks MultiViews
+            AllowOverride None
+            Order allow,deny
+            allow from all
+    &lt;/Directory&gt;
+</code></pre><p>编辑bbs:</p>
+<pre><code>dgnet@dgnet-ip:/etc/apache2/sites-available$ sudo vim bbs
+</code></pre><p>虚拟配置如下：</p>
+<pre><code>&lt;VirtualHost *:80&gt;
+   ServerName  bbs.lsz.com
+   ServerAdmin webmaster@localhost
 
-Apache: Apache 是使用中最受欢迎的一个开放源码的WEB服务器软件。
+    DocumentRoot /wwwroot/bbs
+    &lt;Directory /&gt;
+            Options FollowSymLinks
+            AllowOverride None
+    &lt;/Directory&gt;
+    &lt;Directory /wwwroot/bbs/&gt;
+            Options Indexes FollowSymLinks MultiViews
+            AllowOverride None
+            Order allow,deny
+            allow from all
+    &lt;/Directory&gt;
+</code></pre><p>编辑oa:</p>
+<pre><code>dgnet@dgnet-ip:/etc/apache2/sites-available$ sudo vim oa
+</code></pre><p>虚拟配置如下：</p>
+<pre><code>&lt;VirtualHost *:80&gt;
+    ServerName  oa.lsz.com
+    ServerAdmin webmaster@localhost
 
-MySQL:  MySQL 是多线程、多用户的SQL数据库管理系统。
+    DocumentRoot /wwwroot/oa
+    &lt;Directory /&gt;
+            Options FollowSymLinks
+            AllowOverride None
+    &lt;/Directory&gt;
+    &lt;Directory /wwwroot/oa/&gt;
+            Options Indexes FollowSymLinks MultiViews
+            AllowOverride None
+            Order allow,deny
+            allow from all
+    &lt;/Directory&gt;
+</code></pre><p>10)启用虚拟配置文件</p>
+<pre><code>dgnet@dgnet-ip:/etc/apache2/sites-available$ cd ../sites-enabled/
+dgnet@dgnet-ip:/etc/apache2/sites-enabled$ sudo ln -s ../sites-available/video video
+dgnet@dgnet-ip:/etc/apache2/sites-enabled$ sudo ln -s ../sites-available/bbs bbs
+dgnet@dgnet-ip:/etc/apache2/sites-enabled$ sudo ln -s ../sites-available/oa oa
+dgnet@dgnet-ip:/etc/apache2/sites-enabled$ ll
+ls: 初始化月份字符串出错
+总用量 8
+drwxr-xr-x 2 root root 4096  7Ղ 17 18:14 ./
+drwxr-xr-x 7 root root 4096  7Ղ 17 15:00 ../
+lrwxrwxrwx 1 root root   26  7Ղ 17 15:00 000-default -&gt; ../sites-available/default
+lrwxrwxrwx 1 root root   22  7Ղ 17 18:14 bbs -&gt; ../sites-available/bbs
+lrwxrwxrwx 1 root root   21  7Ղ 17 18:14 oa -&gt; ../sites-available/oa
+lrwxrwxrwx 1 root root   24  7Ղ 17 18:14 video -&gt; ../sites-available/video
+dgnet@dgnet-ip:/etc/apache2/sites-enabled$ sudo service apache2 restart
+</code></pre><p> 浏览器中查看对应的域名：</p>
+<p>bbs.lsz.com</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/bbsdir.png" alt=""></p>
+<p>video.lsz.com</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/videodir.png" alt=""></p>
+<p>oa.lsz.com</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/oadir.png" alt=""></p>
+<p>11）安装数据库管理工具phpmyadmin</p>
+<pre><code>dgnet@dgnet-ip:~$ sudo apt-get install phpmyadmin
+dgnet@dgnet-ip:~$ cd /var/www
+dgnet@dgnet-ip:/var/www$ sudo ln -s /usr/share/phpmyadmin phpmyadmin
+</code></pre><p>浏览器打开</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/php.png" alt="">    </p>
+<p> 开启MySQL的remote access</p>
+<pre><code>dgnet@dgnet-ip:/var/www$ sudo vim /etc/mysql/my.cnf
+</code></pre><p>找到bind-address注释</p>
+<pre><code>#bind-address           = 127.0.0.1
+</code></pre><p>使用phpmyadmin用户密码登陆 (root,baidu.com@ip)</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/php-11.png" alt=""></p>
+<p>添加一个用户linshizhe 允许公网ip 访问</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/php-12.png" alt=""></p>
+<p>重启mysql重新加载配置：</p>
+<pre><code>dgnet@dgnet-ip:/var/www$ sudo service mysql restart
+</code></pre><p>通过Navicat测试远程连接数据库</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/cs.png" alt=""></p>
+<p>到这里lamp基本就已经部署完成了！！！</p>
 
-PHP:    PHP 是一种编程语言最初设计生产动态网站。PHP 是主要用于服务器端的应用程序软件。Perl 和 Python 类似。
-
-
-1.2LAMP工作原理
-二、实验环境：发行版本: Ubuntu 12.04.5 LTS
-内核版本：3.13.0-32-generic
-ip:192.168.198.5
-三、Ubuntu server 管理员权限解读为了安全Ubuntu 官方不推荐使用r
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/15/在Ubuntu Server下搭建LAMP环境/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
       
     </div>
 
     <div>
       
+        
+
+      
     </div>
 
     <div>
       
-    </div>
-
-    <div>
-      
-    </div>
-<div>
-  
-</div>
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://linshizhe.github.io/2017/12/15/搭建vsftpd服务/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Stefanie">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stefanie'Notes">
-    </span>
-
-    
-      <header class="post-header">
-
         
-        
-          <h2 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/12/15/搭建vsftpd服务/" itemprop="url">
-                  CentOS6.5下搭建vsftpd服务
-                </a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-15T00:05:07+08:00">
-                2017-12-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/运维/" itemprop="url" rel="index">
-                    <span itemprop="name">运维</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/12/15/搭建vsftpd服务/" class="leancloud_visitors" data-flag-title="CentOS6.5下搭建vsftpd服务">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  3,913
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  18
-                </span>
-              
-            </div>
-          
-
-          
-
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>如果您觉得这篇文章对您有帮助，不妨支持我一下！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-image.png" alt="Stefanie WeChat Pay"/>
+          <p>微信打赏</p>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
       
       
+    </div>
+  </div>
 
+
+      
+    </div>
+
+    <div>
       
         
-          
-          一、文件传输协议文件传输协议(FTP)是为进行文件共享而设计的因特网标准协议。为了能够在复杂多样的操作设备之间解决文件传输问题，于是便有了统一的FTP文件传输协议（File Transfer Protocol），这是一种能够让使用者在互联网中上传、下载文件的传输协议。FTP文件传输协议默认占用了20、21两个端口号，20端口号用于进行数据传输，21端口号用于接受客户端执行的相关FTP命令与参数，FTP服务端普遍更多的应用于内网中，具有易于搭建、方便管理的特点，并且可以借助FTP客户端工具还可以轻松实现文件的多点下载和断点续传技术，FTP协议的传输拓扑如下图所示
 
-二、实验环境服务端：Centos 6.5 (2.6.32-358.el6.x86_64)
-ip:192.168.198.141
-客户端：Centos 6.5 （2.6.32-431.el6.x86_64）
-ip：192.168.1
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/15/搭建vsftpd服务/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
       
     </div>
 <div>
   
+    
+<div style="text-align:center;color: #ccc;font-size:14px;">
+------ 本文结束 ------</div>
+<br/>
+<div style="border: 1px solid black">
+<div style="margin-left:10px">
+<span style="font-weight:blod">版权声明</span>
+<img src=http://ot2nwtxbo.bkt.clouddn.com/passage.png>
+<br/>
+<p style="font-size: 10px;line-height: 30px"><a href="linshizhe.github.io" style="color:#258FC6">Stefanie'Notes</a> by <a href="https://linshizhe.github.io/" style="color:#258FC6">Stefanie</a> is licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" style="color:#258FC6">Creative Commons BY-NC-ND 4.0 International License</a>.<br/>
+由<a href="https://linshizhe.github.io/" style="color:#258FC6">Stefanie</a>创作并维护的<a href="https://linshizhe.github.io/" style="color:#258FC6">Stefanie'Notes</a>博客采用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" style="color:#258FC6">创作共用保留署名-非商业-禁止演绎4.0国际许可证</a>。<br/>
+本文首发于<a href="https://linshizhe.github.io/" style="color:#258FC6">Stefanie'Notes</a> 博客（ <a href="https://linshizhe.github.io/" style="color:#258FC6">https://linshizhe.github.io/</a> ），版权所有，侵权必究。</p>
+</div>
+</div>
+
+  
 </div>
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://linshizhe.github.io/2017/12/15/编译pcre/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Stefanie">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stefanie'Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/12/15/编译pcre/" itemprop="url">
-                  编译PCRE库报错
-                </a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-15T00:05:07+08:00">
-                2017-12-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/运维/" itemprop="url" rel="index">
-                    <span itemprop="name">运维</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/Ubuntu/" rel="tag"># Ubuntu</a>
           
-
+            <a href="/tags/LAMP/" rel="tag"># LAMP</a>
           
-            
-          
-
-          
-          
-             <span id="/2017/12/15/编译pcre/" class="leancloud_visitors" data-flag-title="编译PCRE库报错">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  208
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
         
-          
-          一、重新编译安装pcre出错之前安装Nginx的时候没问题，后面重新安装就出现了问题
-[root@Nginx pcre-8.41]# ./configure
-checking for a BSD-compatible install... /usr/bin/install  -c
-checking whether build environment is sane... configure: error: newly created file is older than distributed files!
-Check your system clock
-这是由于系统时间与硬件时间不一致导致的
-首先查看硬件时间：
-[root@Nginx ~]# hwclock 
-Wed 15 Mar 2017 12:22:58 AM GMT  -0.978673 seconds
-查看系统时间
-[root@
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/15/编译pcre/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/15/搭建vsftpd服务/" rel="next" title="CentOS6.5下搭建vsftpd服务">
+                <i class="fa fa-chevron-left"></i> CentOS6.5下搭建vsftpd服务
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
 
-    <div>
-      
-    </div>
+          <span class="post-nav-divider"></span>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-<div>
-  
-</div>
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://linshizhe.github.io/2017/12/15/sshd服务防止暴力破解/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Stefanie">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stefanie'Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
+          <div class="post-nav-prev post-nav-item">
             
-            
-              
-                
-                <a class="post-title-link" href="/2017/12/15/sshd服务防止暴力破解/" itemprop="url">
-                  sshd服务防止暴力破解
-                </a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-15T00:05:07+08:00">
-                2017-12-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/运维/" itemprop="url" rel="index">
-                    <span itemprop="name">运维</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/12/15/sshd服务防止暴力破解/" class="leancloud_visitors" data-flag-title="sshd服务防止暴力破解">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  1,629
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  9
-                </span>
-              
-            </div>
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-          一、sshd服务防止暴力破解1)使用强密码
-8位以上，大小写，特殊符号
-2修改默认端口号（22）
-[root@lszlab01 ~]# vi /etc/ssh/sshd_config
-#Port 22
-port 801 #默认为22
-3）不使用root账号登陆
-有两种方法实现
-a) 修改/etc/passwd 文件
-[root@lszlab01 ~]# vi /etc/passwd
-root:x:0:0:root:/root:/bin/bash
-修改为：
-root:x:0:0:root:/root:/sbin/nologin
-b)修改/etc/ssh/sshd_config文件
-[root@lszlab01 ~]# vi /etc/ssh/sshd_config
-#PermitRootLogin yes
-PermitRootLogin no
-将普通用户，设置成系统管理员，因为有些程序需要使
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/15/sshd服务防止暴力破解/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-<div>
-  
-</div>
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://linshizhe.github.io/2017/12/15/RAID磁盘阵列的搭建/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Stefanie">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Stefanie'Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/12/15/RAID磁盘阵列的搭建/" itemprop="url">
-                  RAID磁盘阵列的搭建 (一)
-                </a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-15T00:05:07+08:00">
-                2017-12-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/运维/" itemprop="url" rel="index">
-                    <span itemprop="name">运维</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/12/15/RAID磁盘阵列的搭建/" class="leancloud_visitors" data-flag-title="RAID磁盘阵列的搭建 (一)">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  2,351
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  9
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
+    <div class="post-spread">
       
         
-          
-          一、RAID概念RAID（Redundant Array of Independent Disks，独立磁盘冗余阵列）可以提供较普通磁盘更高的速度、安全性，所以服务器在安装时都会选择创建RAID。
-RAID的创建有两种方式：软RAID（通过操作系统软件来实现）和硬RAID（使用硬件阵列卡）；在企业中用的最多的是：raid0、raid1、raid10和raid5。不过随着云的高速发展，供应商一般可以把硬件问题解决掉。
-二、常用的RAID1) RAID-0
-条带 （strping），也是我们最早出现的RAID模式,需磁盘数量:2块以上(大小最好相同)是组建磁盘阵列中最简单的一种形式，只需要2块以上的硬盘即可.
-特点:
-a)成本低，可以提高整个磁盘的性能和吞吐量
-b)RAID 0没有提供冗余或错误修复能力，速度快
-c)任何一个磁盘的损坏将损坏全部数据；磁盘利用率为100%
-2) RAID-1
-m
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/15/RAID磁盘阵列的搭建/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?'];
+</script>
+
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-<div>
-  
-</div>
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
+  </div>
 
 
           </div>
@@ -1333,6 +829,12 @@ m
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTUwNy82MDc1"></div>
+    
+  </div>
+
 
         </div>
         
@@ -1352,8 +854,17 @@ m
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -1479,6 +990,22 @@ m
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、前言"><span class="nav-number">1.</span> <span class="nav-text">一、前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1LAMP详解"><span class="nav-number">1.1.</span> <span class="nav-text">1.1LAMP详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件组件："><span class="nav-number">1.2.</span> <span class="nav-text">软件组件：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2LAMP工作原理"><span class="nav-number">1.3.</span> <span class="nav-text">1.2LAMP工作原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、实验环境："><span class="nav-number">2.</span> <span class="nav-text">二、实验环境：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、Ubuntu-server-管理员权限解读"><span class="nav-number">3.</span> <span class="nav-text">三、Ubuntu server 管理员权限解读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、安装软件"><span class="nav-number">4.</span> <span class="nav-text">四、安装软件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、其他设置"><span class="nav-number">5.</span> <span class="nav-text">五、其他设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、LAMP环境配置文件"><span class="nav-number">6.</span> <span class="nav-text">六、LAMP环境配置文件</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -1596,6 +1123,10 @@ m
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 

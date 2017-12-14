@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="KVM," />
+  <meta name="keywords" content="Vsftpd," />
 
 
 
@@ -87,21 +87,19 @@
 
 
 
-<meta name="description" content="一、关于虚拟化目前市场主要虚拟化厂商及产品 •  VMware vSphere •  微软 Hyper-V •  Citrix XenServer •  IBM PowerVM •  Red Hat Enterprise Virtulization •  开源的KVM、 Xen 、VirtualBSD等。 •  KVM （Kernel-Based Virtual Machine） •  2007年">
-<meta name="keywords" content="KVM">
+<meta name="description" content="一、文件传输协议文件传输协议(FTP)是为进行文件共享而设计的因特网标准协议。为了能够在复杂多样的操作设备之间解决文件传输问题，于是便有了统一的FTP文件传输协议（File Transfer Protocol），这是一种能够让使用者在互联网中上传、下载文件的传输协议。FTP文件传输协议默认占用了20、21两个端口号，20端口号用于进行数据传输，21端口号用于接受客户端执行的相关FTP命令与参数，F">
+<meta name="keywords" content="Vsftpd">
 <meta property="og:type" content="article">
-<meta property="og:title" content="KVM虚拟化（一）">
-<meta property="og:url" content="https://linshizhe.github.io/2017/12/15/KVM虚拟化（一）/index.html">
+<meta property="og:title" content="CentOS6.5下搭建vsftpd服务">
+<meta property="og:url" content="https://linshizhe.github.io/2017/12/15/搭建vsftpd服务/index.html">
 <meta property="og:site_name" content="Stefanie&#39;Notes">
-<meta property="og:description" content="一、关于虚拟化目前市场主要虚拟化厂商及产品 •  VMware vSphere •  微软 Hyper-V •  Citrix XenServer •  IBM PowerVM •  Red Hat Enterprise Virtulization •  开源的KVM、 Xen 、VirtualBSD等。 •  KVM （Kernel-Based Virtual Machine） •  2007年">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/kvm-1.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/kvm-3.png">
-<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/kvm-2.png">
-<meta property="og:updated_time" content="2017-12-14T15:58:40.858Z">
+<meta property="og:description" content="一、文件传输协议文件传输协议(FTP)是为进行文件共享而设计的因特网标准协议。为了能够在复杂多样的操作设备之间解决文件传输问题，于是便有了统一的FTP文件传输协议（File Transfer Protocol），这是一种能够让使用者在互联网中上传、下载文件的传输协议。FTP文件传输协议默认占用了20、21两个端口号，20端口号用于进行数据传输，21端口号用于接受客户端执行的相关FTP命令与参数，F">
+<meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/ftp.png">
+<meta property="og:updated_time" content="2017-07-19T17:12:26.303Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="KVM虚拟化（一）">
-<meta name="twitter:description" content="一、关于虚拟化目前市场主要虚拟化厂商及产品 •  VMware vSphere •  微软 Hyper-V •  Citrix XenServer •  IBM PowerVM •  Red Hat Enterprise Virtulization •  开源的KVM、 Xen 、VirtualBSD等。 •  KVM （Kernel-Based Virtual Machine） •  2007年">
-<meta name="twitter:image" content="http://ot2nwtxbo.bkt.clouddn.com/kvm-1.png">
+<meta name="twitter:title" content="CentOS6.5下搭建vsftpd服务">
+<meta name="twitter:description" content="一、文件传输协议文件传输协议(FTP)是为进行文件共享而设计的因特网标准协议。为了能够在复杂多样的操作设备之间解决文件传输问题，于是便有了统一的FTP文件传输协议（File Transfer Protocol），这是一种能够让使用者在互联网中上传、下载文件的传输协议。FTP文件传输协议默认占用了20、21两个端口号，20端口号用于进行数据传输，21端口号用于接受客户端执行的相关FTP命令与参数，F">
+<meta name="twitter:image" content="http://ot2nwtxbo.bkt.clouddn.com/ftp.png">
 
 
 
@@ -129,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="https://linshizhe.github.io/2017/12/15/KVM虚拟化（一）/"/>
+  <link rel="canonical" href="https://linshizhe.github.io/2017/12/15/搭建vsftpd服务/"/>
 
 
 
 
 
-  <title> KVM虚拟化（一） | Stefanie'Notes </title>
+  <title> CentOS6.5下搭建vsftpd服务 | Stefanie'Notes </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -318,7 +316,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://linshizhe.github.io/2017/12/15/KVM虚拟化（一）/">
+    <link itemprop="mainEntityOfPage" href="https://linshizhe.github.io/2017/12/15/搭建vsftpd服务/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Stefanie">
@@ -339,7 +337,7 @@
             
             
               
-                KVM虚拟化（一）
+                CentOS6.5下搭建vsftpd服务
               
             
           </h2>
@@ -354,7 +352,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-15T00:00:03+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-15T00:05:07+08:00">
                 2017-12-15
               </time>
             
@@ -394,7 +392,7 @@
 
           
           
-             <span id="/2017/12/15/KVM虚拟化（一）/" class="leancloud_visitors" data-flag-title="KVM虚拟化（一）">
+             <span id="/2017/12/15/搭建vsftpd服务/" class="leancloud_visitors" data-flag-title="CentOS6.5下搭建vsftpd服务">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -418,7 +416,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  1,872
+                  3,913
                 </span>
               
 
@@ -434,7 +432,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  10
+                  18
                 </span>
               
             </div>
@@ -453,181 +451,410 @@
       
 
       
-        <h2 id="一、关于虚拟化"><a href="#一、关于虚拟化" class="headerlink" title="一、关于虚拟化"></a>一、关于虚拟化</h2><p>目前市场主要虚拟化厂商及产品</p>
-<p>•  VMware vSphere</p>
-<p>•  微软 Hyper-V</p>
-<p>•  Citrix XenServer</p>
-<p>•  IBM PowerVM</p>
-<p>•  Red Hat Enterprise Virtulization</p>
-<p>•  开源的KVM、 Xen 、VirtualBSD等。</p>
-<p>•  KVM （Kernel-Based Virtual Machine）</p>
-<p>•  2007年10月份发布Linux 2.6.20内核第一次包含KVM</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/kvm-1.png" alt=""></p>
-<h2 id="二、实验环境："><a href="#二、实验环境：" class="headerlink" title="二、实验环境："></a>二、实验环境：</h2><pre><code>[root@kvm-server-01 ~]# cat /etc/redhat-release 
-CentOS Linux release 7.4.1708 (Core) 
-[root@kvm-server-01 ~]# uname -r
-3.10.0-693.el7.x86_64
-</code></pre><p> ip：192.168.198.24</p>
-<p>实验前先禁止防火墙，NetworkManager，和关闭selinux</p>
-<pre><code>[root@kvm-server-01 ~]# systemctl disable firewalld
-Removed symlink /etc/systemd/system/multi-user.target.wants/firewalld.service.
-Removed symlink /etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service.
-[root@kvm-server-01 ~]# systemctl disable NetworkManager
-Removed symlink /etc/systemd/system/multi-user.target.wants/NetworkManager.service.
-Removed symlink /etc/systemd/system/dbus-org.freedesktop.NetworkManager.service.
-Removed symlink /etc/systemd/system/dbus-org.freedesktop.nm-dispatcher.service.
-[root@kvm-server-01 ~]# systemctl stop firewalld
-[root@kvm-server-01 ~]# systemctl stop NetworkManager
-</code></pre><p>编辑selinux的配置文件，把SELINUX=enforcing 的值改成    disabled 保存退出。</p>
-<pre><code>[root@kvm-server-01 ~]# vi /etc/selinux/config
-# This file controls the state of SELinux on the system.
-# SELINUX= can take one of these three values:
-#     enforcing - SELinux security policy is enforced.
-#     permissive - SELinux prints warnings instead of enforcing.
-#     disabled - No SELinux policy is loaded.
-#SELINUX=enforcing
- SELINUX=disabled
-# SELINUXTYPE= can take one of three two values:
-#     targeted - Targeted processes are protected,
-#     minimum - Modification of targeted policy. Only selected processes are protected.
-#     mls - Multi Level Security protection.
-SELINUXTYPE=targeted
-</code></pre><p>重启机器配置生效</p>
-<pre><code>[root@kvm-server-01 ~]# reboot
-</code></pre><h2 id="三、安装KVM相关软件："><a href="#三、安装KVM相关软件：" class="headerlink" title="三、安装KVM相关软件："></a>三、安装KVM相关软件：</h2><p>1) 查看CPU是否支持KVM虚拟化。</p>
-<pre><code>[root@kvm-server-01 ~]# grep -E &quot;svm | vmx &quot; /proc/cpuinfo
-flags        : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts nopl xtopology tsc_reliable nonstop_tsc aperfmperf eagerfpu pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer xsave avx f16c rdrand hypervisor lahf_lm abm epb tpr_shadow vnmi ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 invpcid xsaveopt dtherm arat pln pts
-flags        : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts nopl xtopology tsc_reliable nonstop_tsc aperfmperf eagerfpu pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer xsave avx f16c rdrand hypervisor lahf_lm abm epb tpr_shadow vnmi ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 invpcid xsaveopt dtherm arat pln pts
-flags        : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts nopl xtopology tsc_reliable nonstop_tsc aperfmperf eagerfpu pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer xsave avx f16c rdrand hypervisor lahf_lm abm epb tpr_shadow vnmi ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 invpcid xsaveopt dtherm arat pln pts
-flags        : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts nopl xtopology tsc_reliable nonstop_tsc aperfmperf eagerfpu pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer xsave avx f16c rdrand hypervisor lahf_lm abm epb tpr_shadow vnmi ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 invpcid xsaveopt dtherm arat pln pts
-</code></pre><p>如果无输出信息，可以进去机器BIOS里面改 Intel(R) Virtualization Technology(Disable &amp;&amp;Enable)选项卡的值改成Enable</p>
-<p>2）安装相关KVM软件</p>
-<pre><code>[root@kvm-server-01 ~]# yum -y install qemu-kvm qemu-kvm-tools virt-manager libvirt virt-install
-</code></pre><p>3）查看KVM模块是否加载</p>
-<pre><code>[root@kvm-server-01 ~]# lsmod | grep kvm
-kvm_intel             170086  0 
-kvm                   566340  1 kvm_intel
-irqbypass             13503  1 kvm
-</code></pre><p>4）查看网卡配置</p>
-<pre><code>[root@kvm-server-01 ~]# ifconfig
-ens33: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
-    inet 192.168.198.24  netmask 255.255.255.0  broadcast 192.168.198.255
-    inet6 fe80::20c:29ff:fecb:f3df  prefixlen 64  scopeid 0x20&lt;link&gt;
-    ether 00:0c:29:cb:f3:df  txqueuelen 1000  (Ethernet)
-    RX packets 74536  bytes 106116373 (101.2 MiB)
-    RX errors 0  dropped 0  overruns 0  frame 0
-    TX packets 30060  bytes 2494387 (2.3 MiB)
-    TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+        <h2 id="一、文件传输协议"><a href="#一、文件传输协议" class="headerlink" title="一、文件传输协议"></a>一、文件传输协议</h2><p>文件传输协议(FTP)是为进行文件共享而设计的因特网标准协议。为了能够在复杂多样的操作设备之间解决文件传输问题，于是便有了统一的FTP文件传输协议（File Transfer Protocol），这是一种能够让使用者在互联网中上传、下载文件的传输协议。FTP文件传输协议默认占用了20、21两个端口号，20端口号用于进行数据传输，21端口号用于接受客户端执行的相关FTP命令与参数，FTP服务端普遍更多的应用于内网中，具有易于搭建、方便管理的特点，并且可以借助FTP客户端工具还可以轻松实现文件的多点下载和断点续传技术，FTP协议的传输拓扑如下图所示</p>
+<p><img src="http://ot2nwtxbo.bkt.clouddn.com/ftp.png" alt=""></p>
+<h2 id="二、实验环境"><a href="#二、实验环境" class="headerlink" title="二、实验环境"></a>二、实验环境</h2><p>服务端：Centos 6.5 (2.6.32-358.el6.x86_64)</p>
+<p>ip:192.168.198.141</p>
+<p>客户端：Centos 6.5 （2.6.32-431.el6.x86_64）</p>
+<p>ip：192.168.198.100</p>
+<p>selinux =disable</p>
+<pre><code>[root@vsftpdserver ~]# vi /etc/sysconfig/selinux
+SELINUX=disabled
+</code></pre><p>iptables防火墙管理工具中默认禁止了ftp传输协议的端口号，因此在正式配置vsftpd服务程序前还需要清空一下iptables防火墙的默认策略，并把当前已经被清理的防火墙策略状态保存下来：</p>
+<pre><code>[root@vsftpdserver ~]# iptables -F
+[root@vsftpdserver ~]# service iptables save
+iptables: Saving firewall rules to /etc/sysconfig/iptables:[  OK  ]
+</code></pre><h2 id="三、安装软件"><a href="#三、安装软件" class="headerlink" title="三、安装软件"></a>三、安装软件</h2><p>1）服务端：vsftpd</p>
+<pre><code>[root@vsftpdserver ~]# yum -y install vsftpd
+[root@vsftpdserver ~]# rpm -aq|grep vsftpd
+vsftpd-2.2.2-24.el6.x86_64
+</code></pre><p>2)客户端：ftp</p>
+<pre><code>[root@ip-ftp_client ~]# yum -y install ftp
+[root@ip-ftp_client ~]# rpm -aq|grep ftp
+ftp-0.17-54.el6.x86_64
+</code></pre><p>3）vsftpd服务程序的主配置文件中常用的参数及作用介绍</p>
+<pre><code>参数                                        作用
 
-lo: flags=73&lt;UP,LOOPBACK,RUNNING&gt;  mtu 65536
-    inet 127.0.0.1  netmask 255.0.0.0
-    inet6 ::1  prefixlen 128  scopeid 0x10&lt;host&gt;
-    loop  txqueuelen 1  (Local Loopback)
-    RX packets 0  bytes 0 (0.0 B)
-    RX errors 0  dropped 0  overruns 0  frame 0
-    TX packets 0  bytes 0 (0.0 B)
-    TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-</code></pre><p>5）启用并启动ibvirtd.service服务</p>
-<pre><code>[root@kvm-server-01 ~]# systemctl enable libvirtd.service
-[root@kvm-server-01 ~]# systemctl start libvirtd.service
-[root@kvm-server-01 ~]# ifconfig
-ens33: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
-    inet 192.168.198.24  netmask 255.255.255.0  broadcast 192.168.198.255
-    inet6 fe80::20c:29ff:fecb:f3df  prefixlen 64  scopeid 0x20&lt;link&gt;
-    ether 00:0c:29:cb:f3:df  txqueuelen 1000  (Ethernet)
-    RX packets 74734  bytes 106133307 (101.2 MiB)
-    RX errors 0  dropped 0  overruns 0  frame 0
-    TX packets 30169  bytes 2507305 (2.3 MiB)
-    TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+listen=[YES|NO]                       是否以独立运行的方式监听服务。
 
-lo: flags=73&lt;UP,LOOPBACK,RUNNING&gt;  mtu 65536
-    inet 127.0.0.1  netmask 255.0.0.0
-    inet6 ::1  prefixlen 128  scopeid 0x10&lt;host&gt;
-    loop  txqueuelen 1  (Local Loopback)
-    RX packets 0  bytes 0 (0.0 B)
-    RX errors 0  dropped 0  overruns 0  frame 0
-    TX packets 0  bytes 0 (0.0 B)
-    TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+listen_address=IP地址                  设置要监听的IP地址。
 
-virbr0: flags=4099&lt;UP,BROADCAST,MULTICAST&gt;  mtu 1500
-    inet 192.168.122.1  netmask 255.255.255.0  broadcast 192.168.122.255
-    ether 52:54:00:3b:2f:6d  txqueuelen 1000  (Ethernet)
-    RX packets 0  bytes 0 (0.0 B)
-    RX errors 0  dropped 0  overruns 0  frame 0
-    TX packets 0  bytes 0 (0.0 B)
-    TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-</code></pre><p>6）我把以后要创建的虚拟放在磁盘sdb1，对应/home/KVM_data目录</p>
-<pre><code>[root@kvm-server-01 ~]# lsblk
-NAME                                 MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-sda                                    8:0    0  160G  0 disk 
-├─sda1                                 8:1    0    1G  0 part /boot
-└─sda2                                 8:2    0  159G  0 part 
-├─centos_pxe--server--centos7-root 253:0    0   50G  0 lvm  /
-├─centos_pxe--server--centos7-swap 253:1    0    2G  0 lvm  [SWAP]
-└─centos_pxe--server--centos7-home 253:2    0  107G  0 lvm  /home
-sdb                                    8:16   0  160G  0 disk 
-└─sdb1                                 8:17   0  160G  0 part /home/KVM_data
-sr0                                   11:0    1  4.2G  0 rom  
-</code></pre><p>7）虚拟机磁盘格式，raw 、qcow2</p>
-<p>•  raw</p>
-<p>格式是最简单，什么都没有，所以叫raw格式。连头文件都没有，就是一个直接给虚拟机进行读写的文件。raw不支持动态增长空间，必须一开始就指定空间大小。所以相当的耗费磁盘空间。</p>
-<p>•  qcow2</p>
-<p>qcow2是集各种技术为一体的超级镜像格式，支持内部快照，加密，压缩等一系列功能，访问性能也在不断提高。但qcow2的问题就是过于臃肿，把什么功能都集于一身。</p>
-<p>8）创建虚拟机磁盘文件</p>
-<pre><code>[root@kvm-server-01 ~]# cd /home/KVM_data/
-[root@kvm-server-01 KVM_data]# ll
-总用量 16
-drwx------ 2 root root 16384 12月 14 13:44 lost+found
+listen_port=21                        设置FTP服务的监听端口。
 
-[root@kvm-server-01 KVM_data]# qemu-img create -f qcow2 CentOS-7.4-x86_64.qcow2 10G
-Formatting &apos;CentOS-7.4-x86_64.qcow2&apos;, fmt=qcow2 size=10737418240 encryption=off cluster_size=65536 lazy_refcounts=off 
-[root@kvm-server-01 KVM_data]# ll
-总用量 216
- -rw-r--r-- 1 root root 197120 12月 14 15:10 CentOS-7.4-x86_64.qcow2
- drwx------ 2 root root  16384 12月 14 13:44 lost+found
-</code></pre><p> 9）安装centos7虚拟机的需要用到镜像，先把镜像临时挂载到/mnt/cdrom 目录</p>
-<pre><code>[root@kvm-server-01 ~]# mkdir /mnt/cdrom
-[root@kvm-server-01 ~]# mount -t iso9660  /dev/cdrom /mnt/cdrom
-</code></pre><p>10）把镜像，转换成安装虚拟机用到的iso文件</p>
-<pre><code>[root@kvm-server-01 KVM_data]# dd if=/dev/cdrom of=/home/KVM_data/CentOS-7.4-x86_64.iso
-</code></pre><p>11）安装centos7虚拟机</p>
-<pre><code>[root@kvm-server-01 KVM_data]# virt-install --name CentOS-7-x86-64 --virt-type kvm --ram 1024--cdrom=/home/KVM_data/CentOS-7.4-x86_64.iso --disk path=/home/KVM_data/CentOS-7.4-x86_64.qcow2 --network network=default --graphics vnc,listen=0.0.0.0 –noautoconsole
-</code></pre><p>12）使用vnc客户端连接安装的虚拟机</p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/kvm-3.png" alt=""></p>
-<p><img src="http://ot2nwtxbo.bkt.clouddn.com/kvm-2.png" alt=""></p>
-<p>13)查看虚拟机，和虚拟机使用的端口</p>
-<pre><code>[root@kvm-server-01 ~]# virsh list --all
-Id    名称                         状态
-----------------------------------------------------
-1     CentOS-7-x86-64                running
+download_enable＝[YES|NO]            是否允许下载文件。
 
-[root@kvm-server-01 ~]# netstat -anlp| grep 5900
-tcp        0      0 0.0.0.0:5900            0.0.0.0:*               LISTEN      12152/qemu-kvm      
-</code></pre><p>14）常用命令</p>
-<p>a) 虚拟机配置文件，就是xml文件所在的目录是 </p>
-<pre><code>/etc/libvirt/qemu/
-</code></pre><p>b) 查看运行的虚拟机</p>
-<pre><code>virsh list
-</code></pre><p>c) 查看所有的虚拟机（运行和关闭的虚拟机）</p>
-<pre><code>virsh list --all
-</code></pre><p>d) 关闭虚拟机（强制关机）</p>
-<pre><code>virsh destroy +domain
-</code></pre><p>e) 挂起虚拟机</p>
-<pre><code>virsh suspend +domain
-</code></pre><p>f) 恢复被挂起的虚拟机</p>
-<pre><code>virsh resume +domain
-</code></pre><p>g) 子机随宿主主机启动而启动</p>
-<pre><code>virsh autostart +domain
-</code></pre><p>h) 取消自动启动</p>
-<pre><code>virsh autostart --disable +domain
-</code></pre><p>i） 删除创建的虚拟机</p>
-<pre><code>virshundefine +domain
-</code></pre><p>j) 启动虚拟机</p>
-<pre><code>virsh start +domain
-</code></pre><p>k) 关闭虚拟机</p>
-<pre><code>virsh shutdown +domain
-</code></pre><p>内容太多，下节继续。~~~~</p>
+userlist_enable=[YES|NO]            是否启用“禁止登陆用户名单”。
 
+userlist_deny=[YES|NO]                是否启用“禁止登陆用户名单”。
+
+max_clients=0                        最大客户端连接数，0为不限制。
+
+max_per_ip=0                        同一IP地址最大连接数，0为不限制。
+
+anonymous_enable=[YES|NO]            是否允许匿名用户访问。
+
+anon_upload_enable=[YES|NO]            是否允许匿名用户上传文件。
+
+anon_umask=022                        匿名用户上传文件的umask值。
+
+anon_root=/var/ftp                    匿名用户的FTP根目录。
+
+anon_mkdir_write_enable=[YES|NO]    是否允许匿名用户创建目录。
+
+anon_other_write_enable=[YES|NO]    是否开放匿名用户其他写入权限。
+
+anon_max_rate=0                        匿名用户最大传输速率(字节)，0为不限制。
+
+local_enable=[YES|NO]                是否允许本地用户登陆FTP。
+
+local_umask=022                        本地用户上传文件的umask值。
+
+local_root=/var/ftp                    本地用户的FTP根目录。
+
+chroot_local_user=[YES|NO]            是否将用户权限禁锢在FTP目录，更加的安全。
+
+local_max_rate=0                    本地用户最大传输速率(字节)，0为不限制。
+</code></pre><h2 id="四、配置vsftpd"><a href="#四、配置vsftpd" class="headerlink" title="四、配置vsftpd"></a>四、配置vsftpd</h2><p>vsftpd作为更加安全的FTP文件传输协议的服务程序，可以让用户分别通过匿名开放、本地用户和虚拟用户三种身份验证方式来登陆到FTP服务器上面。</p>
+<p>1) 匿名访问模式</p>
+<pre><code>[root@vsftpdserver ~]# mv /etc/vsftpd/vsftpd.conf /etc/vsftpd/vsftpd.conf_bak
+[root@vsftpdserver ~]# grep -v &quot;#&quot; /etc/vsftpd/vsftpd.conf_bak &gt; /etc/vsftpd/vsftpd.conf
+[root@vsftpdserver ~]# cat /etc/vsftpd/vsftpd.conf
+anonymous_enable=YES
+local_enable=YES
+write_enable=YES
+local_umask=022
+dirmessage_enable=YES
+xferlog_enable=YES
+connect_from_port_20=YES
+xferlog_std_format=YES
+listen=YES
+
+pam_service_name=vsftpd
+userlist_enable=YES
+tcp_wrappers=YES
+</code></pre><p>修改vsftpd.conf配置</p>
+<pre><code>[root@vsftpdserver ~]# vi /etc/vsftpd/vsftpd.conf
+anonymous_enable=YES
+anon_umask=022
+anon_upload_enable=YES
+anon_mkdir_write_enable=YES
+anon_other_write_enable=YES
+local_enable=YES
+write_enable=YES
+local_umask=022
+dirmessage_enable=YES
+xferlog_enable=YES
+connect_from_port_20=YES
+xferlog_std_format=YES
+listen=YES
+
+pam_service_name=vsftpd
+userlist_enable=YES
+tcp_wrappers=YES
+</code></pre><p>保存配置后重启服务，并设置服务开机自启动</p>
+<pre><code>[root@vsftpdserver ~]# service vsftpd restart
+Shutting down vsftpd:                                      [FAILED]
+Starting vsftpd for vsftpd:                                [  OK  ]
+[root@vsftpdserver ~]# chkconfig vsftpd on
+</code></pre><p>在客户端测试：</p>
+<pre><code>[root@ip-ftp_client ~]# ftp 192.168.198.141
+Connected to 192.168.198.141 (192.168.198.141).
+220 (vsFTPd 2.2.2)
+Name (192.168.198.141:root): anonymous  （用户名anonymous）
+331 Please specify the password.
+Password:  （此次直接回车）
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp&gt; 
+</code></pre><p>cd到pub目录，创建一个SYS目录</p>
+<pre><code>ftp&gt; cd pub
+250 Directory successfully changed.
+ftp&gt; mkdir SYS
+550 Create directory operation failed.
+</code></pre><p>我们看到mkdir SYS 提示550 Create directory operation failed.（？？？fuck,什么原因？？，前面我们设置 了anon_mkdir_write_enable=YES)，原来FTP服务的匿名开放模式是默认登陆到了/var/ftp目录中，查看下这个目录的权限后才发现原来只有root管理员用户才有写入权限的，怪不得会提示写入出错呢，只需要把目录的所有者身份改成系统帐户ftp即可，这样就应该可以了~</p>
+<pre><code>[root@vsftpdserver ~]# ls -ld /var/ftp/pub
+drwxr-xr-x. 6 root root 4096 Mar 22 12:14 /var/ftp/pub
+[root@vsftpdserver ~]#  chown -Rf ftp /var/ftp/pub
+[root@vsftpdserver ~]# ls -ld /var/ftp/pub
+drwxr-xr-x. 6 ftp root 4096 Mar 22 12:14 /var/ftp/pub
+</code></pre><p>然后再创建几个目录看看行不行</p>
+<pre><code>ftp&gt; cd pub
+250 Directory successfully changed.
+ftp&gt; mkdir SYS
+257 &quot;/pub/SYS&quot; created
+ftp&gt; mkdir NET
+257 &quot;/pub/NET&quot; created
+ftp&gt; mkdir CWB
+257 &quot;/pub/CWB&quot; created
+ftp&gt; 
+</code></pre><p>回到服务端查看目录：</p>
+<pre><code>[root@vsftpdserver ~]# cd /var/ftp/pub
+[root@vsftpdserver pub]# ll
+total 12
+drwxr-xr-x 2 ftp ftp 4096 Jul 19 20:35 CWB
+drwxr-xr-x 2 ftp ftp 4096 Jul 19 20:35 NET
+drwxr-xr-x 2 ftp ftp 4096 Jul 19 20:35 SYS
+</code></pre><p>客户端上传文件：</p>
+<pre><code>ftp&gt; cd /pub/SYS
+250 Directory successfully changed.
+ftp&gt; put sys.text
+local: sys.text remote: sys.text
+227 Entering Passive Mode (192,168,198,141,95,201).
+150 Ok to send data.
+226 Transfer complete.
+ftp&gt; cd /pub/NET
+250 Directory successfully changed.
+ftp&gt; put net.text
+local: net.text remote: net.text
+227 Entering Passive Mode (192,168,198,141,73,52).
+150 Ok to send data.
+226 Transfer complete.
+ftp&gt; cd /pub/CWB
+250 Directory successfully changed.
+ftp&gt; put cwb.text
+local: cwb.text remote: cwb.text
+227 Entering Passive Mode (192,168,198,141,121,92).
+150 Ok to send data.
+226 Transfer complete
+</code></pre><p>服务端查看：</p>
+<pre><code>[root@vsftpdserver pub]# cd NET
+[root@vsftpdserver NET]# ll
+total 0
+ -rw-r--r-- 1 ftp ftp 0 Jul 19 20:46 net.text
+</code></pre><p>客户端测试下载：</p>
+<p>现在服务端创建一个iphone.txt的文件</p>
+<pre><code>[root@vsftpdserver ~]# cd /var/ftp/pub
+[root@vsftpdserver pub]# touch iphone.txt
+[root@vsftpdserver pub]# ll
+ total 12
+ drwxr-xr-x 2 ftp  ftp  4096 Jul 19 20:46 CWB
+ -rw-r--r-- 1 root root    0 Jul 19 20:53 iphone.txt
+ drwxr-xr-x 2 ftp  ftp  4096 Jul 19 20:46 NET
+ drwxr-xr-x 2 ftp  ftp  4096 Jul 19 20:45 SYS
+</code></pre><p>客户端下载：</p>
+<pre><code>ftp&gt; get iphone.txt
+local: iphone.txt remote: iphone.txt
+227 Entering Passive Mode (192,168,198,141,213,175).
+150 Opening BINARY mode data connection for iphone.txt (0 bytes).
+226 Transfer complete.
+</code></pre><p>下载到对应目录</p>
+<pre><code>[root@ip-ftp_client iphone]# ll
+总用量 0
+ -rw-r--r-- 1 root root 0 7月  18 16:56 iphone.txt
+</code></pre><p>2）本地用户模式    </p>
+<p>本地用户模式是通过Linux系统本地的帐号密码信息进行的验证方式，这种模式相比较匿名开放模式来说比较安全，因此推荐既然开启了本地用户模式，就把匿名开放模式给关闭了吧~</p>
+<p>a)编辑配置文件vsftpd.conf</p>
+<pre><code>[root@vsftpdserver ~]# vi /etc/vsftpd/vsftpd.conf
+anonymous_enable=NO
+local_enable=YES
+write_enable=YES
+local_umask=022
+dirmessage_enable=YES
+xferlog_enable=YES
+connect_from_port_20=YES
+xferlog_std_format=YES
+listen=YES
+pam_service_name=vsftpd
+userlist_enable=YES
+tcp_wrappers=YES
+</code></pre><p>b)修改默认端口</p>
+<p>默认FTP服务器端口号是21，出于安全目的，有时需修改默认端口号，修改/etc/vsftpd/vsftpd.conf，添加语句(例)：listen_port=4449</p>
+<pre><code>[root@vsftpdserver ~]# vi /etc/vsftpd/vsftpd.conf
+listen_port=4449
+</code></pre><p>c)重启服务，并设置开机自启</p>
+<pre><code>[root@vsftpdserver ~]# service vsftpd restart
+Shutting down vsftpd:                                      [  OK  ]
+Starting vsftpd for vsftpd:                                [  OK  ]
+</code></pre><p>d)设置用户组</p>
+<p>递归创建新目录</p>
+<pre><code>[root@vsftpdserver ~]# mkdir -p /home/SYS
+</code></pre><p>新建组</p>
+<pre><code>[root@vsftpdserver ~]# groupadd SYS
+</code></pre><p>新建用户SYS-01、SYS-02、SYS-03并指定家目录和属组</p>
+<pre><code>[root@vsftpdserver ~]# useradd -g SYS -d /home/SYS SYS-01
+[root@vsftpdserver ~]# useradd -g SYS -d /home/SYS SYS-02
+[root@vsftpdserver ~]# useradd -g SYS -d /home/SYS SYS-03
+</code></pre><p>为新用户SYS-01、SYS-02、SYS-03设密码 （baidu.com@ip）</p>
+<pre><code>[root@vsftpdserver ~]# passwd SYS-01
+Changing password for user SYS-01.
+New password: 
+Retype new password: 
+passwd: all authentication tokens updated successfully.
+[root@vsftpdserver ~]# passwd SYS-02
+Changing password for user SYS-02.
+New password: 
+Retype new password: 
+passwd: all authentication tokens updated successfully.
+[root@vsftpdserver ~]# passwd SYS-03
+Changing password for user SYS-03.
+New password: 
+Retype new password: 
+passwd: all authentication tokens updated successfully.
+</code></pre><p>设置目录属主为用户SYS-01</p>
+<pre><code>[root@vsftpdserver ~]# chown SYS-01 /home/SYS
+</code></pre><p>设置目录属组为组SYS</p>
+<pre><code>[root@vsftpdserver ~]# chown .SYS /home/SYS
+</code></pre><p>设置目录访问权限SYS-01为读，写，执行；SYS-02，SYS-03为读，执行</p>
+<pre><code>[root@vsftpdserver ~]# chmod 750 /home/SYS
+</code></pre><p>使用SYS-01登陆到服务端：分别执行创建目录文件、重命名文件以及删除目录文件</p>
+<pre><code>[root@ip-ftp_client ~]# ftp 192.168.198.141 4449
+Connected to 192.168.198.141 (192.168.198.141).
+220 (vsFTPd 2.2.2)
+Name (192.168.198.141:root): SYS-01
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp&gt; cd /home/SYS
+250 Directory successfully changed.
+ftp&gt; mkdir SYS-01
+257 &quot;/home/SYS/SYS-01&quot; created
+ftp&gt; rename SYS-01 SYS-01_database
+350 Ready for RNTO.
+250 Rename successful.
+ftp&gt; rmdir SYS-01_database
+250 Remove directory operation successful.
+</code></pre><p>使用SYS-02登陆到服务端：分别执行创建目录文件、重命名文件以及删除目录文件</p>
+<pre><code>[root@ip-ftp_client ~]# ftp 192.168.198.141 4449
+Connected to 192.168.198.141 (192.168.198.141).
+220 (vsFTPd 2.2.2)
+Name (192.168.198.141:root): SYS-02
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp&gt; ls
+227 Entering Passive Mode (192,168,198,141,228,42).
+150 Here comes the directory listing.
+ -rw-r--r--    1 0        0               0 Jul 19 22:08 sys_log
+226 Directory send OK.
+tp&gt; mkdir SYS-02
+550 Create directory operation failed.
+</code></pre><p>使用SYS-03登陆到服务端：分别执行创建目录文件、重命名文件以及删除目录文件</p>
+<pre><code>root@ip-ftp_client ~]# ftp 192.168.198.141 4449
+Connected to 192.168.198.141 (192.168.198.141).
+220 (vsFTPd 2.2.2)
+Name (192.168.198.141:root): SYS-03
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp&gt; cd /home/SYS
+250 Directory successfully changed.
+ftp&gt; ls
+227 Entering Passive Mode (192,168,198,141,178,100).
+150 Here comes the directory listing.
+ -rw-r--r--    1 0        0               0 Jul 19 22:08 sys_log
+226 Directory send OK.
+ftp&gt; mkdir SYS-03
+550 Create directory operation failed.
+</code></pre><p>由于本地用户登录FTP服务器后进入自己主目录，而SYS-01,SYS-02 SYS-03对主目录/home/SYS分配的权限不同，所以通过FTP访问的权限也不同，SYS-01访问权限为：上传，下载，建目录；SYS-02，SYS-03访问权限为下载，浏览，不能建目录和上传。实现了群组中用户不同访问级别，加强了对FTP服务器的分级安全管理。</p>
+<p>3）虚拟用户模式</p>
+<p>虚拟用户模式是一种相比较来说最为安全的验证方式，需要为FTP传输服务单独建立用户数据库文件，虚拟出用来口令验证的帐户信息，这些帐号是在服务器系统中不存在的，仅供FTP传输服务做验证使用，因此这样即便骇客破解出了帐号口令密码后也无法登录到服务器主机上面，有效的降低了破坏范围和影响。所以只要在配置妥当合理的情况下，虚拟用户模式要比前两种验证方式更加的安全，同时配置的流程也稍微会复杂一些。</p>
+<p>第一步：创建用于进行FTP验证的帐号密码数据库文件，单数行为账户名，偶数行为密码，例如分别创建出support-01和support-02两个用户，密码均为baidu.com@ip</p>
+<pre><code>[root@vsftpdserver SYS]# cd /etc/vsftpd/
+[root@vsftpdserver vsftpd]# vi vuser.list
+support-01
+baidu.com@ip
+support-02
+baidu.com@ip
+</code></pre><p>明文信息既不安全，也不能让vsftpd服务程序直接读取，因此需要使用db_load命令用HASH算法将这个原始的明文信息文件转换成数据库文件，并且再把数据库文件权限调小一些（避免其他人能看到数据库文件的内容），然后再把原始的明文信息文件删除掉。</p>
+<pre><code>[root@vsftpdserver vsftpd]# db_load -T -t hash -f vuser.list vuser.db
+[root@vsftpdserver vsftpd]# file vuser.db
+vuser.db: Berkeley DB (Hash, version 9, native byte-order)
+[root@vsftpdserver vsftpd]# chmod 600 vuser.db
+[root@vsftpdserver vsftpd]# rm -f vuser.list
+</code></pre><p>第2步：创建用于FTP服务存储文件的根目录以及虚拟用户映射的系统本地用户，FTP服务存储文件的根目录指的是当虚拟用户登陆后默认所在的位置，但在Linux系统中的每一个文件都是有所有者和所有组属性的，例如用support-01帐户创建了一个新文件，但是support-01这个用户在系统中是找不到的，就会导致Linux系统中这个文件权限出现错误。因此还需要再创建一个用来让虚拟用户映射的系统本地用户，简单来说就是让虚拟用户默认登陆到这个本地用户的家目录中，创建的文件属性也都归属于这个本地用户，避免本地Linux系统无法处理这种虚拟用户创建的文件属性权限。为了方便管理FTP资料，可以把这个用于虚拟用户映射的系统本地用户的家目录设置到/var目录中（因为该目录是用来存放经常发生改变的数据），并且为了安全起见把这个系统本地用户的终端设置成不允许登陆，这不会影响虚拟用户的使用 。</p>
+<pre><code>[root@vsftpdserver vsftpd]# useradd -d /var/ftproot -s /sbin/nologin virtual
+[root@vsftpdserver vsftpd]# ls -ld /var/ftproot/
+drwx------ 4 virtual virtual 4096 Jul 19 22:38 /var/ftproot/
+[root@vsftpdserver vsftpd]# chmod -Rf 755 /var/ftproot/
+</code></pre><p>第3步：建立用于支持虚拟用户的PAM认证文件</p>
+<pre><code>[root@vsftpdserver vsftpd]# vi /etc/pam.d/vsftpd.vu
+auth       required     pam_userdb.so db=/etc/vsftpd/vuser
+account    required     pam_userdb.so db=/etc/vsftpd/vuser
+</code></pre><p>第4步：在vsftpd服务程序主配置文件中修改PAM支持文件</p>
+<pre><code>[root@vsftpdserver vsftpd]# vi /etc/vsftpd/vsftpd.confanonymous_enable=NO
+local_enable=YES
+guest_enable=YES
+guest_username=virtual
+allow_writeable_chroot=YES
+write_enable=YES
+local_umask=022
+dirmessage_enable=YES
+xferlog_enable=YES
+connect_from_port_20=YES
+xferlog_std_format=YES
+listen=YES
+listen_port=4449
+pam_service_name=vsftpd.vu
+userlist_enable=YES
+tcp_wrappers=YES
+</code></pre><p>第5步：为虚拟用户设置不同的权限，虽然support-01和support-02两个帐户都是用于FTP服务验证的虚拟帐户，但也想在他们之间区别对待。比如只允许support-01用户能够上传、创建、修改、查看、删除文件，而support-02只能查看文件，这其实也是可以让vsftpd服务程序实现的，只需要新建一个目录，在里面分别创建两个以support-01和support-02命名的文件，其中在support-01命名的文件中写入相关允许的权限</p>
+<pre><code>[root@vsftpdserver vsftpd]# mkdir /etc/vsftpd/vusers_dir/
+[root@vsftpdserver vsftpd]#  cd /etc/vsftpd/vusers_dir/
+[root@vsftpdserver vusers_dir]# touch support-02
+[root@vsftpdserver vusers_dir]# vi support-01
+anon_upload_enable=YES
+anon_mkdir_write_enable=YES
+anon_other_write_enable=YES
+</code></pre><p>再次修改下vsftpd主配置文件，添加user_config_dir参数来定义这两个虚拟用户不同权限的配置文件所存放的路径即可，为了让刚刚配置的服务程序新参数立即生效，需要把vsftpd再来重新启动一下，并加入到开机启动项中。</p>
+<pre><code>[root@vsftpdserver vusers_dir]# vi /etc/vsftpd/vsftpd.conf
+anonymous_enable=NO
+local_enable=YES
+guest_enable=YES
+guest_username=virtual
+allow_writeable_chroot=YES
+pam_service_name=vsftpd.vu
+write_enable=YES
+local_umask=022
+dirmessage_enable=YES
+xferlog_enable=YES
+connect_from_port_20=YES
+xferlog_std_format=YES
+listen=YES
+user_config_dir=/etc/vsftpd/vusers_dir
+listen_port=4449
+userlist_enable=YES
+tcp_wrappers=YES
+[root@vsftpdserver vusers_dir]# service vsftpd restart
+Shutting down vsftpd:                                      [  OK  ]
+Starting vsftpd for vsftpd:                                [  OK  ]
+[root@vsftpdserver vusers_dir]# chkconfig vsftpd on
+</code></pre><p> 客户端测试登陆support-02：</p>
+<pre><code>[root@ip-ftp_client ~]# ftp 192.168.198.141 4449
+Connected to 192.168.198.141 (192.168.198.141).
+220 (vsFTPd 2.2.2)
+Name (192.168.198.141:root): support-02
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp&gt; mkdir support-02
+550 Permission denied.
+</code></pre><p> 客户端测试登陆support-01：</p>
+<pre><code>[root@ip-ftp_client ~]# ftp 192.168.198.141 4449
+Connected to 192.168.198.141 (192.168.198.141).
+220 (vsFTPd 2.2.2)
+Name (192.168.198.141:root): support-01
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp&gt; mkdir support-01
+257 &quot;/support-01&quot; created
+ftp&gt; rename support-01 support-01_log
+350 Ready for RNTO.
+250 Rename successful.
+ftp&gt; rmdir support-01_log
+250 Remove directory operation successful.
+</code></pre>
       
     </div>
 
@@ -690,7 +917,7 @@ tcp        0      0 0.0.0.0:5900            0.0.0.0:*               LISTEN      
       
         <div class="post-tags">
           
-            <a href="/tags/KVM/" rel="tag"># KVM</a>
+            <a href="/tags/Vsftpd/" rel="tag"># Vsftpd</a>
           
         </div>
       
@@ -703,14 +930,18 @@ tcp        0      0 0.0.0.0:5900            0.0.0.0:*               LISTEN      
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/12/15/编译pcre/" rel="next" title="编译PCRE库报错">
+                <i class="fa fa-chevron-left"></i> 编译PCRE库报错
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/15/CentOS7.3搭建owncloud私有云/" rel="prev" title="基于CentOS7.3搭建owncloud私有云">
-                基于CentOS7.3搭建owncloud私有云 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/12/15/在Ubuntu Server下搭建LAMP环境/" rel="prev" title="在Ubuntu Server下搭建LAMP环境">
+                在Ubuntu Server下搭建LAMP环境 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -911,7 +1142,7 @@ tcp        0      0 0.0.0.0:5900            0.0.0.0:*               LISTEN      
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、关于虚拟化"><span class="nav-number">1.</span> <span class="nav-text">一、关于虚拟化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、实验环境："><span class="nav-number">2.</span> <span class="nav-text">二、实验环境：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、安装KVM相关软件："><span class="nav-number">3.</span> <span class="nav-text">三、安装KVM相关软件：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、文件传输协议"><span class="nav-number">1.</span> <span class="nav-text">一、文件传输协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、实验环境"><span class="nav-number">2.</span> <span class="nav-text">二、实验环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、安装软件"><span class="nav-number">3.</span> <span class="nav-text">三、安装软件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、配置vsftpd"><span class="nav-number">4.</span> <span class="nav-text">四、配置vsftpd</span></a></li></ol></div>
             
 
           </div>
