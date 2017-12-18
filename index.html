@@ -1109,7 +1109,7 @@ m
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://linshizhe.github.io/2017/12/15/linux日志管理与rsyslog远程服务器搭建/">
+    <link itemprop="mainEntityOfPage" href="https://linshizhe.github.io/2017/12/15/LVM逻辑卷-磁盘配额技术/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Stefanie">
@@ -1131,8 +1131,8 @@ m
             
               
                 
-                <a class="post-title-link" href="/2017/12/15/linux日志管理与rsyslog远程服务器搭建/" itemprop="url">
-                  linux日志管理与rsyslog远程服务器搭建
+                <a class="post-title-link" href="/2017/12/15/LVM逻辑卷-磁盘配额技术/" itemprop="url">
+                  LVM逻辑卷-磁盘配额技术
                 </a>
               
             
@@ -1188,7 +1188,7 @@ m
 
           
           
-             <span id="/2017/12/15/linux日志管理与rsyslog远程服务器搭建/" class="leancloud_visitors" data-flag-title="linux日志管理与rsyslog远程服务器搭建">
+             <span id="/2017/12/15/LVM逻辑卷-磁盘配额技术/" class="leancloud_visitors" data-flag-title="LVM逻辑卷-磁盘配额技术">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1212,7 +1212,7 @@ m
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  2,658
+                  2,598
                 </span>
               
 
@@ -1228,7 +1228,7 @@ m
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  14
+                  15
                 </span>
               
             </div>
@@ -1249,22 +1249,24 @@ m
       
         
           
-          一、日志概述1）常用的系统日志如下:
-核心启动日志:/var/log/dmesg
-系统报错或重启服务等日志:/var/log/messages
-邮件系统日志:/var/log/maillog
-cron(定制任务日志)日志:/var/log/cron 
-验证系统用户登录：/var/log/secure
-2）文件/var/log/wtmp ，记录所有的登陆和登出
-last命令查看所有登录过系统的用户和IP 
-[root@all-log-server ~]# last
-root     pts/0        192.168.198.1    Sat Jul 22 15:37   still logged in   
-reboot   system boot  2.6.32-431.el6.x Sat Jul 22 15:24 - 15:38  (00:13)    
-test-1   pts
+          一、LVM–逻辑卷管理1）LVM： Logical Volume Manager（逻辑卷管理）是Linux环境下对底层磁盘的一种管理机制，处在物理磁盘和文件系统之间的
+2）概念
+PV ：Physical Volume（物理卷）
+VG ：Volume Group（卷组）
+LV ：Logical Volume（逻辑卷）
+最小存储单位为：PE
+3）创建步骤
+a)添加磁盘 sdb sdc sdd
+[root@lszlab01 ~]# lsblk
+NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sr0     11:0    1 1024M  0 rom  
+sdb      8:16   0   20G  0 disk 
+sda      8:0    0   20G  0 disk 
+├─sda1   8:1    0  200M  0 part /boot
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/12/15/linux日志管理与rsyslog远程服务器搭建/#more" rel="contents">
+            <a class="btn" href="/2017/12/15/LVM逻辑卷-磁盘配额技术/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1352,7 +1354,7 @@ test-1   pts
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1374,7 +1376,7 @@ test-1   pts
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
