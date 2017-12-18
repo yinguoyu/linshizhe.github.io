@@ -1,3 +1,1 @@
-https://linshizhe.github.io/2017/12/15/在Ubuntu Server下搭建LAMP环境/
-https://linshizhe.github.io/2017/12/15/搭建vsftpd服务/
-https://linshizhe.github.io/2017/12/15/编译pcre/
+https://linshizhe.github.io/2017/12/15/PXE+Kickstart/
