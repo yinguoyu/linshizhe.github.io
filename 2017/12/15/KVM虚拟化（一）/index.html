@@ -97,7 +97,7 @@
 <meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/kvm-1.png">
 <meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/kvm-3.png">
 <meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/kvm-2.png">
-<meta property="og:updated_time" content="2017-12-14T15:58:40.858Z">
+<meta property="og:updated_time" content="2017-12-20T08:13:53.129Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="KVM虚拟化（一）">
 <meta name="twitter:description" content="一、关于虚拟化目前市场主要虚拟化厂商及产品 •  VMware vSphere •  微软 Hyper-V •  Citrix XenServer •  IBM PowerVM •  Red Hat Enterprise Virtulization •  开源的KVM、 Xen 、VirtualBSD等。 •  KVM （Kernel-Based Virtual Machine） •  2007年">
@@ -418,7 +418,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  1,872
+                  1,873
                 </span>
               
 
@@ -591,7 +591,7 @@ Formatting &apos;CentOS-7.4-x86_64.qcow2&apos;, fmt=qcow2 size=10737418240 encry
 </code></pre><p>10）把镜像，转换成安装虚拟机用到的iso文件</p>
 <pre><code>[root@kvm-server-01 KVM_data]# dd if=/dev/cdrom of=/home/KVM_data/CentOS-7.4-x86_64.iso
 </code></pre><p>11）安装centos7虚拟机</p>
-<pre><code>[root@kvm-server-01 KVM_data]# virt-install --name CentOS-7-x86-64 --virt-type kvm --ram 1024--cdrom=/home/KVM_data/CentOS-7.4-x86_64.iso --disk path=/home/KVM_data/CentOS-7.4-x86_64.qcow2 --network network=default --graphics vnc,listen=0.0.0.0 –noautoconsole
+<pre><code>[root@kvm-server-01 KVM_data]# virt-install --name CentOS-7-x86-64 --virt-type kvm --ram 1024--cdrom=/home/KVM_data/CentOS-7.4-x86_64.iso --disk path=/home/KVM_data/CentOS-7.4-x86_64.qcow2 --network network=default --graphics vnc,listen=0.0.0.0 --noautoconsole
 </code></pre><p>12）使用vnc客户端连接安装的虚拟机</p>
 <p><img src="http://ot2nwtxbo.bkt.clouddn.com/kvm-3.png" alt=""></p>
 <p><img src="http://ot2nwtxbo.bkt.clouddn.com/kvm-2.png" alt=""></p>
@@ -621,7 +621,7 @@ tcp        0      0 0.0.0.0:5900            0.0.0.0:*               LISTEN      
 </code></pre><p>h) 取消自动启动</p>
 <pre><code>virsh autostart --disable +domain
 </code></pre><p>i） 删除创建的虚拟机</p>
-<pre><code>virshundefine +domain
+<pre><code>virsh undefine +domain
 </code></pre><p>j) 启动虚拟机</p>
 <pre><code>virsh start +domain
 </code></pre><p>k) 关闭虚拟机</p>
