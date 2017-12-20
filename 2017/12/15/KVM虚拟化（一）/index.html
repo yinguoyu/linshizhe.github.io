@@ -97,7 +97,7 @@
 <meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/kvm-1.png">
 <meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/kvm-3.png">
 <meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/kvm-2.png">
-<meta property="og:updated_time" content="2017-12-20T08:13:53.129Z">
+<meta property="og:updated_time" content="2017-12-20T13:49:32.991Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="KVM虚拟化（一）">
 <meta name="twitter:description" content="一、关于虚拟化目前市场主要虚拟化厂商及产品 •  VMware vSphere •  微软 Hyper-V •  Citrix XenServer •  IBM PowerVM •  Red Hat Enterprise Virtulization •  开源的KVM、 Xen 、VirtualBSD等。 •  KVM （Kernel-Based Virtual Machine） •  2007年">
@@ -418,7 +418,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  1,873
+                  1,903
                 </span>
               
 
@@ -468,6 +468,11 @@ CentOS Linux release 7.4.1708 (Core)
 [root@kvm-server-01 ~]# uname -r
 3.10.0-693.el7.x86_64
 </code></pre><p> ip：192.168.198.24</p>
+<pre><code>[root@kvm-server02 ~]# cat /etc/redhat-release 
+CentOS Linux release 7.4.1708 (Core) 
+[root@kvm-server02 ~]# uname -r
+3.10.0-693.el7.x86_64
+</code></pre><p> ip：192.168.198.25</p>
 <p>实验前先禁止防火墙，NetworkManager，和关闭selinux</p>
 <pre><code>[root@kvm-server-01 ~]# systemctl disable firewalld
 Removed symlink /etc/systemd/system/multi-user.target.wants/firewalld.service.
