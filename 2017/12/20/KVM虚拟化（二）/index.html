@@ -113,7 +113,7 @@
 <meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/kvm2-17.png">
 <meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/kvm2-18.png">
 <meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/kvm2-19.png">
-<meta property="og:updated_time" content="2017-12-20T15:14:07.713Z">
+<meta property="og:updated_time" content="2017-12-20T15:20:20.845Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="KVM虚拟化（二）">
 <meta name="twitter:description" content="一 、创建安装winserver2008虚拟机接着上一章继续进行实验,(关了之前的centos7系统在安装的，所以端口还是5900) 1）挂载win2008的镜像用于安装 [root@kvm-server-01 KVM_data]#  mount -t iso9660  /dev/cdrom /mnt/cdrom 2）创建虚拟机磁盘文件 [root@kvm-server-01 KVM_data]#">
@@ -509,7 +509,7 @@ Formatting &apos;winserver_2008.qcow2&apos;, fmt=qcow2 size=21474836480 encrypti
 <pre><code>[root@kvm-server02 ~]# yum -y install qemu-kvm qemu-kvm-tools virt-manager libvirt virt-install openssh-askpass
 </code></pre><p>2）安装后系统工具内可以找到，如图</p>
 <p><img src="http://ot2nwtxbo.bkt.clouddn.com/kvm2-5.png" alt=""></p>
-<p>3)home目录下创建目KVM_data用来存放虚拟机文件</p>
+<p>3) home目录下创建目KVM_data用来存放虚拟机文件</p>
 <pre><code>[root@kvm-server02 ~]# mkdir /home/KVM_data
 </code></pre><p>4）挂载一个镜像，并制作成ISO文件，用于虚拟机系统安装</p>
 <pre><code>[root@kvm-server02 ~]# mkdir /mnt/cdrom
