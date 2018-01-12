@@ -98,7 +98,7 @@
 <meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/mysql-re-2.png">
 <meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/mysql-re-4.png">
 <meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/mysql-re-3.png">
-<meta property="og:updated_time" content="2018-01-12T09:23:02.254Z">
+<meta property="og:updated_time" content="2018-01-12T09:26:16.903Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql主从复制">
 <meta name="twitter:description" content="一 、实验环境master  主服务器   192.168.198.120 slave   从服务器   192.168.198.121 [root@master_mysql ~]# cat /etc/redhat-release  CentOS release 6.9 (Final) [root@master_mysql ~]# uname -r  2.6.32-431.el6.x86_64 [">
@@ -1263,7 +1263,9 @@ Enter password:
  -rw-r--r-- 1 root root 2153 1月  10 00:53 baiduwaimai-master_bak.sql
 
 注意：实际生产环境中大数据量（超2G数据）的备份，建议不要使用mysqldump进行比分，因为会非常慢。此时推荐使用XtraBackup 进行备份。
-</code></pre><h2 id="解锁表"><a href="#解锁表" class="headerlink" title="解锁表"></a>解锁表</h2><pre><code>mysql&gt; unlock tables;
+
+解锁表
+mysql&gt; unlock tables;
 
 Query OK, 0 rows affected (0.00 sec)
 </code></pre><p>将Master上备份的数据远程传送到Slave上，以用于Slave配置时恢复数据</p>
@@ -1695,7 +1697,7 @@ mysql&gt; show databases;
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一-、实验环境"><span class="nav-number">1.</span> <span class="nav-text">一 、实验环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、MySQL源码编译安装mysql-5-6-38"><span class="nav-number">2.</span> <span class="nav-text">二、MySQL源码编译安装mysql-5.6.38</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、MySQL主从复制"><span class="nav-number">3.</span> <span class="nav-text">三、MySQL主从复制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解锁表"><span class="nav-number"></span> <span class="nav-text">解锁表</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一-、实验环境"><span class="nav-number">1.</span> <span class="nav-text">一 、实验环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、MySQL源码编译安装mysql-5-6-38"><span class="nav-number">2.</span> <span class="nav-text">二、MySQL源码编译安装mysql-5.6.38</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、MySQL主从复制"><span class="nav-number">3.</span> <span class="nav-text">三、MySQL主从复制</span></a></li></ol></div>
             
 
           </div>
