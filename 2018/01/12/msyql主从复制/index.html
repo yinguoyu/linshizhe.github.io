@@ -87,21 +87,21 @@
 
 
 
-<meta name="description" content="###一 、实验环境 master  主服务器   192.168.198.120 slave   从服务器   192.168.198.121 [root@master_mysql ~]# cat /etc/redhat-release  CentOS release 6.9 (Final) [root@master_mysql ~]# uname -r  2.6.32-431.el6.x86_">
+<meta name="description" content="一 、实验环境master  主服务器   192.168.198.120 slave   从服务器   192.168.198.121 [root@master_mysql ~]# cat /etc/redhat-release  CentOS release 6.9 (Final) [root@master_mysql ~]# uname -r  2.6.32-431.el6.x86_64 [">
 <meta name="keywords" content="mysql,replication">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mysql主从复制">
 <meta property="og:url" content="https://linshizhe.github.io/2018/01/12/msyql主从复制/index.html">
 <meta property="og:site_name" content="Stefanie&#39;Notes">
-<meta property="og:description" content="###一 、实验环境 master  主服务器   192.168.198.120 slave   从服务器   192.168.198.121 [root@master_mysql ~]# cat /etc/redhat-release  CentOS release 6.9 (Final) [root@master_mysql ~]# uname -r  2.6.32-431.el6.x86_">
+<meta property="og:description" content="一 、实验环境master  主服务器   192.168.198.120 slave   从服务器   192.168.198.121 [root@master_mysql ~]# cat /etc/redhat-release  CentOS release 6.9 (Final) [root@master_mysql ~]# uname -r  2.6.32-431.el6.x86_64 [">
 <meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/mysql-re-1.png">
 <meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/mysql-re-2.png">
 <meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/mysql-re-4.png">
 <meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/mysql-re-3.png">
-<meta property="og:updated_time" content="2018-01-12T09:09:22.018Z">
+<meta property="og:updated_time" content="2018-01-12T09:23:02.254Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql主从复制">
-<meta name="twitter:description" content="###一 、实验环境 master  主服务器   192.168.198.120 slave   从服务器   192.168.198.121 [root@master_mysql ~]# cat /etc/redhat-release  CentOS release 6.9 (Final) [root@master_mysql ~]# uname -r  2.6.32-431.el6.x86_">
+<meta name="twitter:description" content="一 、实验环境master  主服务器   192.168.198.120 slave   从服务器   192.168.198.121 [root@master_mysql ~]# cat /etc/redhat-release  CentOS release 6.9 (Final) [root@master_mysql ~]# uname -r  2.6.32-431.el6.x86_64 [">
 <meta name="twitter:image" content="http://ot2nwtxbo.bkt.clouddn.com/mysql-re-1.png">
 
 
@@ -454,8 +454,7 @@
       
 
       
-        <p>###一 、实验环境</p>
-<p>master  主服务器   192.168.198.120</p>
+        <h3 id="一-、实验环境"><a href="#一-、实验环境" class="headerlink" title="一 、实验环境"></a>一 、实验环境</h3><p>master  主服务器   192.168.198.120</p>
 <p>slave   从服务器   192.168.198.121</p>
 <pre><code>[root@master_mysql ~]# cat /etc/redhat-release 
 CentOS release 6.9 (Final)
@@ -517,8 +516,7 @@ SELINUX=disabled
 SELINUXTYPE=targeted
 </code></pre><p>重启操作系统</p>
 <pre><code>[root@slave_mysql ~]# reboot
-</code></pre><p>###二、MySQL源码编译安装mysql-5.6.38</p>
-<p>1）、使用下面的命令检查是否安装有MySQL Server:</p>
+</code></pre><h3 id="二、MySQL源码编译安装mysql-5-6-38"><a href="#二、MySQL源码编译安装mysql-5-6-38" class="headerlink" title="二、MySQL源码编译安装mysql-5.6.38"></a>二、MySQL源码编译安装mysql-5.6.38</h3><p>1）、使用下面的命令检查是否安装有MySQL Server:</p>
 <pre><code>[root@slave_mysql ~]# rpm -qa | grep mysql
 </code></pre><p>2）、两台服务器改防火墙设置，打开3306端口，编辑防火墙配置文件增加如下行：</p>
 <pre><code> //*****************************************************************
@@ -1132,8 +1130,7 @@ Thanks for using MySQL!
 </code></pre><p>22 、重启服务器，检测mysql是否能开机自动启动：</p>
 <pre><code>[root@master_mysql ~]# reboot
 [root@slave_mysql ~]# reboot
-</code></pre><p>###三、MySQL主从复制</p>
-<p>a) 、MySQL主从复制的方式</p>
+</code></pre><h3 id="三、MySQL主从复制"><a href="#三、MySQL主从复制" class="headerlink" title="三、MySQL主从复制"></a>三、MySQL主从复制</h3><p>a) 、MySQL主从复制的方式</p>
 <p>MySQL5.6开始主从复制有两种方式：基于日志（binlog）、基于GTID（全局事务标示符）。</p>
 <p>本实验主要讲基于日志（binlog）的复制。</p>
 <p>MySQL主从复制（也称A/B复制）的原理</p>
@@ -1264,7 +1261,9 @@ Enter password:
 [root@master_mysql tmp]# ll
 总用量 4
  -rw-r--r-- 1 root root 2153 1月  10 00:53 baiduwaimai-master_bak.sql
-</code></pre><h2 id="注意：实际生产环境中大数据量（超2G数据）的备份，建议不要使用mysqldump进行比分，因为会非常慢。此时推荐使用XtraBackup-进行备份。"><a href="#注意：实际生产环境中大数据量（超2G数据）的备份，建议不要使用mysqldump进行比分，因为会非常慢。此时推荐使用XtraBackup-进行备份。" class="headerlink" title="注意：实际生产环境中大数据量（超2G数据）的备份，建议不要使用mysqldump进行比分，因为会非常慢。此时推荐使用XtraBackup 进行备份。"></a>注意：实际生产环境中大数据量（超2G数据）的备份，建议不要使用mysqldump进行比分，因为会非常慢。此时推荐使用XtraBackup 进行备份。</h2><h2 id="解锁表"><a href="#解锁表" class="headerlink" title="解锁表"></a>解锁表</h2><pre><code>mysql&gt; unlock tables;
+
+注意：实际生产环境中大数据量（超2G数据）的备份，建议不要使用mysqldump进行比分，因为会非常慢。此时推荐使用XtraBackup 进行备份。
+</code></pre><h2 id="解锁表"><a href="#解锁表" class="headerlink" title="解锁表"></a>解锁表</h2><pre><code>mysql&gt; unlock tables;
 
 Query OK, 0 rows affected (0.00 sec)
 </code></pre><p>将Master上备份的数据远程传送到Slave上，以用于Slave配置时恢复数据</p>
@@ -1696,7 +1695,7 @@ mysql&gt; show databases;
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#注意：实际生产环境中大数据量（超2G数据）的备份，建议不要使用mysqldump进行比分，因为会非常慢。此时推荐使用XtraBackup-进行备份。"><span class="nav-number">1.</span> <span class="nav-text">注意：实际生产环境中大数据量（超2G数据）的备份，建议不要使用mysqldump进行比分，因为会非常慢。此时推荐使用XtraBackup 进行备份。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解锁表"><span class="nav-number">2.</span> <span class="nav-text">解锁表</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一-、实验环境"><span class="nav-number">1.</span> <span class="nav-text">一 、实验环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、MySQL源码编译安装mysql-5-6-38"><span class="nav-number">2.</span> <span class="nav-text">二、MySQL源码编译安装mysql-5.6.38</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、MySQL主从复制"><span class="nav-number">3.</span> <span class="nav-text">三、MySQL主从复制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解锁表"><span class="nav-number"></span> <span class="nav-text">解锁表</span></a></div>
             
 
           </div>
