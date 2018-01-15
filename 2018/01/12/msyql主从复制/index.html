@@ -98,7 +98,7 @@
 <meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/mysql-re-2.png">
 <meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/mysql-re-4.png">
 <meta property="og:image" content="http://ot2nwtxbo.bkt.clouddn.com/mysql-re-3.png">
-<meta property="og:updated_time" content="2018-01-12T09:26:16.903Z">
+<meta property="og:updated_time" content="2018-01-15T07:59:00.745Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql主从复制">
 <meta name="twitter:description" content="一 、实验环境master  主服务器   192.168.198.120 slave   从服务器   192.168.198.121 [root@master_mysql ~]# cat /etc/redhat-release  CentOS release 6.9 (Final) [root@master_mysql ~]# uname -r  2.6.32-431.el6.x86_64 [">
@@ -419,7 +419,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  5,954
+                  6,012
                 </span>
               
 
@@ -516,8 +516,15 @@ SELINUX=disabled
 SELINUXTYPE=targeted
 </code></pre><p>重启操作系统</p>
 <pre><code>[root@slave_mysql ~]# reboot
-</code></pre><h3 id="二、MySQL源码编译安装mysql-5-6-38"><a href="#二、MySQL源码编译安装mysql-5-6-38" class="headerlink" title="二、MySQL源码编译安装mysql-5.6.38"></a>二、MySQL源码编译安装mysql-5.6.38</h3><p>1）、使用下面的命令检查是否安装有MySQL Server:</p>
-<pre><code>[root@slave_mysql ~]# rpm -qa | grep mysql
+</code></pre><h3 id="二、MySQL源码编译安装mysql-5-6-38"><a href="#二、MySQL源码编译安装mysql-5-6-38" class="headerlink" title="二、MySQL源码编译安装mysql-5.6.38"></a>二、MySQL源码编译安装mysql-5.6.38</h3><p>1）、使用下面的命令检查是否安装有MySQL Server:，使用rpm -e 卸载mysql-server</p>
+<pre><code>[root@master_mysql ~]# rpm -qa |grep mysql
+mysql-libs-5.1.73-8.el6_8.x86_64
+mysql-5.1.73-8.el6_8.x86_64
+mysql-server-5.1.73-8.el6_8.x86_64
+[root@master_mysql ~]# rpm -e mysql-server
+[root@master_mysql ~]# rpm -qa |grep mysql
+mysql-libs-5.1.73-8.el6_8.x86_64
+mysql-5.1.73-8.el6_8.x86_64
 </code></pre><p>2）、两台服务器改防火墙设置，打开3306端口，编辑防火墙配置文件增加如下行：</p>
 <pre><code> //*****************************************************************
 -A INPUT -p tcp -m state --state NEW -m tcp --dport 3306 -j ACCEPT
